@@ -353,6 +353,16 @@
     border-left:4px solid #C87255;
   }
 
+  .cs-figure{margin:32px 0;}
+  .cs-figure img{
+    width:100%;display:block;border-radius:12px;
+    border:1px solid var(--cs-border);background:var(--cs-white);
+  }
+  .cs-figure-caption{
+    font-size:12.5px;color:var(--cs-muted);font-style:italic;
+    margin-top:10px;
+  }
+
   /* ---------- process steps (numbered coral circle, like source) ---------- */
   .cs-steps{display:grid;gap:16px;margin:28px 0;}
   .cs-step{
@@ -446,22 +456,19 @@
   <div class="cs-eyebrow">01 · The Problem</div>
   <h2 class="cs-h2">Why this project stops at segments, not personas.</h2>
   <p class="cs-body-text">
-    The project started with a systematic outreach campaign. I contacted 37 companies across Cologne and NRW's digital industry: 35 potential cooperation partners, plus 2 multipliers, offering a free analysis and dashboard in exchange for real user data, closing every message with "Would you be interested, or know someone at the company who might find this relevant?" I screened out companies with an active legal or data-compliance risk before reaching out, and documented why each one got cut. That habit paid off later: when the contract wall hit, I already knew exactly what kind of risk I was looking at. I ran outreach on two channels, LinkedIn and email, and lined up two fallback datasets in advance, because campaigns like this rarely land clean.
-    </p>
-    <p class="cs-body-text">
-    One company got furthest. Real interest, a good call, genuine momentum. Then their contract stopped everything cold: they couldn't share user tracking data with third parties, not even anonymized. I had no time left to find a workaround.
+    The project started with a systematic outreach campaign: 37 companies across Cologne, Germany, and NRW's digital industry, screened first for legal and data-compliance risk, then contacted on two channels, LinkedIn and email, offering a free analysis and dashboard for real user data.
   </p>
   <p class="cs-body-text">
-    A second company hit the same wall from the other direction. I raised data-protection and labor-law concerns with them myself, before they'd asked. They responded by revoking our access as a precaution while they sorted it out internally: not a rejection, just no green light yet either.
+    One company got furthest, real interest, a good call, before its contract stopped everything cold: no sharing tracking data with third parties, not even anonymized. A second backed off the same way, after I raised data-protection concerns with them myself, before they'd asked. Neither was a rejection. Neither left me with real user data.
   </p>
-  <div class="cs-pullquote">
+  <p class="cs-body-text">
     I could have kept calling this "personas." I didn't, because quantitative data alone couldn't carry that claim. Without a qualitative data layer I scoped it down to segmentation instead.
-  </div>
+  </p>
+  <p class="cs-body-text">
+    Three fallback datasets were lined up in advance. <em>UC Irvine's Online Retail II</em> had the cleanest license but no browsing data, no funnel. <em>REES46</em> had full event data but capped out at transactional RFM segmentation. <em>The Google Merchandise Store's public GA4 sample</em> was the only one with a complete behavioral funnel, worth the extra BigQuery setup.
+  </p>
   <p class="cs-body-text" style="margin-bottom:0;">
-    Three fallback datasets had been evaluated in advance, not just one. UC Irvine's Online Retail II had the cleanest license but only transaction history, no browsing or session data, so it couldn't support a funnel analysis at all. REES46's ecommerce behavior data was a real contender, full event-level granularity, no cloud setup required, but it caps out at transactional RFM segmentation: no pre-purchase browsing, no session paths, no device or traffic-source data. The Google Merchandise Store's public GA4 sample was the only one of the three with the full behavioral funnel this project actually needed, at the cost of a BigQuery setup the other two didn't require.
-    </p>
-    <p class="cs-body-text">
-    It's pre-anonymized for the same reason both companies had just backed away from sharing raw user data: user privacy. That's not a footnote, it's one of the real takeaways of this project. A real partner's data would have kept the door open to a qualitative layer, real users I could have followed up with. A public, already-anonymized sample closes that door outright: you can't interview a pseudonymized user ID. From that point on, the clustering, the dashboard, and the presentation became solo work, and personas quietly became segmentation.
+    It's pre-anonymized for the same reason both companies had backed away: user privacy, one of the real takeaways here. A real partner's data would have kept a qualitative layer possible. A pseudonymized public sample closes that door outright. From there, the work became solo, and personas became segmentation.
   </p>
 </section>
 
@@ -478,8 +485,12 @@
     <span class="cs-tag">Behavioral Analytics</span>
   </div>
   <p class="cs-body-text">
-    Six behavioral features per user — session count, page views, items viewed, add-to-cart, checkouts, purchases — log-transformed and standardized, fed into k-means. The two standard validation metrics disagreed with each other: the Elbow Method flattens out with no sharp bend after k=3, while the Silhouette Score peaks at k=2, not k=4. I chose k=4 anyway, for interpretability and business-relevant differentiation, and documented the conflict openly rather than quietly picking the number that made a better story.
+    Six behavioral features fed the model: <em>session count</em>, <em>page views</em>, <em>items viewed</em>, <em>add-to-cart</em>, <em>checkouts</em>, and <em>purchases</em>, each log-transformed and standardized. The two standard validation metrics couldn't agree with each other. The Elbow Method flattens out with no sharp bend after k=3. The Silhouette Score peaks at k=2, not k=4. I chose k=4 anyway, for interpretability and business-relevant differentiation, and documented that disagreement openly instead of quietly picking the number that told a better story.
   </p>
+  <figure class="cs-figure">
+    <img src="img/elbow_silhouette.png" alt="Elbow method inertia curve and silhouette score by k, showing the elbow flattening after k=3 while silhouette peaks at k=2">
+    <div class="cs-figure-caption">Elbow inertia keeps dropping past any sharp bend; silhouette score peaks at k=2, not k=4, the exact disagreement behind this decision.</div>
+  </figure>
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
@@ -551,31 +562,32 @@
      ============================================================ -->
 <section class="cs-block" id="insights">
   <div class="cs-eyebrow">04 · Testing "Defensible"</div>
-  <h2 class="cs-h2">Where the method breaks — and where it holds.</h2>
-  <p class="cs-body-text">Three checks against the segments above, each one either supporting or undermining the claim that this segmentation is "meaningful and defensible."</p>
+  <h2 class="cs-h2">What survived the second look?</h2>
+  <p class="cs-body-text">Three checks against the above segments. One holds up; one turns into something more useful; and one is a real limit.</p>
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
       <div>
-        <h4>Weakens it — the boundary between segments can be an illusion</h4>
-        <p>Explorer and Engaged Non-Converter both drop off at the identical transition — Shipping Info to Payment Info (13.6% and 27.6% retention). Two "different" segments share one root cause. Treating them as distinct populations here would overstate what the clustering actually found.</p>
+        <h4>A boundary that actually holds</h4>
+        <p>Browser and Explorer share the same devices and traffic. Explorer just spends roughly 13 times longer engaged. This is not a convenient cut in the data. This is a real behavioural difference.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">2</div>
       <div>
-        <h4>Supports it — k=4 draws at least one real line</h4>
-        <p>Browser and Explorer share the same device and traffic mix, yet Explorer shows roughly 13x more engagement time. That's a genuine behavioral split, not a convenient cut in the data — the strongest evidence k=4 earns its keep.</p>
+        <h4>Two segments, one problem</h4>
+        <p>Explorer and Engaged Non-Converter look like separate audiences until you find where they actually drop off: at the step from Shipping Info to Payment Info. There, retention is 13.6% and 27.6%, respectively. Fix that one step and both segments will improve at once.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">3</div>
       <div>
-        <h4>Limits it — the segmentation has a shelf life</h4>
-        <p>Converter share nearly halves from November to January (2.5% → 0.9%), and site-wide conversion falls ~60% over the same window. This describes holiday-season behavior, not a stable typology. "Defensible" was never meant to mean "permanent."</p>
+        <h4>Built to read one holiday season, not a whole year</h4>
+        <p>The dataset only ever covered three months, November through January, holiday season by design. That was known going in. What wasn't known was how much moves inside that window: Converter share nearly halves (2.5% down to 0.9%), and site-wide conversion falls with it by about 60%. Exactly the kind of instability a holiday-season model should surface, and exactly why calling this a stable user typology would overstate it.</p>
       </div>
     </div>
   </div>
+  <p class="cs-body-text" style="margin-top:20px;margin-bottom:0;">One holds. One becomes a solution. One confirms this was always a holiday-season read. That's what checking "defensible" actually gets you: not a clean pass, but a more honest map.</p>
 </section>
 
 <!-- ============================================================
@@ -583,9 +595,9 @@
      ============================================================ -->
 <section class="cs-block" id="reflection">
   <div class="cs-eyebrow">05 · The Answer</div>
-  <h2 class="cs-h2">So — was scoping down to segments the right call?</h2>
+  <h2 class="cs-h2">Was scoping down to segments the right call?</h2>
   <p class="cs-body-text">
-    Yes, and the three checks above are why. One segment boundary turned out genuinely solid (Browser vs. Explorer). One looked solid but wasn't (the shared checkout-friction point). And the whole segmentation turned out to be a three-month snapshot, not a stable typology. If I'd called these "personas" instead of "segments," every one of those caveats would have been a false promise instead of an honest footnote.
+    Yes, and the three checks above are why. One segment boundary turned out genuinely solid (Browser vs. Explorer). One looked solid but wasn't (the shared checkout-friction point). And the whole segmentation confirmed what the three-month window always implied: a holiday-season read, not a stable typology. If I'd called these "personas" instead of "segments," every one of those caveats would have been a false promise instead of an honest footnote.
   </p>
   <p class="cs-body-text">
     The most useful part of this project wasn't the clustering — it was documenting exactly where it stops being trustworthy. k=4 tells a cleaner story than k=2, but the Silhouette Score doesn't agree, and saying that out loud felt riskier than burying it in an appendix. It wasn't: the methodological critique became the strongest part of the deliverable, not the weakest.
