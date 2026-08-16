@@ -369,6 +369,11 @@
   /* ---------- content blocks ---------- */
   .cs-content{max-width:720px;margin:0 auto;padding:0 48px 120px;}
   .cs-block{padding:64px 0;border-top:1px solid var(--cs-border);}
+  .cs-block.wide{
+    max-width:960px;margin-left:auto;margin-right:auto;
+    padding-left:48px;padding-right:48px;
+  }
+  .cs-block.wide .cs-narrow-text{max-width:680px;}
   .cs-block:first-child{border-top:none;padding-top:0;}
   #result{padding-bottom:24px;}
   .cs-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cs-coral);margin-bottom:16px;}
@@ -380,6 +385,16 @@
     margin:32px 0;font-style:italic;font-size:18px;line-height:1.5;font-weight:300;
     border-left:4px solid #C87255;
   }
+
+  .cs-donut-block{
+    display:flex;align-items:center;gap:48px;flex-wrap:wrap;
+    margin-top:36px;font-family:'Manrope',sans-serif;
+  }
+  .cs-donut-legend{display:flex;flex-direction:column;gap:16px;flex:1;min-width:220px;}
+  .cs-donut-legend-item{display:flex;align-items:center;gap:12px;}
+  .cs-donut-legend-item .dot{width:12px;height:12px;border-radius:50%;flex:none;}
+  .cs-donut-legend-item .name{font-weight:700;font-size:15px;color:var(--cs-dark);}
+  .cs-donut-legend-item .pct{font-weight:700;font-size:15px;margin-left:auto;}
 
   .cs-figure{margin:32px 0;}
   .cs-figure img{
@@ -565,7 +580,30 @@
 <section class="cs-block" id="result">
   <div class="cs-eyebrow">03 · The Output</div>
   <h2 class="cs-h2">Four segments came out the other end.</h2>
-  <p class="cs-body-text" style="margin-bottom:0;">This is the artifact, not the verdict. Explore the four behavioral segments below, exactly as they came out of the clustering pipeline. Whether they hold up as "meaningful and defensible" is the question the next section actually answers.</p>
+
+  <div class="cs-donut-block">
+    <svg width="220" height="220" viewBox="0 0 220 220">
+      <circle cx="110" cy="110" r="80" fill="none" stroke="#EEECE8" stroke-width="30"/>
+      <circle cx="110" cy="110" r="80" fill="none" stroke="#4285F4" stroke-width="30"
+        stroke-dasharray="407.65 95.00" stroke-dashoffset="0" transform="rotate(-90 110 110)"/>
+      <circle cx="110" cy="110" r="80" fill="none" stroke="#FBBC04" stroke-width="30"
+        stroke-dasharray="71.88 430.78" stroke-dashoffset="-407.65" transform="rotate(-90 110 110)"/>
+      <circle cx="110" cy="110" r="80" fill="none" stroke="#34A853" stroke-width="30"
+        stroke-dasharray="14.58 488.08" stroke-dashoffset="-479.53" transform="rotate(-90 110 110)"/>
+      <circle cx="110" cy="110" r="80" fill="none" stroke="#EA4335" stroke-width="30"
+        stroke-dasharray="8.04 494.61" stroke-dashoffset="-494.11" transform="rotate(-90 110 110)"/>
+      <text x="110" y="104" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="30" fill="#0F1117">270,154</text>
+      <text x="110" y="126" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="500" font-size="12" fill="#7A7A7A">users total</text>
+    </svg>
+    <div class="cs-donut-legend">
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#4285F4"></span><span class="name">Browser</span><span class="pct" style="color:#4285F4">81.1%</span></div>
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#FBBC04"></span><span class="name">Explorer</span><span class="pct" style="color:#EA9C00">14.3%</span></div>
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#34A853"></span><span class="name">Engaged Non-Converter</span><span class="pct" style="color:#34A853">2.9%</span></div>
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#EA4335"></span><span class="name">Converter</span><span class="pct" style="color:#EA4335">1.6%</span></div>
+    </div>
+  </div>
+
+  <p class="cs-body-text" style="margin-top:32px;margin-bottom:0;">This is the artifact, not the verdict. Explore the four behavioral segments below, exactly as they came out of the clustering pipeline. Whether they hold up as "meaningful and defensible" is the question the next section actually answers.</p>
 </section>
 
 </div><!-- /.cs-content (reopens below the dashboard) -->
@@ -596,10 +634,10 @@
 <!-- ============================================================
      CASE STUDY — INSIDE THE BROWSER CLUSTER (extracted sub-segmentation)
      ============================================================ -->
-<section class="cs-block" id="subsegmentation">
+<section class="cs-block wide" id="subsegmentation">
   <div class="cs-eyebrow">04 · A Closer Look</div>
   <h2 class="cs-h2">Inside the Browser cluster.</h2>
-  <p class="cs-body-text">
+  <p class="cs-body-text cs-narrow-text">
     Browser is 81.1% of the whole dataset, by far the largest of the four segments. A cluster that dominant is worth a second pass: is it really one behavioral group, or did k=4 flatten real structure underneath it? I ran a rule-based classification on session-level engagement signals to find out.
   </p>
   <div style="font-family:'Manrope',sans-serif;">
@@ -677,7 +715,7 @@
       <div class="origin-cell"><div class="v" style="color:var(--converter)">2.1%</div><div class="k">Likely bot-like · 4,334 users</div></div>
     </div>
   </div>
-  <p class="cs-body-text" style="margin-top:24px;margin-bottom:0;">
+  <p class="cs-body-text cs-narrow-text" style="margin-top:24px;margin-bottom:0;">
     "Crawler-like" is a behavioral heuristic, single session, multiple pages, zero measured engagement time, not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive classification, not a validated typology, the same honesty standard the rest of this project holds to.
   </p>
 </section>
