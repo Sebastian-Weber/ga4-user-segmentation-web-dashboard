@@ -657,9 +657,13 @@
 
 </div><!-- /.cs-content -->
 
-<div class="cs-block wide" style="padding-top:32px;border-top:none;">
+<div class="cs-block wide" style="padding-top:32px;padding-bottom:24px;border-top:none;">
   <div style="font-family:'Manrope',sans-serif;">
-    <div class="subseg-coverage">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
+    <div class="origin-summary" style="margin-bottom:24px;">
+      <div class="origin-cell"><div class="v" style="color:var(--engaged)">87.0%</div><div class="k">Likely human · 179,147 users</div></div>
+      <div class="origin-cell"><div class="v" style="color:var(--explorer)">10.9%</div><div class="k">Uncertain · 22,433 users</div></div>
+      <div class="origin-cell"><div class="v" style="color:var(--converter)">2.1%</div><div class="k">Likely bot-like · 4,334 users</div></div>
+    </div>
     <div class="subseg-group">      <div class="subseg-grid">
         <div class="subseg-card">
           <img src="img/quick_but_engaged.png" alt="Quick but Engaged">
@@ -761,15 +765,11 @@
         </div>
       </div>
     </div>
-    <div class="origin-summary" style="margin-top:24px;margin-bottom:0;">
-      <div class="origin-cell"><div class="v" style="color:var(--engaged)">87.0%</div><div class="k">Likely human · 179,147 users</div></div>
-      <div class="origin-cell"><div class="v" style="color:var(--explorer)">10.9%</div><div class="k">Uncertain · 22,433 users</div></div>
-      <div class="origin-cell"><div class="v" style="color:var(--converter)">2.1%</div><div class="k">Likely bot-like · 4,334 users</div></div>
-    </div>
+    <div class="subseg-coverage" style="margin-top:20px;margin-bottom:0;">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
   </div>
 </div><!-- /.cs-block.wide -->
 
-<div class="cs-content" style="padding-top:32px;">
+<div class="cs-content" style="padding-top:16px;">
 
 <p class="cs-body-text" style="margin-bottom:0;">
   "Crawler-like" is a behavioral heuristic, single session, multiple pages, zero measured engagement time, not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive classification, not a validated typology, the same honesty standard the rest of this project holds to.
