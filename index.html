@@ -261,24 +261,36 @@
   .origin-cell .v{font-family:'Manrope',sans-serif;font-weight:600;font-size:22px;}
   .origin-cell .k{font-size:12px;color:var(--ink-faint);margin-top:3px;}
 
+  .subseg-group{margin-bottom:24px;}
+  .subseg-group:last-child{margin-bottom:0;}
+  .subseg-group-label{
+    display:flex;align-items:center;gap:8px;
+    font-family:'Manrope',sans-serif;font-size:12px;font-weight:700;
+    text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);
+    margin-bottom:14px;
+  }
+  .subseg-group-label .dot{width:8px;height:8px;border-radius:50%;}
+
   .subseg-grid{
     display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
     gap:18px;
   }
   .subseg-card{
     background:var(--surface);border:1px solid var(--hairline);border-radius:var(--radius);
-    padding:20px;text-align:center;
+    padding:20px;text-align:left;
   }
-  .subseg-card img{width:130px;image-rendering:pixelated;margin-bottom:12px;}
+  .subseg-card img{display:block;width:90px;image-rendering:pixelated;margin-bottom:8px;}
   .subseg-card .cat-dot{
-    display:inline-flex;align-items:center;gap:6px;
+    display:flex;align-items:center;gap:6px;
     font-family:'Manrope',sans-serif;font-size:10.5px;color:var(--ink-faint);
     text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;
   }
   .subseg-card .dot{width:7px;height:7px;border-radius:50%;}
-  .subseg-card h4{font-family:'Manrope',sans-serif;font-size:16px;font-weight:600;margin:0 0 6px;}
-  .subseg-card .count{font-family:'Manrope',sans-serif;font-size:19px;font-weight:600;}
-  .subseg-card .pct{font-size:11.5px;color:var(--ink-faint);margin-bottom:8px;}
+  .subseg-card h4{font-family:'Manrope',sans-serif;font-size:16px;font-weight:600;margin:0 0 12px;}
+  .subseg-card .donut-wrap{display:flex;align-items:center;justify-content:flex-start;gap:14px;margin-bottom:12px;}
+  .subseg-card .donut-stats{text-align:left;}
+  .subseg-card .count{font-family:'Manrope',sans-serif;font-size:19px;font-weight:600;display:block;}
+  .subseg-card .pct{font-size:11.5px;color:var(--ink-faint);}
   .subseg-card .detail{font-size:12px;color:var(--ink-soft);line-height:1.5;}
   .subseg-card .meaning{font-size:12.5px;color:var(--ink);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid var(--hairline);}
 
@@ -341,8 +353,8 @@
   .cs-logo svg{display:block;width:40px;height:40px;margin-top:-2px;}
   .cs-nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
   .cs-nav-pill{background:var(--cs-coral-bg);color:var(--cs-coral);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
-  .cs-tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
-  .cs-tag{background:var(--cs-coral-bg);color:var(--cs-coral);padding:5px 13px;border-radius:20px;font-size:12px;font-weight:600;}
+  .cs-tag-row{display:grid;grid-template-columns:repeat(4,max-content);gap:6px;margin:0 0 24px;}
+  .cs-tag{background:var(--cs-coral-bg);color:var(--cs-coral);padding:4px 10px;border-radius:16px;font-size:11px;font-weight:600;white-space:nowrap;}
   .cs-nav-link{font-size:13px;color:var(--cs-muted);text-decoration:none;font-weight:500;transition:color .15s;}
   .cs-nav-link:hover{color:var(--cs-text);}
   .cs-nav-cta{background:var(--cs-coral);color:#fff!important;padding:7px 16px;border-radius:7px;font-size:13px!important;font-weight:600!important;text-decoration:none;transition:background .15s;}
@@ -370,10 +382,10 @@
   .cs-content{max-width:720px;margin:0 auto;padding:0 48px 120px;}
   .cs-block{padding:64px 0;border-top:1px solid var(--cs-border);}
   .cs-block.wide{
-    max-width:960px;margin-left:auto;margin-right:auto;
+    max-width:840px;margin-left:auto;margin-right:auto;
     padding-left:48px;padding-right:48px;
   }
-  .cs-block.wide .cs-narrow-text{max-width:680px;}
+  /* (cs-narrow-text no longer needed — text and grid now use separate containers) */
   .cs-block:first-child{border-top:none;padding-top:0;}
   #result{padding-bottom:24px;}
   .cs-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cs-coral);margin-bottom:16px;}
@@ -456,6 +468,7 @@
     .cs-page-footer{padding:24px 20px;flex-direction:column;gap:8px;text-align:center;}
     .cs-hero-meta{grid-template-columns:1fr;}
     .cs-step{grid-template-columns:1fr;}
+    .cs-tag-row{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -629,83 +642,122 @@
 </footer>
 </div><!-- /.dashboard-embed -->
 
-<div class="cs-content" style="padding-top:0;">
+<div class="cs-content" style="padding-top:0;padding-bottom:0;">
 
 <!-- ============================================================
      CASE STUDY — INSIDE THE BROWSER CLUSTER (extracted sub-segmentation)
      ============================================================ -->
-<section class="cs-block wide" id="subsegmentation">
+<section class="cs-block" id="subsegmentation" style="padding-bottom:0;">
   <div class="cs-eyebrow">04 · A Closer Look</div>
   <h2 class="cs-h2">Inside the Browser cluster.</h2>
-  <p class="cs-body-text cs-narrow-text">
+  <p class="cs-body-text">
     Browser is 81.1% of the whole dataset, by far the largest of the four segments. A cluster that dominant is worth a second pass: is it really one behavioral group, or did k=4 flatten real structure underneath it? I ran a rule-based classification on session-level engagement signals to find out.
   </p>
+</section>
+
+</div><!-- /.cs-content -->
+
+<div class="cs-block wide" style="padding-top:32px;border-top:none;">
   <div style="font-family:'Manrope',sans-serif;">
     <div class="subseg-coverage">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
-    <div class="subseg-legend">
-      <span><span class="dot" style="background:var(--engaged)"></span>likely human</span>
-      <span><span class="dot" style="background:var(--explorer)"></span>uncertain</span>
-      <span><span class="dot" style="background:var(--converter)"></span>likely bot</span>
-    </div>
-    <div class="subseg-list">
-      <div class="subseg-row">
-        <img src="img/quick_but_engaged.png" alt="Quick but Engaged">
-        <div>
-          <div class="subseg-row-head">
-            <div class="subseg-row-name"><span class="dot" style="background:var(--engaged)"></span>Quick but Engaged</div>
-            <div class="subseg-row-count">168,009 · 81.6%</div>
+    <div class="subseg-group">      <div class="subseg-grid">
+        <div class="subseg-card">
+          <img src="img/quick_but_engaged.png" alt="Quick but Engaged">
+          <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span>likely human</div>
+          <h4>Quick but Engaged</h4>
+          <div class="donut-wrap">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
+                stroke-dasharray="138.5 31.2" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
+            </svg>
+            <div class="donut-stats">
+              <span class="count">168,009</span>
+              <span class="pct">81.6% of classified</span>
+            </div>
           </div>
-          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:81.6%"></div></div>
-          <div class="subseg-row-detail">1 session, ~2.1 page views, 75% of sessions engaged</div>
+          <div class="detail">1 session, ~2.1 page views, 75% of sessions engaged</div>
           <div class="meaning">Genuine single-visit browsers. They look, show real signs of interest, and leave without converting.</div>
         </div>
-      </div>
-      <div class="subseg-row">
-        <img src="img/instant_leave.png" alt="Instant Leave">
-        <div>
-          <div class="subseg-row-head">
-            <div class="subseg-row-name"><span class="dot" style="background:var(--explorer)"></span>Instant Leave</div>
-            <div class="subseg-row-count">20,077 · 9.8%</div>
+        <div class="subseg-card">
+          <img src="img/returning_visitor.png" alt="Returning Visitor">
+          <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span>likely human</div>
+          <h4>Returning Visitor</h4>
+          <div class="donut-wrap">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
+                stroke-dasharray="9.15 160.55" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
+            </svg>
+            <div class="donut-stats">
+              <span class="count">11,138</span>
+              <span class="pct">5.4% of classified</span>
+            </div>
           </div>
-          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:9.8%"></div></div>
-          <div class="subseg-row-detail">1 session, ~1.0 page view, 0% engaged, 0s on site</div>
-          <div class="meaning">Classic bounces: one page, no engagement, gone in seconds.</div>
-        </div>
-      </div>
-      <div class="subseg-row">
-        <img src="img/returning_visitor.png" alt="Returning Visitor">
-        <div>
-          <div class="subseg-row-head">
-            <div class="subseg-row-name"><span class="dot" style="background:var(--engaged)"></span>Returning Visitor</div>
-            <div class="subseg-row-count">11,138 · 5.4%</div>
-          </div>
-          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:5.4%"></div></div>
-          <div class="subseg-row-detail">~2.0 sessions, ~2.0 page views, 61% engaged</div>
+          <div class="detail">~2.0 sessions, ~2.0 page views, 61% engaged</div>
           <div class="meaning">Came back more than once, stayed engaged, just never converted.</div>
         </div>
       </div>
-      <div class="subseg-row">
-        <img src="img/bot-like.png" alt="Bot-like">
-        <div>
-          <div class="subseg-row-head">
-            <div class="subseg-row-name"><span class="dot" style="background:var(--converter)"></span>Bot-like</div>
-            <div class="subseg-row-count">4,334 · 2.1%</div>
+    </div>
+
+    <div class="subseg-group">      <div class="subseg-grid">
+        <div class="subseg-card">
+          <img src="img/instant_leave.png" alt="Instant Leave">
+          <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span>uncertain</div>
+          <h4>Instant Leave</h4>
+          <div class="donut-wrap">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
+                stroke-dasharray="16.6 153.1" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
+            </svg>
+            <div class="donut-stats">
+              <span class="count">20,077</span>
+              <span class="pct">9.8% of classified</span>
+            </div>
           </div>
-          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:2.1%"></div></div>
-          <div class="subseg-row-detail">1 session, ~2.2 page views, 0ms engagement despite ~66s span</div>
-          <div class="meaning">Fast, multi-page visits with zero measurable engagement, a pattern consistent with non-human traffic.</div>
+          <div class="detail">1 session, ~1.0 page view, 0% engaged, 0s on site</div>
+          <div class="meaning">Classic bounces: one page, no engagement, gone in seconds.</div>
+        </div>
+        <div class="subseg-card">
+          <img src="img/bounce.png" alt="Other Bounce">
+          <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span>uncertain</div>
+          <h4>Other Bounce</h4>
+          <div class="donut-wrap">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
+                stroke-dasharray="1.86 167.84" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
+            </svg>
+            <div class="donut-stats">
+              <span class="count">2,356</span>
+              <span class="pct">1.1% of classified</span>
+            </div>
+          </div>
+          <div class="detail">1 session, 1.0 page view, 0% engaged</div>
+          <div class="meaning">Doesn't fit the other patterns, a catch-all for single-session, low-signal visits.</div>
         </div>
       </div>
-      <div class="subseg-row">
-        <img src="img/bounce.png" alt="Other Bounce">
-        <div>
-          <div class="subseg-row-head">
-            <div class="subseg-row-name"><span class="dot" style="background:var(--explorer)"></span>Other Bounce</div>
-            <div class="subseg-row-count">2,356 · 1.1%</div>
+    </div>
+
+    <div class="subseg-group">      <div class="subseg-grid" style="grid-template-columns:minmax(230px,363px);">
+        <div class="subseg-card">
+          <img src="img/bot-like.png" alt="Bot-like">
+          <div class="cat-dot"><span class="dot" style="background:var(--converter)"></span>likely bot</div>
+          <h4>Bot-like</h4>
+          <div class="donut-wrap">
+            <svg width="64" height="64" viewBox="0 0 64 64">
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
+              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
+                stroke-dasharray="3.56 166.14" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
+            </svg>
+            <div class="donut-stats">
+              <span class="count">4,334</span>
+              <span class="pct">2.1% of classified</span>
+            </div>
           </div>
-          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:1.1%"></div></div>
-          <div class="subseg-row-detail">1 session, 1.0 page view, 0% engaged</div>
-          <div class="meaning">Doesn't fit the other patterns, a catch-all for single-session, low-signal visits.</div>
+          <div class="detail">1 session, ~2.2 page views, 0ms engagement despite ~66s span</div>
+          <div class="meaning">Fast, multi-page visits with zero measurable engagement, a pattern consistent with non-human traffic.</div>
         </div>
       </div>
     </div>
@@ -715,10 +767,13 @@
       <div class="origin-cell"><div class="v" style="color:var(--converter)">2.1%</div><div class="k">Likely bot-like · 4,334 users</div></div>
     </div>
   </div>
-  <p class="cs-body-text cs-narrow-text" style="margin-top:24px;margin-bottom:0;">
-    "Crawler-like" is a behavioral heuristic, single session, multiple pages, zero measured engagement time, not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive classification, not a validated typology, the same honesty standard the rest of this project holds to.
-  </p>
-</section>
+</div><!-- /.cs-block.wide -->
+
+<div class="cs-content" style="padding-top:32px;">
+
+<p class="cs-body-text" style="margin-bottom:0;">
+  "Crawler-like" is a behavioral heuristic, single session, multiple pages, zero measured engagement time, not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive classification, not a validated typology, the same honesty standard the rest of this project holds to.
+</p>
 
 <!-- ============================================================
      CASE STUDY — KEY INSIGHTS (after the dashboard)
