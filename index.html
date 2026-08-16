@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GA4 Behavioral Segmentation of Google Merchandise Store Users · Case Study</title>
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
@@ -229,6 +230,31 @@
   .subseg-head p{color:var(--ink-soft);font-size:15px;margin:0 0 6px;}
   .subseg-coverage{font-family:'Manrope',sans-serif;font-size:12.5px;color:var(--ink-faint);margin-bottom:32px;}
 
+  .subseg-legend{
+    display:flex;gap:20px;flex-wrap:wrap;
+    font-size:12px;color:var(--ink-faint);
+    text-transform:uppercase;letter-spacing:.05em;font-weight:600;
+    margin-bottom:18px;
+  }
+  .subseg-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .subseg-legend .dot{width:8px;height:8px;border-radius:50%;}
+
+  .subseg-list{margin-bottom:36px;}
+  .subseg-row{
+    display:grid;grid-template-columns:64px 1fr;gap:16px;
+    padding:16px 0;border-top:1px solid var(--hairline);
+  }
+  .subseg-row:first-child{border-top:none;}
+  .subseg-row img{width:56px;height:56px;object-fit:contain;image-rendering:pixelated;}
+  .subseg-row-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px;}
+  .subseg-row-name{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;}
+  .subseg-row-name .dot{width:8px;height:8px;border-radius:50%;flex:none;}
+  .subseg-row-count{font-weight:700;font-size:14px;white-space:nowrap;}
+  .subseg-row-bar-track{height:8px;background:var(--hairline);border-radius:4px;margin-bottom:8px;overflow:hidden;}
+  .subseg-row-bar-fill{height:100%;border-radius:4px;background:var(--browser);}
+  .subseg-row-detail{font-size:12.5px;color:var(--ink-soft);}
+  .subseg-row .meaning{font-size:12.5px;color:var(--ink);line-height:1.5;margin-top:8px;}
+
   .origin-summary{display:flex;border:1px solid var(--hairline);border-radius:10px;overflow:hidden;margin-bottom:36px;}
   .origin-cell{flex:1;padding:16px 18px;border-right:1px solid var(--hairline);}
   .origin-cell:last-child{border-right:none;}
@@ -254,6 +280,7 @@
   .subseg-card .count{font-family:'Manrope',sans-serif;font-size:19px;font-weight:600;}
   .subseg-card .pct{font-size:11.5px;color:var(--ink-faint);margin-bottom:8px;}
   .subseg-card .detail{font-size:12px;color:var(--ink-soft);line-height:1.5;}
+  .subseg-card .meaning{font-size:12.5px;color:var(--ink);line-height:1.5;margin-top:10px;padding-top:10px;border-top:1px solid var(--hairline);}
 
   .caveat{
     margin-top:32px;font-size:13px;color:var(--ink-soft);
@@ -310,7 +337,8 @@
     display:flex;align-items:center;justify-content:space-between;
     padding:0 48px;height:56px;
   }
-  .cs-logo{display:flex;align-items:center;font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;color:var(--cs-dark);text-decoration:none;letter-spacing:-0.01em;}
+  .cs-logo{display:flex;align-items:center;color:var(--cs-dark);text-decoration:none;}
+  .cs-logo svg{display:block;height:24px;width:auto;}
   .cs-nav-links{display:flex;align-items:center;gap:28px;list-style:none;}
   .cs-nav-pill{background:var(--cs-coral-bg);color:var(--cs-coral);padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
   .cs-tag-row{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px;}
@@ -421,14 +449,22 @@
 <div class="cs-page">
 
 <nav class="cs-nav">
-  <a href="#" class="cs-logo" onclick="return false;">SW</a>
+  <a href="https://sebastian-weber.github.io/uxui-portfolio" class="cs-logo" aria-label="Sebastian Weber — Portfolio">
+    <svg viewBox="0 2 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 19.0413V20.7092L15.9986 26.8336V25.3991L11.7131 23.7928V23.7848L10.3368 23.2366L1.51283 19.9819L10.3384 16.7504V16.7576L11.7146 16.2587L16.0001 14.6524V13.1113L0 19.0413Z" fill="currentColor"/>
+      <path d="M16.0001 24.0696V22.4023L0 16.2773V17.7113L4.2859 19.317V19.3279L5.66227 19.8759L14.4871 23.1294L5.66227 26.3619V26.3546L4.2859 26.8534L0 28.4591V29.9996L16.0001 24.0696Z" fill="currentColor"/>
+      <path d="M20.3237 26.8333H22.1382L28.8006 11H27.2401L25.4927 15.242H25.4809L24.8844 16.6032L21.3438 25.3361L17.826 16.6032H17.8339L17.2911 15.242L15.5436 11H13.8672L20.3237 26.8333Z" fill="currentColor"/>
+      <path d="M23.5229 26.8333H25.3374L31.9998 11H30.4394L28.6919 15.2418H28.6801L28.0837 16.603L24.543 25.3354L21.0252 16.603H21.0331L20.4903 15.2418L18.7429 11H17.0664L23.5229 26.8333Z" fill="currentColor"/>
+    </svg>
+  </a>
   <div class="cs-nav-links">
     <span class="cs-nav-pill">Case Study</span>
     <a class="cs-nav-link" href="#problem">Problem</a>
     <a class="cs-nav-link" href="#approach">Approach</a>
-    <a class="cs-nav-link" href="#result">Result</a>
+    <a class="cs-nav-link" href="#result">Dashboard</a>
+    <a class="cs-nav-link" href="#subsegmentation">Subsegmentation</a>
     <a class="cs-nav-link" href="#insights">Insights</a>
-    <a class="cs-nav-cta" href="#" onclick="return false;">All Projects →</a>
+    <a class="cs-nav-cta" href="https://sebastian-weber.github.io/uxui-portfolio">All Projects →</a>
   </div>
 </nav>
 
@@ -558,12 +594,101 @@
 <div class="cs-content" style="padding-top:0;">
 
 <!-- ============================================================
+     CASE STUDY — INSIDE THE BROWSER CLUSTER (extracted sub-segmentation)
+     ============================================================ -->
+<section class="cs-block" id="subsegmentation">
+  <div class="cs-eyebrow">04 · A Closer Look</div>
+  <h2 class="cs-h2">Inside the Browser cluster.</h2>
+  <p class="cs-body-text">
+    Browser is 81.1% of the whole dataset, by far the largest of the four segments. A cluster that dominant is worth a second pass: is it really one behavioral group, or did k=4 flatten real structure underneath it? I ran a rule-based classification on session-level engagement signals to find out.
+  </p>
+  <div style="font-family:'Manrope',sans-serif;">
+    <div class="subseg-coverage">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
+    <div class="subseg-legend">
+      <span><span class="dot" style="background:var(--engaged)"></span>likely human</span>
+      <span><span class="dot" style="background:var(--explorer)"></span>uncertain</span>
+      <span><span class="dot" style="background:var(--converter)"></span>likely bot</span>
+    </div>
+    <div class="subseg-list">
+      <div class="subseg-row">
+        <img src="img/quick_but_engaged.png" alt="Quick but Engaged">
+        <div>
+          <div class="subseg-row-head">
+            <div class="subseg-row-name"><span class="dot" style="background:var(--engaged)"></span>Quick but Engaged</div>
+            <div class="subseg-row-count">168,009 · 81.6%</div>
+          </div>
+          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:81.6%"></div></div>
+          <div class="subseg-row-detail">1 session, ~2.1 page views, 75% of sessions engaged</div>
+          <div class="meaning">Genuine single-visit browsers. They look, show real signs of interest, and leave without converting.</div>
+        </div>
+      </div>
+      <div class="subseg-row">
+        <img src="img/instant_leave.png" alt="Instant Leave">
+        <div>
+          <div class="subseg-row-head">
+            <div class="subseg-row-name"><span class="dot" style="background:var(--explorer)"></span>Instant Leave</div>
+            <div class="subseg-row-count">20,077 · 9.8%</div>
+          </div>
+          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:9.8%"></div></div>
+          <div class="subseg-row-detail">1 session, ~1.0 page view, 0% engaged, 0s on site</div>
+          <div class="meaning">Classic bounces: one page, no engagement, gone in seconds.</div>
+        </div>
+      </div>
+      <div class="subseg-row">
+        <img src="img/returning_visitor.png" alt="Returning Visitor">
+        <div>
+          <div class="subseg-row-head">
+            <div class="subseg-row-name"><span class="dot" style="background:var(--engaged)"></span>Returning Visitor</div>
+            <div class="subseg-row-count">11,138 · 5.4%</div>
+          </div>
+          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:5.4%"></div></div>
+          <div class="subseg-row-detail">~2.0 sessions, ~2.0 page views, 61% engaged</div>
+          <div class="meaning">Came back more than once, stayed engaged, just never converted.</div>
+        </div>
+      </div>
+      <div class="subseg-row">
+        <img src="img/bot-like.png" alt="Bot-like">
+        <div>
+          <div class="subseg-row-head">
+            <div class="subseg-row-name"><span class="dot" style="background:var(--converter)"></span>Bot-like</div>
+            <div class="subseg-row-count">4,334 · 2.1%</div>
+          </div>
+          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:2.1%"></div></div>
+          <div class="subseg-row-detail">1 session, ~2.2 page views, 0ms engagement despite ~66s span</div>
+          <div class="meaning">Fast, multi-page visits with zero measurable engagement, a pattern consistent with non-human traffic.</div>
+        </div>
+      </div>
+      <div class="subseg-row">
+        <img src="img/bounce.png" alt="Other Bounce">
+        <div>
+          <div class="subseg-row-head">
+            <div class="subseg-row-name"><span class="dot" style="background:var(--explorer)"></span>Other Bounce</div>
+            <div class="subseg-row-count">2,356 · 1.1%</div>
+          </div>
+          <div class="subseg-row-bar-track"><div class="subseg-row-bar-fill" style="width:1.1%"></div></div>
+          <div class="subseg-row-detail">1 session, 1.0 page view, 0% engaged</div>
+          <div class="meaning">Doesn't fit the other patterns, a catch-all for single-session, low-signal visits.</div>
+        </div>
+      </div>
+    </div>
+    <div class="origin-summary" style="margin-top:24px;margin-bottom:0;">
+      <div class="origin-cell"><div class="v" style="color:var(--engaged)">87.0%</div><div class="k">Likely human · 179,147 users</div></div>
+      <div class="origin-cell"><div class="v" style="color:var(--explorer)">10.9%</div><div class="k">Uncertain · 22,433 users</div></div>
+      <div class="origin-cell"><div class="v" style="color:var(--converter)">2.1%</div><div class="k">Likely bot-like · 4,334 users</div></div>
+    </div>
+  </div>
+  <p class="cs-body-text" style="margin-top:24px;margin-bottom:0;">
+    "Crawler-like" is a behavioral heuristic, single session, multiple pages, zero measured engagement time, not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive classification, not a validated typology, the same honesty standard the rest of this project holds to.
+  </p>
+</section>
+
+<!-- ============================================================
      CASE STUDY — KEY INSIGHTS (after the dashboard)
      ============================================================ -->
 <section class="cs-block" id="insights">
-  <div class="cs-eyebrow">04 · Testing "Defensible"</div>
+  <div class="cs-eyebrow">05 · Testing "Defensible"</div>
   <h2 class="cs-h2">What survived the second look?</h2>
-  <p class="cs-body-text">Three checks against the above segments. One holds up; one turns into something more useful; and one is a real limit.</p>
+  <p class="cs-body-text">Zooming back out to the four segments from the dashboard, not the Browser sub-types above: three checks, one holds up, one turns into something more useful, one is a real limit.</p>
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
@@ -594,7 +719,7 @@
      CASE STUDY — REFLECTION / CLOSING
      ============================================================ -->
 <section class="cs-block" id="reflection">
-  <div class="cs-eyebrow">05 · The Answer</div>
+  <div class="cs-eyebrow">06 · The Answer</div>
   <h2 class="cs-h2">Was scoping down to segments the right call?</h2>
   <p class="cs-body-text">
     Yes, and the three checks above are why. One segment boundary turned out genuinely solid (Browser vs. Explorer). One looked solid but wasn't (the shared checkout-friction point). And the whole segmentation confirmed what the three-month window always implied: a holiday-season read, not a stable typology. If I'd called these "personas" instead of "segments," every one of those caveats would have been a false promise instead of an honest footnote.
@@ -612,7 +737,7 @@
      ============================================================ -->
 <div class="cs-cta-inner" style="margin-top:80px;">
   <h3>More projects</h3>
-  <a class="cs-cta-btn" href="#" onclick="return false;">To the project overview →</a>
+  <a class="cs-cta-btn" href="https://sebastian-weber.github.io/uxui-portfolio">To the project overview →</a>
 </div>
 
 </div>
@@ -668,16 +793,6 @@ function buildTabs(){
     btn.innerHTML = `<span class="tab-dot"></span>${seg.segment}`;
     btn.onclick = ()=>activate(btn.dataset.target);
     tabs.appendChild(btn);
-
-    if(seg.segment === 'Browser'){
-      const subBtn = document.createElement('button');
-      subBtn.className = 'tab-btn';
-      subBtn.dataset.target = 'panel-subseg';
-      subBtn.style.setProperty('--tab-color', 'var(--browser)');
-      subBtn.innerHTML = `<span class="tab-dot"></span>Browser sub-segments`;
-      subBtn.onclick = ()=>activate('panel-subseg');
-      tabs.appendChild(subBtn);
-    }
   });
 }
 function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-'); }
@@ -856,50 +971,10 @@ function buildSegmentPanel(seg, idx){
   return panel;
 }
 
-/* ---------- Sub-segmentation panel ---------- */
-function buildSubsegPanel(){
-  const sub = DATA.browserSubSegmentation;
-  const panel = document.createElement('div');
-  panel.className = 'panel';
-  panel.id = 'panel-subseg';
-  if(!sub){ document.getElementById('panels').appendChild(panel); return; }
-
-  const catColor = {likely_human:"var(--engaged)", uncertain:"var(--explorer)", likely_bot:"var(--converter)"};
-
-  const cardsHtml = sub.subSegments.map(s=>`
-    <div class="subseg-card">
-      <img src="${SUBSEG_IMG[s.id]}" alt="${s.name}">
-      <div class="cat-dot"><span class="dot" style="background:${catColor[s.category]}"></span>${s.category.replace('_',' ')}</div>
-      <h4>${s.name}</h4>
-      <div class="count mono">${fmtInt(s.userCount)}</div>
-      <div class="pct">${fmt(s.pctOfClassified)}% of classified Browsers</div>
-      <div class="detail">${s.detail}</div>
-    </div>
-  `).join('');
-
-  panel.innerHTML = `
-    <div class="subseg-head">
-      <div class="mono" style="font-size:11.5px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.08em;">Sub-segmentation · inside "The Browser"</div>
-      <h2>${sub.title}</h2>
-      <p>${sub.subtitle}</p>
-    </div>
-    <div class="subseg-coverage">${fmtInt(sub.usersClassified)} of ${fmtInt(sub.browserSegmentTotal)} Browser users classified · ${fmt(sub.coveragePct)}% coverage (session-level engagement data)</div>
-    <div class="origin-summary">
-      <div class="origin-cell"><div class="v" style="color:var(--engaged)">${fmt(sub.summary.likelyHumanPct)}%</div><div class="k">Likely human · ${fmtInt(sub.summary.likelyHumanCount)} users</div></div>
-      <div class="origin-cell"><div class="v" style="color:var(--explorer)">${fmt(sub.summary.uncertainPct)}%</div><div class="k">Uncertain · ${fmtInt(sub.summary.uncertainCount)} users</div></div>
-      <div class="origin-cell"><div class="v" style="color:var(--converter)">${fmt(sub.summary.likelyBotPct)}%</div><div class="k">Likely bot-like · ${fmtInt(sub.summary.likelyBotCount)} users</div></div>
-    </div>
-    <div class="subseg-grid">${cardsHtml}</div>
-    <div class="caveat"><b>Methodological caveat:</b> "Bot-like" here is a behavioral heuristic — single session, multiple pages, zero measured engagement time — not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive, rule-based classification, not a validated typology.</div>
-  `;
-  document.getElementById('panels').appendChild(panel);
-}
-
 /* ---------- Mount ---------- */
 buildTabs();
 const panels = document.getElementById('panels');
 DATA.segments.forEach((seg,i)=> panels.appendChild(buildSegmentPanel(seg,i)) );
-buildSubsegPanel();
 </script>
 
 </body>
