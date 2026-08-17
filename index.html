@@ -309,6 +309,8 @@
   .subseg-card .dot{width:7px;height:7px;border-radius:50%;}
   .subseg-card h4{font-family:'Manrope',sans-serif;font-size:16px;font-weight:600;margin:0 0 12px;}
   .subseg-card .donut-wrap{display:flex;align-items:center;justify-content:flex-start;gap:14px;margin-bottom:12px;}
+  .subseg-card .bar-track{height:8px;background:var(--hairline);border-radius:4px;margin-bottom:6px;overflow:hidden;}
+  .subseg-card .bar-fill{height:100%;border-radius:4px;background:var(--browser);}
   .subseg-card .donut-stats{text-align:left;}
   .subseg-card .count{font-family:'Manrope',sans-serif;font-size:19px;font-weight:600;display:block;}
   .subseg-card .pct{font-size:11.5px;color:var(--ink-faint);}
@@ -340,7 +342,7 @@
   @media (prefers-reduced-motion:reduce){.track-fill{transition:none;}}
 
   /* ============================================================
-     CASE STUDY ZONE — exact tokens pulled from Sebastian's real
+     CASE STUDY ZONE: exact tokens pulled from Sebastian's real
      "Human Review of an AI-Generated Redesign" case-study source
      (uploaded file). Scoped under .cs-page so it never touches the
      dashboard's own Manrope/--ink design system below it.
@@ -391,6 +393,13 @@
   .cs-h1{font-size:clamp(28px,4vw,48px);font-weight:700;line-height:1.15;color:var(--cs-dark);margin:0 0 16px;letter-spacing:-0.01em;}
   .cs-lede{font-size:20px;color:var(--cs-muted);font-style:italic;max-width:580px;line-height:1.65;margin:0 0 40px;}
 
+  .cs-hero-image{
+    margin-bottom:40px;border:1px solid var(--cs-border);border-radius:14px;
+    overflow:hidden;background:var(--cs-white);
+    box-shadow:0 16px 40px rgba(15,17,23,0.06);
+  }
+  .cs-hero-image img{width:100%;display:block;}
+
   .cs-hero-meta{
     display:grid;grid-template-columns:1fr 1fr;row-gap:28px;column-gap:24px;
     border:1.5px dashed var(--cs-border);border-radius:16px;padding:28px 40px;margin-top:32px;
@@ -406,7 +415,7 @@
     max-width:840px;margin-left:auto;margin-right:auto;
     padding-left:48px;padding-right:48px;
   }
-  /* (cs-narrow-text no longer needed — text and grid now use separate containers) */
+  /* (cs-narrow-text no longer needed: text and grid now use separate containers) */
   .cs-block:first-child{border-top:none;padding-top:0;}
   #result{padding-bottom:24px;}
   .cs-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cs-coral);margin-bottom:16px;}
@@ -519,7 +528,7 @@
 <div class="cs-page">
 
 <nav class="cs-nav">
-  <a href="https://sebastian-weber.github.io/uxui-portfolio" class="cs-logo" aria-label="Sebastian Weber — Portfolio">
+  <a href="https://sebastian-weber.github.io/uxui-portfolio" class="cs-logo" aria-label="Sebastian Weber, Portfolio">
     <svg viewBox="0 2 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0 19.0413V20.7092L15.9986 26.8336V25.3991L11.7131 23.7928V23.7848L10.3368 23.2366L1.51283 19.9819L10.3384 16.7504V16.7576L11.7146 16.2587L16.0001 14.6524V13.1113L0 19.0413Z" fill="currentColor"/>
       <path d="M16.0001 24.0696V22.4023L0 16.2773V17.7113L4.2859 19.317V19.3279L5.66227 19.8759L14.4871 23.1294L5.66227 26.3619V26.3546L4.2859 26.8534L0 28.4591V29.9996L16.0001 24.0696Z" fill="currentColor"/>
@@ -539,24 +548,29 @@
 </nav>
 
 <!-- ============================================================
-     CASE STUDY — HERO
+     CASE STUDY: HERO
      ============================================================ -->
 <header class="cs-hero">
   <div class="cs-eyebrow-hero">Case Study</div>
   <h1 class="cs-h1">GA4 Behavioral Segmentation of Google Merchandise Store Users</h1>
   <p class="cs-lede">For my capstone project in Data Analytics I analyzed 270,154 Google Merchandise Store users through raw GA4 event data. The project started as a team pitch for behavioral data-driven personas with a real company, and became solo segmentation once that data access fell through.</p>
+
+  <div class="cs-hero-image">
+    <img src="img/hero-dashboards.png" alt="Two browser windows showing the GA4 Behavioral Segmentation dashboard, one open on the Explorer segment, one on the Browser segment">
+  </div>
+
   <div class="cs-hero-meta">
-    <div class="cs-hero-meta-item"><div class="k">Role</div><div class="v">Solo — pipeline, clustering, dashboard, presentation</div></div>
+    <div class="cs-hero-meta-item"><div class="k">Role</div><div class="v">Solo: pipeline, clustering, dashboard, presentation</div></div>
     <div class="cs-hero-meta-item"><div class="k">Timeframe</div><div class="v">neuefische Data Analytics & AI Bootcamp, 2026</div></div>
     <div class="cs-hero-meta-item"><div class="k">Tools</div><div class="v">BigQuery SQL, Python, PostgreSQL, Tableau</div></div>
-    <div class="cs-hero-meta-item"><div class="k">Dataset</div><div class="v">GA4 — Google Merchandise Store</div></div>
+    <div class="cs-hero-meta-item"><div class="k">Dataset</div><div class="v">GA4, Google Merchandise Store</div></div>
   </div>
 </header>
 
 <div class="cs-content">
 
 <!-- ============================================================
-     CASE STUDY — THE PROBLEM
+     CASE STUDY: THE PROBLEM
      ============================================================ -->
 <section class="cs-block" id="problem">
   <div class="cs-eyebrow">01 · The Problem</div>
@@ -579,7 +593,7 @@
 </section>
 
 <!-- ============================================================
-     CASE STUDY — APPROACH / PROCESS
+     CASE STUDY: APPROACH / PROCESS
      ============================================================ -->
 <section class="cs-block" id="approach">
   <div class="cs-eyebrow">02 · Approach</div>
@@ -630,7 +644,7 @@
 </section>
 
 <!-- ============================================================
-     CASE STUDY — DASHBOARD INTRO (transition into the embedded piece)
+     CASE STUDY: DASHBOARD INTRO (transition into the embedded piece)
      ============================================================ -->
 <section class="cs-block" id="result">
   <div class="cs-eyebrow">03 · The Output</div>
@@ -677,8 +691,8 @@
 
 <footer>
   <div class="wrap">
-    DATASET — GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270,154 users · k-means clustering (k=4)<br>
-    METHOD NOTE — k=4 chosen over the algorithmically preferred k=2 for interpretability; documented, defended design decision.<br>
+    DATASET: GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270,154 users · k-means clustering (k=4)<br>
+    METHOD NOTE: k=4 chosen over the algorithmically preferred k=2 for interpretability; documented, defended design decision.<br>
     Sub-segmentation of the Browser cluster is a descriptive, rule-based heuristic, not a validated typology.
   </div>
 </footer>
@@ -687,7 +701,7 @@
 <div class="cs-content" style="padding-top:0;padding-bottom:0;">
 
 <!-- ============================================================
-     CASE STUDY — INSIDE THE BROWSER CLUSTER (extracted sub-segmentation)
+     CASE STUDY: INSIDE THE BROWSER CLUSTER (extracted sub-segmentation)
      ============================================================ -->
 <section class="cs-block" id="subsegmentation" style="padding-bottom:0;">
   <div class="cs-eyebrow">04 · A Closer Look</div>
@@ -711,16 +725,12 @@
           <img src="img/quick_but_engaged.png" alt="Quick but Engaged">
           <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span>likely human</div>
           <h4>Quick but Engaged</h4>
-          <div class="donut-wrap">
-            <svg width="64" height="64" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
-                stroke-dasharray="138.5 31.2" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
-            </svg>
-            <div class="donut-stats">
+          <div class="donut-wrap" style="display:block;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
               <span class="count">168,009</span>
               <span class="pct">81.6% of classified</span>
             </div>
+            <div class="bar-track"><div class="bar-fill" style="width:81.6%"></div></div>
           </div>
           <div class="detail">1 session, ~2.1 page views, 75% of sessions engaged</div>
           <div class="meaning">Genuine single-visit browsers. They look, show real signs of interest, and leave without converting.</div>
@@ -729,16 +739,12 @@
           <img src="img/returning_visitor.png" alt="Returning Visitor">
           <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span>likely human</div>
           <h4>Returning Visitor</h4>
-          <div class="donut-wrap">
-            <svg width="64" height="64" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
-                stroke-dasharray="9.15 160.55" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
-            </svg>
-            <div class="donut-stats">
+          <div class="donut-wrap" style="display:block;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
               <span class="count">11,138</span>
               <span class="pct">5.4% of classified</span>
             </div>
+            <div class="bar-track"><div class="bar-fill" style="width:5.4%"></div></div>
           </div>
           <div class="detail">~2.0 sessions, ~2.0 page views, 61% engaged</div>
           <div class="meaning">Came back more than once, stayed engaged, just never converted.</div>
@@ -751,16 +757,12 @@
           <img src="img/instant_leave.png" alt="Instant Leave">
           <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span>uncertain</div>
           <h4>Instant Leave</h4>
-          <div class="donut-wrap">
-            <svg width="64" height="64" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
-                stroke-dasharray="16.6 153.1" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
-            </svg>
-            <div class="donut-stats">
+          <div class="donut-wrap" style="display:block;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
               <span class="count">20,077</span>
               <span class="pct">9.8% of classified</span>
             </div>
+            <div class="bar-track"><div class="bar-fill" style="width:9.8%"></div></div>
           </div>
           <div class="detail">1 session, ~1.0 page view, 0% engaged, 0s on site</div>
           <div class="meaning">Classic bounces: one page, no engagement, gone in seconds.</div>
@@ -769,16 +771,12 @@
           <img src="img/bounce.png" alt="Other Bounce">
           <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span>uncertain</div>
           <h4>Other Bounce</h4>
-          <div class="donut-wrap">
-            <svg width="64" height="64" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
-                stroke-dasharray="1.86 167.84" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
-            </svg>
-            <div class="donut-stats">
+          <div class="donut-wrap" style="display:block;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
               <span class="count">2,356</span>
               <span class="pct">1.1% of classified</span>
             </div>
+            <div class="bar-track"><div class="bar-fill" style="width:1.1%"></div></div>
           </div>
           <div class="detail">1 session, 1.0 page view, 0% engaged</div>
           <div class="meaning">Doesn't fit the other patterns, a catch-all for single-session, low-signal visits.</div>
@@ -791,23 +789,20 @@
           <img src="img/bot-like.png" alt="Bot-like">
           <div class="cat-dot"><span class="dot" style="background:var(--converter)"></span>likely bot</div>
           <h4>Bot-like</h4>
-          <div class="donut-wrap">
-            <svg width="64" height="64" viewBox="0 0 64 64">
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--hairline)" stroke-width="8"/>
-              <circle cx="32" cy="32" r="27" fill="none" stroke="var(--browser)" stroke-width="8"
-                stroke-dasharray="3.56 166.14" stroke-dashoffset="0" transform="rotate(-90 32 32)"/>
-            </svg>
-            <div class="donut-stats">
+          <div class="donut-wrap" style="display:block;">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
               <span class="count">4,334</span>
               <span class="pct">2.1% of classified</span>
             </div>
+            <div class="bar-track"><div class="bar-fill" style="width:2.1%"></div></div>
           </div>
           <div class="detail">1 session, ~2.2 page views, 0ms engagement despite ~66s span</div>
           <div class="meaning">Fast, multi-page visits with zero measurable engagement, a pattern consistent with non-human traffic.</div>
         </div>
       </div>
     </div>
-    <div class="subseg-coverage" style="margin-top:20px;margin-bottom:0;">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
+
+    <div class="subseg-coverage" style="margin-top:24px;margin-bottom:0;">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
   </div>
 </div><!-- /.cs-block.wide -->
 
@@ -818,7 +813,7 @@
 </p>
 
 <!-- ============================================================
-     CASE STUDY — KEY INSIGHTS (after the dashboard)
+     CASE STUDY: KEY INSIGHTS (after the dashboard)
      ============================================================ -->
 <section class="cs-block" id="insights">
   <div class="cs-eyebrow">05 · Testing "Defensible"</div>
@@ -851,7 +846,7 @@
 </section>
 
 <!-- ============================================================
-     CASE STUDY — REFLECTION / CLOSING
+     CASE STUDY: REFLECTION / CLOSING
      ============================================================ -->
 <section class="cs-block" id="reflection">
   <div class="cs-eyebrow">06 · The Answer</div>
@@ -860,15 +855,15 @@
     Yes, and the three checks above are why. One segment boundary turned out genuinely solid (Browser vs. Explorer). One looked solid but wasn't (the shared checkout-friction point). And the whole segmentation confirmed what the three-month window always implied: a holiday-season read, not a stable typology. If I'd called these "personas" instead of "segments," every one of those caveats would have been a false promise instead of an honest footnote.
   </p>
   <p class="cs-body-text">
-    The most useful part of this project wasn't the clustering — it was documenting exactly where it stops being trustworthy. k=4 tells a cleaner story than k=2, but the Silhouette Score doesn't agree, and saying that out loud felt riskier than burying it in an appendix. It wasn't: the methodological critique became the strongest part of the deliverable, not the weakest.
+    The most useful part of this project wasn't the clustering. It was documenting exactly where it stops being trustworthy. k=4 tells a cleaner story than k=2, but the Silhouette Score doesn't agree, and saying that out loud felt riskier than burying it in an appendix. It wasn't: the methodological critique became the strongest part of the deliverable, not the weakest.
   </p>
   <p class="cs-body-text" style="margin-bottom:0;">
-    Getting back to the original goal — actual personas — needs the qualitative layer this project never had: interviews, context, the "why." HDBSCAN could still sharpen the segments themselves, given how unevenly dense the data is (81% in one cluster), but that's a better clustering, not a persona. The honest path from here runs through user research, not more modeling.
+    Getting back to the original goal, actual personas, needs the qualitative layer this project never had: interviews, context, the "why." HDBSCAN could still sharpen the segments themselves, given how unevenly dense the data is (81% in one cluster), but that's a better clustering, not a persona. The honest path from here runs through user research, not more modeling.
   </p>
 </section>
 
 <!-- ============================================================
-     CASE STUDY — CTA
+     CASE STUDY: CTA
      ============================================================ -->
 <div class="cs-cta-inner" style="margin-top:80px;">
   <h3>More projects</h3>
@@ -914,7 +909,7 @@ const CSS_VAR = {
   "Engaged Non-Converter":"var(--engaged)","Converter":"var(--converter)"
 };
 
-function fmt(n, d=1){ if(n===null||n===undefined) return "—"; return n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function fmt(n, d=1){ if(n===null||n===undefined) return "N/A"; return n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}); }
 function fmtInt(n){ return n.toLocaleString('de-DE'); }
 
 /* ---------- Tabs ---------- */
@@ -965,7 +960,7 @@ function buildTrack(seg){
 
   const noiseNote = `<div class="track-noise-note">${
     noisyStages.length
-      ? `* ${noisyStages.map(s=>`${fmt(s.reachPct)}% at ${s.stageLabel}`).join(', ')} — likely tracking noise, not meaningful progression (below ${NOISE_THRESHOLD}% reach).`
+      ? `* ${noisyStages.map(s=>`${fmt(s.reachPct)}% at ${s.stageLabel}`).join(', ')}: likely tracking noise, not meaningful progression (below ${NOISE_THRESHOLD}% reach).`
       : '&nbsp;'
   }</div>`;
 
@@ -977,7 +972,7 @@ function buildTrack(seg){
     ${noiseNote}
     <div class="card-inner-footer">
       <details class="checkout-toggle">
-        <summary>Checkout sub-funnel — among users who added to cart (n=${fmtInt(checkout[0].nSegmentUsers)})<svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5.5L7 9.5L11 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <summary>Checkout sub-funnel: among users who added to cart (n=${fmtInt(checkout[0].nSegmentUsers)})<svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5.5L7 9.5L11 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
         <div class="mini-funnel">${miniHtml}</div>
       </details>
     </div>
