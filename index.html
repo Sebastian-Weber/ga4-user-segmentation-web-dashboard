@@ -30,13 +30,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
 <style>
+  html { scroll-behavior: smooth; }
   :root{
-    --bg:#FAFAFB;
+    --bg:#FAFAFA;
     --surface:#FFFFFF;
-    --ink:#14171F;
-    --ink-soft:#5B6270;
-    --ink-faint:#667085;
-    --hairline:#E4E7EC;
+    --ink:#0F1117;
+    --ink-soft:#1A1A1A;
+    --ink-faint:#7A7A7A;
+    --hairline:#E0DEDA;
     --browser:#4285F4;
     --explorer:#EA9C00;
     --engaged:#1E8E3E;
@@ -50,6 +51,7 @@
     font-family:'Manrope',sans-serif;
     -webkit-font-smoothing:antialiased;line-height:1.5;
   }
+  #progress { position: fixed; top: 0; left: 0; height: 3px; background: #E06040; width: 0%; transition: width 0.1s; z-index: 200; }
   .mono{font-family:'Manrope',sans-serif;font-weight:500;}
   .dashboard-embed{
     font-family:'Manrope',sans-serif;
@@ -415,7 +417,6 @@
     max-width:840px;margin-left:auto;margin-right:auto;
     padding-left:48px;padding-right:48px;
   }
-  /* (cs-narrow-text no longer needed: text and grid now use separate containers) */
   .cs-block:first-child{border-top:none;padding-top:0;}
   #result{padding-bottom:24px;}
   .cs-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--cs-coral);margin-bottom:16px;}
@@ -461,13 +462,6 @@
   .cs-step h4{font-size:14px;font-weight:600;margin:0 0 6px;color:var(--cs-dark);}
   .cs-step p{font-size:13px;color:var(--cs-muted);line-height:1.65;margin:0;}
 
-  /* ---------- dashboard transition ---------- */
-  /* (dashboard transition now uses .cs-block like everything else) */
-
-  /* ---------- insight cards ---------- */
-  /* (insights now reuse .cs-steps / .cs-step, same numbered-coral pattern as Approach) */
-
-  /* ---------- reflection ---------- */
   /* ---------- CTA block ---------- */
   .cs-cta-inner{background:#F2E6E3;border-radius:16px;padding:48px;text-align:center;}
   .cs-cta-inner h3{font-size:22px;font-weight:700;color:#1A1A1A;margin:0 0 12px;}
@@ -518,6 +512,7 @@
 </style>
 </head>
 <body>
+<div id="progress"></div>
 
 <div id="cookie-banner">
   <p>This site uses PostHog for privacy-focused analytics, hosted on EU servers. <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" target="_blank">Privacy Policy</a></p>
@@ -921,7 +916,10 @@ function buildTabs(){
     btn.dataset.target = 'panel-' + slug(seg.segment);
     btn.style.setProperty('--tab-color', seg.color);
     btn.innerHTML = `<span class="tab-dot"></span>${seg.segment}`;
-    btn.onclick = ()=>activate(btn.dataset.target);
+    btn.onclick = ()=>{
+      activate(btn.dataset.target);
+      posthog.capture('segment_tab_viewed', { segment: seg.segment });
+    };
     tabs.appendChild(btn);
   });
 }
@@ -1105,6 +1103,7 @@ function buildSegmentPanel(seg, idx){
 buildTabs();
 const panels = document.getElementById('panels');
 DATA.segments.forEach((seg,i)=> panels.appendChild(buildSegmentPanel(seg,i)) );
+posthog.capture('segment_tab_viewed', { segment: DATA.segments[0].segment });
 
 /* ---------- Cookie consent ---------- */
 function decideConsent(accepted){
@@ -1121,6 +1120,12 @@ function decideConsent(accepted){
 document.getElementById('cookie-settings-link').addEventListener('click', function (e) {
   e.preventDefault();
   document.getElementById('cookie-banner').style.display = 'flex';
+});
+
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  document.getElementById('progress').style.width = (scrolled / total * 100) + '%';
 });
 </script>
 
