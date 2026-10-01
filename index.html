@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
 <!-- PostHog Analytics, EU endpoint, consent-gated -->
 <script>
@@ -462,6 +462,31 @@
   .cs-step h4{font-size:14px;font-weight:600;margin:0 0 6px;color:var(--cs-dark);}
   .cs-step p{font-size:13px;color:var(--cs-muted);line-height:1.65;margin:0;}
 
+  /* ---------- acquisition metrics (Phase 0 funnel) ---------- */
+  .cs-metrics{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    background:var(--cs-white);border:1.5px solid var(--cs-border);border-radius:12px;
+    overflow:hidden;margin:36px 0 28px;
+  }
+  .cs-metric{padding:22px 20px 20px;border-right:1px solid var(--cs-border-light);}
+  .cs-metric:last-child{border-right:none;}
+  .cs-metric .num{
+    font-family:'Manrope',sans-serif;font-weight:800;font-size:40px;line-height:1;
+    letter-spacing:-0.02em;color:var(--cs-dark);
+  }
+  /* colour steps: neutral to coral along the funnel, green for the summary rate */
+  .cs-metric:nth-child(1) .num{color:#7A7A7A;}
+  .cs-metric:nth-child(2) .num{color:#C87255;}
+  .cs-metric:nth-child(3) .num{color:#E06040;}
+  .cs-metric:nth-child(4) .num{color:#34A853;}
+  .cs-metric .label{font-size:13px;font-weight:600;color:var(--cs-dark);margin-top:10px;line-height:1.35;}
+  .cs-metric .sub{font-size:12px;color:var(--cs-muted);margin-top:2px;line-height:1.4;}
+  @media (max-width:860px){
+    .cs-metrics{grid-template-columns:1fr 1fr;}
+    .cs-metric:nth-child(2){border-right:none;}
+    .cs-metric:nth-child(-n+2){border-bottom:1px solid var(--cs-border-light);}
+  }
+
   /* ---------- CTA block ---------- */
   .cs-cta-inner{background:#F2E6E3;border-radius:16px;padding:48px;text-align:center;}
   .cs-cta-inner h3{font-size:22px;font-weight:700;color:#1A1A1A;margin:0 0 12px;}
@@ -495,6 +520,79 @@
     .cs-tag-row{grid-template-columns:1fr;}
   }
 
+  /* ---------- portfolio navbar (shared pattern) + mobile drawer ---------- */
+  .cs-nav .nav-links{display:flex;gap:28px;list-style:none;align-items:center;margin:0;padding:0;}
+  .cs-nav .nav-links a{font-size:13px;color:var(--cs-muted);text-decoration:none;font-weight:500;transition:color .15s;}
+  .cs-nav .nav-links a:hover{color:var(--cs-text);}
+  .cs-nav .nav-links a.nav-current{color:var(--cs-text);font-weight:700;}
+  .nav-flex-item{display:inline-block;min-width:76px;text-align:center;}
+  .lang-switch{display:flex;align-items:center;gap:6px;}
+  .lang-switch button{font-family:inherit;background:none;border:none;font-size:13px;font-weight:500;color:var(--cs-muted);cursor:pointer;padding:2px;transition:color .15s;}
+  .lang-switch button:hover{color:var(--cs-text);}
+  .lang-switch button.active{color:var(--cs-text);font-weight:700;}
+  .lang-switch .sep,.nav-drawer__lang .sep{color:var(--cs-border);}
+
+  .nav-toggle{display:none;background:none;border:none;padding:8px;cursor:pointer;color:var(--cs-text);}
+  .nav-toggle svg{display:block;}
+  .nav-drawer{
+    position:fixed;top:0;right:0;height:100%;width:min(78vw,320px);
+    background:var(--cs-paper);z-index:300;padding:20px;
+    transform:translateX(100%);transition:transform .28s ease;
+    display:flex;flex-direction:column;box-shadow:-8px 0 24px rgba(0,0,0,0.08);
+    overflow-y:auto;
+  }
+  .nav-drawer[data-open="true"]{transform:translateX(0);}
+  .nav-drawer__header{display:flex;justify-content:flex-end;margin-bottom:24px;}
+  .nav-drawer__close{background:none;border:none;padding:8px;cursor:pointer;color:var(--cs-text);}
+  .nav-drawer__links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
+  .nav-drawer__links li{border-bottom:1px solid var(--cs-border);}
+  .nav-drawer__links a{display:flex;align-items:center;padding:16px 4px;text-decoration:none;font-size:18px;min-height:44px;color:var(--cs-muted);font-weight:500;}
+  .nav-drawer__links a.nav-current{color:var(--cs-text);font-weight:700;}
+  .nav-drawer__lang{display:flex;gap:6px;padding:16px 4px;}
+  .nav-drawer__lang button{font-family:inherit;background:none;border:none;font-size:16px;font-weight:500;color:var(--cs-muted);cursor:pointer;padding:4px;}
+  .nav-drawer__lang button.active{color:var(--cs-text);font-weight:700;}
+  .nav-overlay{position:fixed;inset:0;background:rgba(15,17,23,0.55);z-index:250;opacity:0;pointer-events:none;transition:opacity .28s ease;}
+  .nav-overlay[data-open="true"]{opacity:1;pointer-events:auto;}
+  @media (prefers-reduced-motion:reduce){.nav-drawer,.nav-overlay{transition:none;}}
+  @media (max-width:640px){
+    .cs-nav .nav-links{display:none;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- subnav: sticky in-page jump points (project pages) ---------- */
+  .subnav{
+    position:sticky;top:56px;z-index:40;margin-top:56px;
+    background:rgba(250,250,250,0.94);backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--cs-border);
+    display:flex;justify-content:flex-end;gap:24px;
+    padding:0 48px;height:44px;align-items:center;
+    overflow-x:auto;scrollbar-width:none;
+  }
+  .subnav::-webkit-scrollbar{display:none;}
+  .subnav a{
+    font-size:12px;font-weight:600;color:var(--cs-muted);text-decoration:none;
+    white-space:nowrap;padding:4px 2px;border-bottom:2px solid transparent;
+    transition:color .15s,border-color .15s;flex-shrink:0;
+  }
+  .subnav a:hover{color:var(--cs-text);}
+  .subnav a.active{color:var(--cs-coral);border-bottom-color:var(--cs-coral);}
+  .cs-page .cs-hero{padding-top:40px;}
+  .cs-page [id]{scroll-margin-top:112px;}
+  .dashboard-embed .app-header{top:100px;}
+  .nav-drawer__section-label{display:flex;align-items:center;padding:16px 4px;font-size:18px;font-weight:500;color:var(--cs-text);min-height:44px;}
+  .nav-drawer__links a.subnav-drawer-item{padding-left:22px;}
+  .nav-drawer__links a.subnav-drawer-item.active{color:var(--cs-coral);font-weight:700;}
+  @media (max-width:860px){
+    .subnav{padding:0 20px;}
+    .cs-page .cs-hero{padding-top:32px;}
+  }
+  @media (max-width:640px){
+    .subnav{display:none;}
+    .cs-page .cs-hero{padding-top:120px;}
+    .cs-page [id]{scroll-margin-top:72px;}
+    .dashboard-embed .app-header{top:56px;}
+  }
+
   /* ---------- Cookie banner ---------- */
   #cookie-banner{
     position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
@@ -515,9 +613,9 @@
 <div id="progress"></div>
 
 <div id="cookie-banner">
-  <p>This site uses PostHog for privacy-focused analytics, hosted on EU servers. <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" target="_blank">Privacy Policy</a></p>
-  <button class="cookie-btn cookie-decline" onclick="decideConsent(false)">Decline</button>
-  <button class="cookie-btn cookie-accept" onclick="decideConsent(true)">Accept</button>
+  <p data-i18n="cookie-text">This site uses PostHog for privacy-focused analytics, hosted on EU servers. <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" target="_blank">Privacy Policy</a></p>
+  <button class="cookie-btn cookie-decline" onclick="decideConsent(false)" data-i18n="cookie-decline">Decline</button>
+  <button class="cookie-btn cookie-accept" onclick="decideConsent(true)" data-i18n="cookie-accept">Accept</button>
 </div>
 
 <div class="cs-page">
@@ -531,58 +629,169 @@
       <path d="M23.5229 26.8333H25.3374L31.9998 11H30.4394L28.6919 15.2418H28.6801L28.0837 16.603L24.543 25.3354L21.0252 16.603H21.0331L20.4903 15.2418L18.7429 11H17.0664L23.5229 26.8333Z" fill="currentColor"/>
     </svg>
   </a>
-  <div class="cs-nav-links">
-    <span class="cs-nav-pill">Case Study</span>
-    <a class="cs-nav-link" href="#problem">Problem</a>
-    <a class="cs-nav-link" href="#approach">Approach</a>
-    <a class="cs-nav-link" href="#result">Dashboard</a>
-    <a class="cs-nav-link" href="#subsegmentation">Subsegmentation</a>
-    <a class="cs-nav-link" href="#insights">Insights</a>
-    <a class="cs-nav-cta" href="https://sebastian-weber.github.io/uxui-portfolio">All Projects →</a>
-  </div>
+  <ul class="nav-links">
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/index.html" class="nav-current" data-i18n="nav-portfolio">Portfolio</a></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/about.html" class="nav-flex-item" data-i18n="nav-about">About</a></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" class="nav-flex-item" data-i18n="nav-imprint">Imprint</a></li>
+    <li>
+      <span class="lang-switch">
+          <button type="button" data-lang="de">DE</button>
+          <span class="sep">|</span>
+          <button type="button" data-lang="en" class="active">EN</button>
+      </span>
+    </li>
+    <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener">LinkedIn</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navDrawer" aria-label="Open menu" data-i18n-aria="menu-open">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M3 6H21M3 12H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
 </nav>
+
+<div class="subnav" id="subnav" role="navigation" aria-label="Sections on this page" data-i18n-aria="sub-aria">
+  <a href="#acquisition" data-i18n="sub-acq">Acquisition</a>
+  <a href="#problem" data-i18n="sub-problem">Problem</a>
+  <a href="#approach" data-i18n="sub-approach">Approach</a>
+  <a href="#result" data-i18n="sub-dash">Dashboard</a>
+  <a href="#subsegmentation" data-i18n="sub-subseg">Subsegmentation</a>
+  <a href="#insights" data-i18n="sub-insights">Insights</a>
+  <a href="#reflection" data-i18n="sub-answer">Conclusion</a>
+</div>
+
+<div class="nav-overlay" id="navOverlay" data-open="false"></div>
+
+<aside class="nav-drawer" id="navDrawer" data-open="false" aria-hidden="true">
+  <div class="nav-drawer__header">
+    <button class="nav-drawer__close" id="navDrawerClose" aria-label="Close menu" data-i18n-aria="menu-close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 6L18 18M6 18L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul class="nav-drawer__links">
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/index.html" class="nav-current" data-i18n="nav-portfolio">Portfolio</a></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/about.html" data-i18n="nav-about">About</a></li>
+    <li><a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" data-i18n="nav-imprint">Imprint</a></li>
+    <li>
+      <div class="nav-drawer__lang">
+          <button type="button" data-lang="de">DE</button>
+          <span class="sep">|</span>
+          <button type="button" data-lang="en" class="active">EN</button>
+      </div>
+    </li>
+    <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener">LinkedIn</a></li>
+    <li class="nav-drawer__section-label" data-i18n="sub-label">On this page</li>
+    <li><a href="#acquisition" class="subnav-drawer-item" data-i18n="sub-acq">Acquisition</a></li>
+    <li><a href="#problem" class="subnav-drawer-item" data-i18n="sub-problem">Problem</a></li>
+    <li><a href="#approach" class="subnav-drawer-item" data-i18n="sub-approach">Approach</a></li>
+    <li><a href="#result" class="subnav-drawer-item" data-i18n="sub-dash">Dashboard</a></li>
+    <li><a href="#subsegmentation" class="subnav-drawer-item" data-i18n="sub-subseg">Subsegmentation</a></li>
+    <li><a href="#insights" class="subnav-drawer-item" data-i18n="sub-insights">Insights</a></li>
+    <li><a href="#reflection" class="subnav-drawer-item" data-i18n="sub-answer">Conclusion</a></li>
+  </ul>
+</aside>
 
 <!-- ============================================================
      CASE STUDY: HERO
      ============================================================ -->
 <header class="cs-hero">
   <div class="cs-eyebrow-hero">Case Study</div>
-  <h1 class="cs-h1">GA4 Behavioral Segmentation of Google Merchandise Store Users</h1>
-  <p class="cs-lede">For my capstone project in Data Analytics I analyzed 270,154 Google Merchandise Store users through raw GA4 event data. The project started as a team pitch for behavioral data-driven personas with a real company, and became solo segmentation once that data access fell through.</p>
+  <h1 class="cs-h1" data-i18n="h1">GA4 Behavioral Segmentation of Google Merchandise Store Users</h1>
+  <p class="cs-lede" data-i18n="lede">For the capstone project of my Data Analytics &amp; AI Bootcamp, I analyzed 270,154 Google Merchandise Store users through raw GA4 event data. The project started as a team pitch for behavioral data-driven personas with a real company, and became solo segmentation once that data access fell through.</p>
 
   <div class="cs-hero-image">
-    <img src="img/hero-dashboards.png" alt="Two browser windows showing the GA4 Behavioral Segmentation dashboard, one open on the Explorer segment, one on the Browser segment">
+    <img src="img/hero-dashboards.png" data-i18n-alt="hero-alt" alt="Two browser windows showing the GA4 Behavioral Segmentation dashboard, one open on the Explorer segment, one on the Browser segment">
   </div>
 
   <div class="cs-hero-meta">
-    <div class="cs-hero-meta-item"><div class="k">Role</div><div class="v">Solo: pipeline, clustering, dashboard, presentation</div></div>
-    <div class="cs-hero-meta-item"><div class="k">Timeframe</div><div class="v">neuefische Data Analytics & AI Bootcamp, 2026</div></div>
+    <div class="cs-hero-meta-item"><div class="k" data-i18n="meta-role">Role</div><div class="v" data-i18n="meta-role-v">Solo: pipeline, clustering, dashboard, presentation</div></div>
+    <div class="cs-hero-meta-item"><div class="k" data-i18n="meta-time">Timeframe</div><div class="v">neuefische Data Analytics & AI Bootcamp, 2026</div></div>
     <div class="cs-hero-meta-item"><div class="k">Tools</div><div class="v">BigQuery SQL, Python, PostgreSQL, Tableau</div></div>
-    <div class="cs-hero-meta-item"><div class="k">Dataset</div><div class="v">GA4, Google Merchandise Store</div></div>
+    <div class="cs-hero-meta-item"><div class="k" data-i18n="meta-data">Dataset</div><div class="v">GA4, Google Merchandise Store</div></div>
   </div>
 </header>
 
 <div class="cs-content">
 
 <!-- ============================================================
+     CASE STUDY: PHASE 0, DATA ACQUISITION
+     ============================================================ -->
+<section class="cs-block" id="acquisition">
+  <div class="cs-eyebrow" data-i18n="acq-eyebrow">01 · Phase 0: Data Acquisition</div>
+  <h2 class="cs-h2" data-i18n="acq-h2">Before the first query: finding a partner worth asking.</h2>
+  <p class="cs-body-text" data-i18n="acq-p">
+    The original goal was behavioral, data-driven personas built on a real company's user data. The offer to partners was simple: a free analysis, a finished dashboard and concrete recommendations in exchange for data access. Before anyone was contacted, every candidate went through the same selection and screening process.
+  </p>
+  <div class="cs-steps">
+    <div class="cs-step">
+      <div class="cs-step-num">1</div>
+      <div>
+        <h4 data-i18n="acq-s1-h">Build a long list</h4>
+        <p data-i18n="acq-s1-p">37 candidates from my own professional network, focused on Cologne and NRW's digital industry.</p>
+      </div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-num">2</div>
+      <div>
+        <h4 data-i18n="acq-s2-h">Prioritize by fit</h4>
+        <p data-i18n="acq-s2-p">Each candidate was rated on three criteria: thematic fit with user behavior on digital platforms, warmth of the existing relationship, and whether the company actually owns end-user behavioral data.</p>
+      </div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-num">3</div>
+      <div>
+        <h4 data-i18n="acq-s3-h">Screen for legal and compliance risk</h4>
+        <p data-i18n="acq-s3-p">Candidates were excluded, each with a documented reason, if they were involved in active legal or regulatory proceedings over how they treat users or their data, already had analytics expertise in-house, had no consumer-facing platform, or worked without a product of their own.</p>
+      </div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-num">4</div>
+      <div>
+        <h4 data-i18n="acq-s4-h">Contact individually</h4>
+        <p data-i18n="acq-s4-p">20 contacts remained: 16 potential partners and 4 multipliers from my network who could pass the request on. Every message was individually researched and sent by email or LinkedIn, backed by a public LinkedIn post calling for partners.</p>
+      </div>
+    </div>
+  </div>
+  <div class="cs-metrics" role="list" aria-label="Outreach results" data-i18n-aria="acq-metrics-aria">
+    <div class="cs-metric" role="listitem">
+      <div class="num">37</div>
+      <div class="label" data-i18n="m-cand">Candidates</div>
+      <div class="sub" data-i18n="m-cand-sub">on the long list</div>
+    </div>
+    <div class="cs-metric" role="listitem">
+      <div class="num">20</div>
+      <div class="label" data-i18n="m-cont">Contacted</div>
+      <div class="sub" data-i18n="m-cont-sub">after screening</div>
+    </div>
+    <div class="cs-metric" role="listitem">
+      <div class="num">3</div>
+      <div class="label" data-i18n="m-int">Interested partners</div>
+      <div class="sub" data-i18n="m-int-sub">a real fit for the brief</div>
+    </div>
+    <div class="cs-metric" role="listitem">
+      <div class="num" data-i18n="m-rate-num">20%</div>
+      <div class="label" data-i18n="m-rate">Response rate</div>
+      <div class="sub" data-i18n="m-rate-sub">4 of 20 replied</div>
+    </div>
+  </div>
+  <p class="cs-body-text" style="margin-bottom:0;" data-i18n="acq-result">
+    One response was a decline for lack of capacity. The other three came from companies that fit the brief and were genuinely interested: two led to concrete talks, one offered support after the project had already gone solo. For a cold request asking companies to share user data, that is a solid result. None of it turned into usable data, for reasons the next section covers.
+  </p>
+</section>
+
+<!-- ============================================================
      CASE STUDY: THE PROBLEM
      ============================================================ -->
 <section class="cs-block" id="problem">
-  <div class="cs-eyebrow">01 · The Problem</div>
-  <h2 class="cs-h2">Why this project stops at segments, not personas.</h2>
-  <p class="cs-body-text">
-    The project started with a systematic outreach campaign: 37 companies across Cologne, Germany, and NRW's digital industry, screened first for legal and data-compliance risk, then contacted on two channels, LinkedIn and email, offering a free analysis and dashboard for real user data.
-  </p>
-  <p class="cs-body-text">
+  <div class="cs-eyebrow" data-i18n="pr-eyebrow">02 · The Problem</div>
+  <h2 class="cs-h2" data-i18n="pr-h2">Why this project stops at segments, not personas.</h2>
+  <p class="cs-body-text" data-i18n="pr-p1">
     One company got furthest, real interest, a good call, before its contract stopped everything cold: no sharing tracking data with third parties, not even anonymized. A second backed off the same way, after I raised data-protection concerns with them myself, before they'd asked. Neither was a rejection. Neither left me with real user data.
   </p>
-  <p class="cs-body-text">
+  <p class="cs-body-text" data-i18n="pr-p2">
     I could have kept calling this "personas." I didn't, because quantitative data alone couldn't carry that claim. Without a qualitative data layer I scoped it down to segmentation instead.
   </p>
-  <p class="cs-body-text">
+  <p class="cs-body-text" data-i18n="pr-p3">
     Three fallback datasets were lined up in advance. <em>UC Irvine's Online Retail II</em> had the cleanest license but no browsing data, no funnel. <em>REES46</em> had full event data but capped out at transactional RFM segmentation. <em>The Google Merchandise Store's public GA4 sample</em> was the only one with a complete behavioral funnel, worth the extra BigQuery setup.
   </p>
-  <p class="cs-body-text" style="margin-bottom:0;">
+  <p class="cs-body-text" style="margin-bottom:0;" data-i18n="pr-p4">
     It's pre-anonymized for the same reason both companies had backed away: user privacy, one of the real takeaways here. A real partner's data would have kept a qualitative layer possible. A pseudonymized public sample closes that door outright. From there, the work became solo, and personas became segmentation.
   </p>
 </section>
@@ -591,48 +800,48 @@
      CASE STUDY: APPROACH / PROCESS
      ============================================================ -->
 <section class="cs-block" id="approach">
-  <div class="cs-eyebrow">02 · Approach</div>
-  <h2 class="cs-h2">Choosing k=4 when the numbers say k=2.</h2>
+  <div class="cs-eyebrow" data-i18n="ap-eyebrow">03 · Approach</div>
+  <h2 class="cs-h2" data-i18n="ap-h2">Choosing k=4 when the numbers say k=2.</h2>
   <div class="cs-tag-row">
     <span class="cs-tag">Feature Engineering</span>
     <span class="cs-tag">K-Means Clustering</span>
-    <span class="cs-tag">Statistical Validation</span>
-    <span class="cs-tag">Behavioral Analytics</span>
+    <span class="cs-tag" data-i18n="ap-tag3">Statistical Validation</span>
+    <span class="cs-tag" data-i18n="ap-tag4">Behavioral Analytics</span>
   </div>
-  <p class="cs-body-text">
+  <p class="cs-body-text" data-i18n="ap-p">
     Six behavioral features fed the model: <em>session count</em>, <em>page views</em>, <em>items viewed</em>, <em>add-to-cart</em>, <em>checkouts</em>, and <em>purchases</em>, each log-transformed and standardized. The two standard validation metrics couldn't agree with each other. The Elbow Method flattens out with no sharp bend after k=3. The Silhouette Score peaks at k=2, not k=4. I chose k=4 anyway, for interpretability and business-relevant differentiation, and documented that disagreement openly instead of quietly picking the number that told a better story.
   </p>
   <figure class="cs-figure">
-    <img src="img/elbow_silhouette.png" alt="Elbow method inertia curve and silhouette score by k, showing the elbow flattening after k=3 while silhouette peaks at k=2">
-    <div class="cs-figure-caption">Elbow inertia keeps dropping past any sharp bend; silhouette score peaks at k=2, not k=4, the exact disagreement behind this decision.</div>
+    <img src="img/elbow_silhouette.png" data-i18n-alt="ap-fig-alt" alt="Elbow method inertia curve and silhouette score by k, showing the elbow flattening after k=3 while silhouette peaks at k=2">
+    <div class="cs-figure-caption" data-i18n="ap-caption">Elbow inertia keeps dropping past any sharp bend; silhouette score peaks at k=2, not k=4, the exact disagreement behind this decision.</div>
   </figure>
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
       <div>
-        <h4>Scope & EDA</h4>
-        <p>Queried the raw GA4 event stream in BigQuery and caught an inherited filter excluding 92.3% of users before modeling began.</p>
+        <h4 data-i18n="ap-s1-h">Scope & EDA</h4>
+        <p data-i18n="ap-s1-p">Queried the raw GA4 event stream in BigQuery and caught an inherited filter excluding 92.3% of users before modeling began.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">2</div>
       <div>
-        <h4>Feature engineering & clustering</h4>
-        <p>Six behavioral features, log1p-transformed and scaled, k-means at k=4.</p>
+        <h4 data-i18n="ap-s2-h">Feature engineering & clustering</h4>
+        <p data-i18n="ap-s2-p">Six behavioral features, log1p-transformed and scaled, k-means at k=4.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">3</div>
       <div>
-        <h4>The k=4 vs. k=2 conflict</h4>
-        <p>Named the disagreement between Elbow and Silhouette openly instead of letting one metric quietly decide.</p>
+        <h4 data-i18n="ap-s3-h">The k=4 vs. k=2 conflict</h4>
+        <p data-i18n="ap-s3-p">Named the disagreement between Elbow and Silhouette openly instead of letting one metric quietly decide.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">4</div>
       <div>
-        <h4>Sub-segmentation as a stress test</h4>
-        <p>Broke the dominant 81% Browser cluster apart with a rule-based layer to test whether k-means had smoothed over real structure.</p>
+        <h4 data-i18n="ap-s4-h">Sub-segmentation as a stress test</h4>
+        <p data-i18n="ap-s4-p">Broke the dominant 81% Browser cluster apart with a rule-based layer to test whether k-means had smoothed over real structure.</p>
       </div>
     </div>
   </div>
@@ -642,8 +851,8 @@
      CASE STUDY: DASHBOARD INTRO (transition into the embedded piece)
      ============================================================ -->
 <section class="cs-block" id="result">
-  <div class="cs-eyebrow">03 · The Output</div>
-  <h2 class="cs-h2">Four segments came out the other end.</h2>
+  <div class="cs-eyebrow" data-i18n="out-eyebrow">04 · The Output</div>
+  <h2 class="cs-h2" data-i18n="out-h2">Four segments came out the other end.</h2>
 
   <div class="cs-donut-block">
     <svg width="220" height="220" viewBox="0 0 220 220">
@@ -656,18 +865,18 @@
         stroke-dasharray="14.58 488.08" stroke-dashoffset="-479.53" transform="rotate(-90 110 110)"/>
       <circle cx="110" cy="110" r="80" fill="none" stroke="#EA4335" stroke-width="30"
         stroke-dasharray="8.04 494.61" stroke-dashoffset="-494.11" transform="rotate(-90 110 110)"/>
-      <text x="110" y="104" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="30" fill="#0F1117">270,154</text>
-      <text x="110" y="126" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="500" font-size="12" fill="#7A7A7A">users total</text>
+      <text x="110" y="104" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="800" font-size="30" fill="#0F1117" data-i18n="out-total">270,154</text>
+      <text x="110" y="126" text-anchor="middle" font-family="Manrope, sans-serif" font-weight="500" font-size="12" fill="#7A7A7A" data-i18n="out-total-sub">users total</text>
     </svg>
     <div class="cs-donut-legend">
-      <div class="cs-donut-legend-item"><span class="dot" style="background:#4285F4"></span><span class="name">Browser</span><span class="pct" style="color:#4285F4">81.1%</span></div>
-      <div class="cs-donut-legend-item"><span class="dot" style="background:#FBBC04"></span><span class="name">Explorer</span><span class="pct" style="color:#EA9C00">14.3%</span></div>
-      <div class="cs-donut-legend-item"><span class="dot" style="background:#34A853"></span><span class="name">Engaged Non-Converter</span><span class="pct" style="color:#34A853">2.9%</span></div>
-      <div class="cs-donut-legend-item"><span class="dot" style="background:#EA4335"></span><span class="name">Converter</span><span class="pct" style="color:#EA4335">1.6%</span></div>
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#4285F4"></span><span class="name">Browser</span><span class="pct" style="color:#4285F4" data-i18n="out-pct-81.1%">81.1%</span></div>
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#FBBC04"></span><span class="name">Explorer</span><span class="pct" style="color:#EA9C00" data-i18n="out-pct-14.3%">14.3%</span></div>
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#34A853"></span><span class="name">Engaged Non-Converter</span><span class="pct" style="color:#34A853" data-i18n="out-pct-2.9%">2.9%</span></div>
+      <div class="cs-donut-legend-item"><span class="dot" style="background:#EA4335"></span><span class="name">Converter</span><span class="pct" style="color:#EA4335" data-i18n="out-pct-1.6%">1.6%</span></div>
     </div>
   </div>
 
-  <p class="cs-body-text" style="margin-top:32px;margin-bottom:0;">This is the artifact, not the verdict. Explore the four behavioral segments below, exactly as they came out of the clustering pipeline. Whether they hold up as "meaningful and defensible" is the question the next section actually answers.</p>
+  <p class="cs-body-text" style="margin-top:32px;margin-bottom:0;" data-i18n="out-p">This is the artifact, not the verdict. Explore the four behavioral segments below, exactly as they came out of the clustering pipeline. Whether they hold up as "meaningful and defensible" is the question the next section actually answers.</p>
 </section>
 
 </div><!-- /.cs-content (reopens below the dashboard) -->
@@ -675,7 +884,7 @@
 <div class="dashboard-embed">
 <div class="app-header">
   <div class="wrap app-header-inner">
-    <div class="app-title">GA4 Behavioral Segmentation of Google Merchandise Store&nbsp;Users</div>
+    <div class="app-title" data-i18n="dash-title">GA4 Behavioral Segmentation of Google Merchandise Store&nbsp;Users</div>
   </div>
   <div class="wrap" style="border-bottom:1px solid var(--hairline);">
     <div class="tabs" id="tabs"></div>
@@ -685,7 +894,7 @@
 <div class="wrap" id="panels"></div>
 
 <footer>
-  <div class="wrap">
+  <div class="wrap" data-i18n="dash-footer">
     DATASET: GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270,154 users · k-means clustering (k=4)<br>
     METHOD NOTE: k=4 chosen over the algorithmically preferred k=2 for interpretability; documented, defended design decision.<br>
     Sub-segmentation of the Browser cluster is a descriptive, rule-based heuristic, not a validated typology.
@@ -699,9 +908,9 @@
      CASE STUDY: INSIDE THE BROWSER CLUSTER (extracted sub-segmentation)
      ============================================================ -->
 <section class="cs-block" id="subsegmentation" style="padding-bottom:0;">
-  <div class="cs-eyebrow">04 · A Closer Look</div>
-  <h2 class="cs-h2">Inside the Browser cluster.</h2>
-  <p class="cs-body-text">
+  <div class="cs-eyebrow" data-i18n="ss-eyebrow">05 · A Closer Look</div>
+  <h2 class="cs-h2" data-i18n="ss-h2">Inside the Browser cluster.</h2>
+  <p class="cs-body-text" data-i18n="ss-p">
     Browser is 81.1% of the whole dataset, by far the largest of the four segments. A cluster that dominant is worth a second pass: is it really one behavioral group, or did k=4 flatten real structure underneath it? I ran a rule-based classification on session-level engagement signals to find out.
   </p>
 </section>
@@ -711,38 +920,38 @@
 <div class="cs-block wide" style="padding-top:32px;padding-bottom:24px;border-top:none;">
   <div style="font-family:'Manrope',sans-serif;">
     <div class="origin-summary" style="margin-bottom:24px;">
-      <div class="origin-cell"><div class="v" style="color:var(--engaged)">87.0%</div><div class="k">Likely human · 179,147 users</div></div>
-      <div class="origin-cell"><div class="v" style="color:var(--explorer)">10.9%</div><div class="k">Uncertain · 22,433 users</div></div>
-      <div class="origin-cell"><div class="v" style="color:var(--converter)">2.1%</div><div class="k">Likely bot-like · 4,334 users</div></div>
+      <div class="origin-cell"><div class="v" style="color:var(--engaged)" data-i18n="ss-o-engaged">87.0%</div><div class="k" data-i18n="ss-o-human-k">Likely human · 179,147 users</div></div>
+      <div class="origin-cell"><div class="v" style="color:var(--explorer)" data-i18n="ss-o-explorer">10.9%</div><div class="k" data-i18n="ss-o-unc-k">Uncertain · 22,433 users</div></div>
+      <div class="origin-cell"><div class="v" style="color:var(--converter)" data-i18n="ss-o-converter">2.1%</div><div class="k" data-i18n="ss-o-bot-k">Likely bot-like · 4,334 users</div></div>
     </div>
     <div class="subseg-group">      <div class="subseg-grid">
         <div class="subseg-card">
           <img src="img/quick_but_engaged.png" alt="Quick but Engaged">
-          <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span>likely human</div>
+          <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span><span data-i18n="cat-human">likely human</span></div>
           <h4>Quick but Engaged</h4>
           <div class="donut-wrap" style="display:block;">
             <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
-              <span class="count">168,009</span>
-              <span class="pct">81.6% of classified</span>
+              <span class="count" data-i18n="ss-qbe-count">168,009</span>
+              <span class="pct" data-i18n="ss-qbe-pct">81.6% of classified</span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:81.6%"></div></div>
           </div>
-          <div class="detail">1 session, ~2.1 page views, 75% of sessions engaged</div>
-          <div class="meaning">Genuine single-visit browsers. They look, show real signs of interest, and leave without converting.</div>
+          <div class="detail" data-i18n="ss-qbe-detail">1 session, ~2.1 page views, 75% of sessions engaged</div>
+          <div class="meaning" data-i18n="ss-qbe-meaning">Genuine single-visit browsers. They look, show real signs of interest, and leave without converting.</div>
         </div>
         <div class="subseg-card">
           <img src="img/returning_visitor.png" alt="Returning Visitor">
-          <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span>likely human</div>
+          <div class="cat-dot"><span class="dot" style="background:var(--engaged)"></span><span data-i18n="cat-human">likely human</span></div>
           <h4>Returning Visitor</h4>
           <div class="donut-wrap" style="display:block;">
             <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
-              <span class="count">11,138</span>
-              <span class="pct">5.4% of classified</span>
+              <span class="count" data-i18n="ss-rv-count">11,138</span>
+              <span class="pct" data-i18n="ss-rv-pct">5.4% of classified</span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:5.4%"></div></div>
           </div>
-          <div class="detail">~2.0 sessions, ~2.0 page views, 61% engaged</div>
-          <div class="meaning">Came back more than once, stayed engaged, just never converted.</div>
+          <div class="detail" data-i18n="ss-rv-detail">~2.0 sessions, ~2.0 page views, 61% engaged</div>
+          <div class="meaning" data-i18n="ss-rv-meaning">Came back more than once, stayed engaged, just never converted.</div>
         </div>
       </div>
     </div>
@@ -750,31 +959,31 @@
     <div class="subseg-group">      <div class="subseg-grid">
         <div class="subseg-card">
           <img src="img/instant_leave.png" alt="Instant Leave">
-          <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span>uncertain</div>
+          <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span><span data-i18n="cat-unc">uncertain</span></div>
           <h4>Instant Leave</h4>
           <div class="donut-wrap" style="display:block;">
             <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
-              <span class="count">20,077</span>
-              <span class="pct">9.8% of classified</span>
+              <span class="count" data-i18n="ss-il-count">20,077</span>
+              <span class="pct" data-i18n="ss-il-pct">9.8% of classified</span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:9.8%"></div></div>
           </div>
-          <div class="detail">1 session, ~1.0 page view, 0% engaged, 0s on site</div>
-          <div class="meaning">Classic bounces: one page, no engagement, gone in seconds.</div>
+          <div class="detail" data-i18n="ss-il-detail">1 session, ~1.0 page view, 0% engaged, 0s on site</div>
+          <div class="meaning" data-i18n="ss-il-meaning">Classic bounces: one page, no engagement, gone in seconds.</div>
         </div>
         <div class="subseg-card">
           <img src="img/bounce.png" alt="Other Bounce">
-          <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span>uncertain</div>
+          <div class="cat-dot"><span class="dot" style="background:var(--explorer)"></span><span data-i18n="cat-unc">uncertain</span></div>
           <h4>Other Bounce</h4>
           <div class="donut-wrap" style="display:block;">
             <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
-              <span class="count">2,356</span>
-              <span class="pct">1.1% of classified</span>
+              <span class="count" data-i18n="ss-ob-count">2,356</span>
+              <span class="pct" data-i18n="ss-ob-pct">1.1% of classified</span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:1.1%"></div></div>
           </div>
-          <div class="detail">1 session, 1.0 page view, 0% engaged</div>
-          <div class="meaning">Doesn't fit the other patterns, a catch-all for single-session, low-signal visits.</div>
+          <div class="detail" data-i18n="ss-ob-detail">1 session, 1.0 page view, 0% engaged</div>
+          <div class="meaning" data-i18n="ss-ob-meaning">Doesn't fit the other patterns, a catch-all for single-session, low-signal visits.</div>
         </div>
       </div>
     </div>
@@ -782,28 +991,28 @@
     <div class="subseg-group">      <div class="subseg-grid" style="grid-template-columns:minmax(230px,363px);">
         <div class="subseg-card">
           <img src="img/bot-like.png" alt="Bot-like">
-          <div class="cat-dot"><span class="dot" style="background:var(--converter)"></span>likely bot</div>
+          <div class="cat-dot"><span class="dot" style="background:var(--converter)"></span><span data-i18n="cat-bot">likely bot</span></div>
           <h4>Bot-like</h4>
           <div class="donut-wrap" style="display:block;">
             <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:6px;">
-              <span class="count">4,334</span>
-              <span class="pct">2.1% of classified</span>
+              <span class="count" data-i18n="ss-bl-count">4,334</span>
+              <span class="pct" data-i18n="ss-bl-pct">2.1% of classified</span>
             </div>
             <div class="bar-track"><div class="bar-fill" style="width:2.1%"></div></div>
           </div>
-          <div class="detail">1 session, ~2.2 page views, 0ms engagement despite ~66s span</div>
-          <div class="meaning">Fast, multi-page visits with zero measurable engagement, a pattern consistent with non-human traffic.</div>
+          <div class="detail" data-i18n="ss-bl-detail">1 session, ~2.2 page views, 0ms engagement despite ~66s span</div>
+          <div class="meaning" data-i18n="ss-bl-meaning">Fast, multi-page visits with zero measurable engagement, a pattern consistent with non-human traffic.</div>
         </div>
       </div>
     </div>
 
-    <div class="subseg-coverage" style="margin-top:24px;margin-bottom:0;">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
+    <div class="subseg-coverage" style="margin-top:24px;margin-bottom:0;" data-i18n="ss-coverage">205,914 of 219,153 Browser users classified · 94.0% coverage (session-level engagement data)</div>
   </div>
 </div><!-- /.cs-block.wide -->
 
 <div class="cs-content" style="padding-top:16px;">
 
-<p class="cs-body-text" style="margin-bottom:64px;">
+<p class="cs-body-text" style="margin-bottom:64px;" data-i18n="ss-note">
   "bot-like" is a behavioral heuristic, single session, multiple pages, zero measured engagement time, not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive classification, not a validated typology, the same honesty standard the rest of this project holds to.
 </p>
 
@@ -811,48 +1020,48 @@
      CASE STUDY: KEY INSIGHTS (after the dashboard)
      ============================================================ -->
 <section class="cs-block" id="insights">
-  <div class="cs-eyebrow">05 · Testing "Defensible"</div>
-  <h2 class="cs-h2">What survived the second look?</h2>
-  <p class="cs-body-text">Zooming back out to the four segments from the dashboard, not the Browser sub-types above: three checks, one holds up, one turns into something more useful, one is a real limit.</p>
+  <div class="cs-eyebrow" data-i18n="in-eyebrow">06 · Testing "Defensible"</div>
+  <h2 class="cs-h2" data-i18n="in-h2">What survived the second look?</h2>
+  <p class="cs-body-text" data-i18n="in-p">Zooming back out to the four segments from the dashboard, not the Browser sub-types above: three checks, one holds up, one turns into something more useful, one is a real limit.</p>
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
       <div>
-        <h4>A boundary that actually holds</h4>
-        <p>Browser and Explorer share the same devices and traffic. Explorer just spends roughly 13 times longer engaged. This is not a convenient cut in the data. This is a real behavioural difference.</p>
+        <h4 data-i18n="in-s1-h">A boundary that actually holds</h4>
+        <p data-i18n="in-s1-p">Browser and Explorer share the same devices and traffic. Explorer just spends roughly 13 times longer engaged. This is not a convenient cut in the data. This is a real behavioural difference.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">2</div>
       <div>
-        <h4>Two segments, one problem</h4>
-        <p>Explorer and Engaged Non-Converter look like separate audiences until you find where they actually drop off: at the step from Shipping Info to Payment Info. There, retention is 13.6% and 27.6%, respectively. Fix that one step and both segments will improve at once.</p>
+        <h4 data-i18n="in-s2-h">Two segments, one problem</h4>
+        <p data-i18n="in-s2-p">Explorer and Engaged Non-Converter look like separate audiences until you find where they actually drop off: at the step from Shipping Info to Payment Info. There, retention is 13.6% and 27.6%, respectively. Fix that one step and both segments will improve at once.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">3</div>
       <div>
-        <h4>Built to read one holiday season, not a whole year</h4>
-        <p>The dataset only ever covered three months, November through January, holiday season by design. That was known going in. What wasn't known was how much moves inside that window: Converter share nearly halves (2.5% down to 0.9%), and site-wide conversion falls with it by about 60%. Exactly the kind of instability a holiday-season model should surface, and exactly why calling this a stable user typology would overstate it.</p>
+        <h4 data-i18n="in-s3-h">Built to read one holiday season, not a whole year</h4>
+        <p data-i18n="in-s3-p">The dataset only ever covered three months, November through January, holiday season by design. That was known going in. What wasn't known was how much moves inside that window: Converter share nearly halves (2.5% down to 0.9%), and site-wide conversion falls with it by about 60%. Exactly the kind of instability a holiday-season model should surface, and exactly why calling this a stable user typology would overstate it.</p>
       </div>
     </div>
   </div>
-  <p class="cs-body-text" style="margin-top:20px;margin-bottom:0;">One holds. One becomes a solution. One confirms this was always a holiday-season read. That's what checking "defensible" actually gets you: not a clean pass, but a more honest map.</p>
+  <p class="cs-body-text" style="margin-top:20px;margin-bottom:0;" data-i18n="in-close">One holds. One becomes a solution. One confirms this was always a holiday-season read. That's what checking "defensible" actually gets you: not a clean pass, but a more honest map.</p>
 </section>
 
 <!-- ============================================================
      CASE STUDY: REFLECTION / CLOSING
      ============================================================ -->
 <section class="cs-block" id="reflection">
-  <div class="cs-eyebrow">06 · The Answer</div>
-  <h2 class="cs-h2">Was scoping down to segments the right call?</h2>
-  <p class="cs-body-text">
+  <div class="cs-eyebrow" data-i18n="re-eyebrow">07 · The Answer</div>
+  <h2 class="cs-h2" data-i18n="re-h2">Was scoping down to segments the right call?</h2>
+  <p class="cs-body-text" data-i18n="re-p1">
     Yes, and the three checks above are why. One segment boundary turned out genuinely solid (Browser vs. Explorer). One looked solid but wasn't (the shared checkout-friction point). And the whole segmentation confirmed what the three-month window always implied: a holiday-season read, not a stable typology. If I'd called these "personas" instead of "segments," every one of those caveats would have been a false promise instead of an honest footnote.
   </p>
-  <p class="cs-body-text">
+  <p class="cs-body-text" data-i18n="re-p2">
     The most useful part of this project wasn't the clustering. It was documenting exactly where it stops being trustworthy. k=4 tells a cleaner story than k=2, but the Silhouette Score doesn't agree, and saying that out loud felt riskier than burying it in an appendix. It wasn't: the methodological critique became the strongest part of the deliverable, not the weakest.
   </p>
-  <p class="cs-body-text" style="margin-bottom:0;">
+  <p class="cs-body-text" style="margin-bottom:0;" data-i18n="re-p3">
     Getting back to the original goal, actual personas, needs the qualitative layer this project never had: interviews, context, the "why." HDBSCAN could still sharpen the segments themselves, given how unevenly dense the data is (81% in one cluster), but that's a better clustering, not a persona. The honest path from here runs through user research, not more modeling.
   </p>
 </section>
@@ -861,15 +1070,15 @@
      CASE STUDY: CTA
      ============================================================ -->
 <div class="cs-cta-inner" style="margin-top:80px;">
-  <h3>More projects</h3>
-  <a class="cs-cta-btn" href="https://sebastian-weber.github.io/uxui-portfolio">To the project overview →</a>
+  <h3 data-i18n="cta-h3">More projects</h3>
+  <a class="cs-cta-btn" href="https://sebastian-weber.github.io/uxui-portfolio" data-i18n="cta-btn">To the project overview →</a>
 </div>
 
 </div>
 
 <footer class="cs-page-footer">
-  <div>Sebastian Weber · UX/UI Designer · Design-to-Code · Cologne 2026</div>
-  <div><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank">LinkedIn</a> · <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" target="_blank">Legal Notice &amp; Privacy Policy</a> · <a href="#" id="cookie-settings-link">Cookie Settings</a></div>
+  <div data-i18n="foot-sig">Sebastian Weber · UX/UI Designer · Design-to-Code · Cologne 2026</div>
+  <div><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank">LinkedIn</a> · <a href="https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html" target="_blank" data-i18n="foot-legal">Legal Notice &amp; Privacy Policy</a> · <a href="#" id="cookie-settings-link" data-i18n="foot-cookie">Cookie Settings</a></div>
 </footer>
 
 </div><!-- /.cs-page -->
@@ -877,12 +1086,236 @@
 <script>
 const DATA = {"meta": {"dataset": "bigquery-public-data.ga4_obfuscated_sample_ecommerce", "timeframe": "2020-11-01 to 2021-01-31", "totalUsers": 270154, "clusteringMethod": "k-means, k=4 (log1p + StandardScaler on 6 behavioral features)", "source": "PostgreSQL (Neuefische RDS), s_sebastianweber schema, tables: sebastian_dashboard_segment_overview, sebastian_dashboard_funnel, sebastian_dashboard_behavioral_metrics"}, "segments": [{"segment": "Browser", "color": "#4285F4", "order": 1, "userCount": 219153, "userSharePct": 81.1, "conversionRatePct": 0.0, "siteAvgConversionRatePct": 1.64, "convRateVsSiteAvgPp": -1.64, "repeatVisitorPct": 5.4, "engagementRatePct": 66.4, "engagementDetail": {"twoPlusPages": 54.6, "tenPlusSec": 40.8}, "sessionStructure": {"newUserSharePct": 96.7, "singleSessionPct": 94.6, "multiSessionPct": 5.4}, "meanConsiderationWindowDays": 0.14, "medianConsiderationWindowDays": 0.0, "repeatPurchaserPctAmongConverters": 0.0, "dominantDevice": "desktop", "dominantCategory": "Apparel", "dominantCategoryCoveragePct": 5.1, "behavioralMetrics": {"session_count": {"mean": 1.054, "median": 1.0, "siteMean": 1.333, "siteMedian": 1.0, "meanVsSiteAvgPct": -20.9}, "page_views": {"mean": 1.976, "median": 2.0, "siteMean": 4.999, "siteMedian": 2.0, "meanVsSiteAvgPct": -60.5}, "items_viewed": {"mean": 0.147, "median": 0.0, "siteMean": 1.429, "siteMedian": 0.0, "meanVsSiteAvgPct": -89.7}, "add_to_cart": {"mean": 0.007, "median": 0.0, "siteMean": 0.217, "siteMedian": 0.0, "meanVsSiteAvgPct": -96.6}, "consideration_window_days": {"mean": 0.143, "median": 0.0, "siteMean": 1.239, "siteMedian": 0.0, "meanVsSiteAvgPct": -88.5}, "engagement_time_msec_total": {"mean": 23954.645, "median": 6987.0, "siteMean": 93774.158, "siteMedian": 10437.0, "meanVsSiteAvgPct": -74.5}, "session_span_sec_max": {"mean": 91.288, "median": 10.0, "siteMean": 225.899, "siteMedian": 17.0, "meanVsSiteAvgPct": -59.6}}, "funnels": {"broad": [{"stageOrder": 1, "stageLabel": "Page Views", "reachPct": 99.8, "stageToStageRetentionPct": null, "nSegmentUsers": 219153}, {"stageOrder": 2, "stageLabel": "Items Viewed", "reachPct": 11.2, "stageToStageRetentionPct": 11.2, "nSegmentUsers": 219153}, {"stageOrder": 3, "stageLabel": "Add to Cart", "reachPct": 0.6, "stageToStageRetentionPct": 5.6, "nSegmentUsers": 219153}, {"stageOrder": 4, "stageLabel": "Checkout", "reachPct": 0.0, "stageToStageRetentionPct": 0.1, "nSegmentUsers": 219153}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 0.0, "stageToStageRetentionPct": 0.0, "nSegmentUsers": 219153}], "checkout": [{"stageOrder": 1, "stageLabel": "Add to Cart", "reachPct": 96.6, "stageToStageRetentionPct": null, "nSegmentUsers": 1439}, {"stageOrder": 2, "stageLabel": "Begin Checkout", "reachPct": 3.5, "stageToStageRetentionPct": 0.1, "nSegmentUsers": 1439}, {"stageOrder": 3, "stageLabel": "Add Shipping Info", "reachPct": 3.5, "stageToStageRetentionPct": 100.0, "nSegmentUsers": 1439}, {"stageOrder": 4, "stageLabel": "Add Payment Info", "reachPct": 0.8, "stageToStageRetentionPct": 22.0, "nSegmentUsers": 1439}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 0.0, "stageToStageRetentionPct": 0.0, "nSegmentUsers": 1439}]}}, {"segment": "Explorer", "color": "#FBBC04", "order": 2, "userCount": 38702, "userSharePct": 14.3, "conversionRatePct": 0.0, "siteAvgConversionRatePct": 1.64, "convRateVsSiteAvgPp": -1.64, "repeatVisitorPct": 73.1, "engagementRatePct": 97.7, "engagementDetail": {"twoPlusPages": 95.6, "tenPlusSec": 88.6}, "sessionStructure": {"newUserSharePct": 89.6, "singleSessionPct": 26.9, "multiSessionPct": 73.1}, "meanConsiderationWindowDays": 5.25, "medianConsiderationWindowDays": 0.29, "repeatPurchaserPctAmongConverters": 0.0, "dominantDevice": "desktop", "dominantCategory": "Apparel", "dominantCategoryCoveragePct": 51.8, "behavioralMetrics": {"session_count": {"mean": 2.434, "median": 2.0, "siteMean": 1.333, "siteMedian": 1.0, "meanVsSiteAvgPct": 82.6}, "page_views": {"mean": 10.026, "median": 7.0, "siteMean": 4.999, "siteMedian": 2.0, "meanVsSiteAvgPct": 100.6}, "items_viewed": {"mean": 2.872, "median": 1.0, "siteMean": 1.429, "siteMedian": 0.0, "meanVsSiteAvgPct": 101.0}, "add_to_cart": {"mean": 0.053, "median": 0.0, "siteMean": 0.217, "siteMedian": 0.0, "meanVsSiteAvgPct": -75.3}, "consideration_window_days": {"mean": 5.253, "median": 0.286, "siteMean": 1.239, "siteMedian": 0.0, "meanVsSiteAvgPct": 324.0}, "engagement_time_msec_total": {"mean": 214326.778, "median": 117347.0, "siteMean": 93774.158, "siteMedian": 10437.0, "meanVsSiteAvgPct": 128.6}, "session_span_sec_max": {"mean": 627.731, "median": 292.0, "siteMean": 225.899, "siteMedian": 17.0, "meanVsSiteAvgPct": 177.9}}, "funnels": {"broad": [{"stageOrder": 1, "stageLabel": "Page Views", "reachPct": 100.0, "stageToStageRetentionPct": null, "nSegmentUsers": 38702}, {"stageOrder": 2, "stageLabel": "Items Viewed", "reachPct": 63.1, "stageToStageRetentionPct": 63.1, "nSegmentUsers": 38702}, {"stageOrder": 3, "stageLabel": "Add to Cart", "reachPct": 4.8, "stageToStageRetentionPct": 7.6, "nSegmentUsers": 38702}, {"stageOrder": 4, "stageLabel": "Checkout", "reachPct": 2.8, "stageToStageRetentionPct": 0.1, "nSegmentUsers": 38702}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 0.0, "stageToStageRetentionPct": 0.0, "nSegmentUsers": 38702}], "checkout": [{"stageOrder": 1, "stageLabel": "Add to Cart", "reachPct": 63.4, "stageToStageRetentionPct": null, "nSegmentUsers": 2940}, {"stageOrder": 2, "stageLabel": "Begin Checkout", "reachPct": 36.6, "stageToStageRetentionPct": 0.1, "nSegmentUsers": 2940}, {"stageOrder": 3, "stageLabel": "Add Shipping Info", "reachPct": 36.6, "stageToStageRetentionPct": 99.9, "nSegmentUsers": 2940}, {"stageOrder": 4, "stageLabel": "Add Payment Info", "reachPct": 5.1, "stageToStageRetentionPct": 13.8, "nSegmentUsers": 2940}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 0.0, "stageToStageRetentionPct": 0.0, "nSegmentUsers": 2940}]}}, {"segment": "Engaged Non-Converter", "color": "#34A853", "order": 3, "userCount": 7854, "userSharePct": 2.9, "conversionRatePct": 0.0, "siteAvgConversionRatePct": 1.64, "convRateVsSiteAvgPp": -1.64, "repeatVisitorPct": 49.0, "engagementRatePct": 100.0, "engagementDetail": {"twoPlusPages": 99.9, "tenPlusSec": 99.9}, "sessionStructure": {"newUserSharePct": 90.1, "singleSessionPct": 51.0, "multiSessionPct": 49.0}, "meanConsiderationWindowDays": 6.02, "medianConsiderationWindowDays": 0.0, "repeatPurchaserPctAmongConverters": 0.0, "dominantDevice": "desktop", "dominantCategory": "Apparel", "dominantCategoryCoveragePct": 96.3, "behavioralMetrics": {"session_count": {"mean": 2.412, "median": 1.0, "siteMean": 1.333, "siteMedian": 1.0, "meanVsSiteAvgPct": 80.9}, "page_views": {"mean": 37.997, "median": 22.0, "siteMean": 4.999, "siteMedian": 2.0, "meanVsSiteAvgPct": 660.1}, "items_viewed": {"mean": 18.104, "median": 9.0, "siteMean": 1.429, "siteMedian": 0.0, "meanVsSiteAvgPct": 1166.8}, "add_to_cart": {"mean": 3.6, "median": 2.0, "siteMean": 0.217, "siteMedian": 0.0, "meanVsSiteAvgPct": 1561.2}, "consideration_window_days": {"mean": 6.022, "median": 0.0, "siteMean": 1.239, "siteMedian": 0.0, "meanVsSiteAvgPct": 386.1}, "engagement_time_msec_total": {"mean": 698196.255, "median": 533129.0, "siteMean": 93774.158, "siteMedian": 10437.0, "meanVsSiteAvgPct": 644.6}, "session_span_sec_max": {"mean": 1156.518, "median": 969.0, "siteMean": 225.899, "siteMedian": 17.0, "meanVsSiteAvgPct": 412.0}}, "funnels": {"broad": [{"stageOrder": 1, "stageLabel": "Page Views", "reachPct": 100.0, "stageToStageRetentionPct": null, "nSegmentUsers": 7854}, {"stageOrder": 2, "stageLabel": "Items Viewed", "reachPct": 99.9, "stageToStageRetentionPct": 99.9, "nSegmentUsers": 7854}, {"stageOrder": 3, "stageLabel": "Add to Cart", "reachPct": 80.9, "stageToStageRetentionPct": 81.0, "nSegmentUsers": 7854}, {"stageOrder": 4, "stageLabel": "Checkout", "reachPct": 52.8, "stageToStageRetentionPct": 42.8, "nSegmentUsers": 7854}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 0.0, "stageToStageRetentionPct": 0.0, "nSegmentUsers": 7854}], "checkout": [{"stageOrder": 1, "stageLabel": "Add to Cart", "reachPct": 81.7, "stageToStageRetentionPct": null, "nSegmentUsers": 7779}, {"stageOrder": 2, "stageLabel": "Begin Checkout", "reachPct": 53.3, "stageToStageRetentionPct": 42.8, "nSegmentUsers": 7779}, {"stageOrder": 3, "stageLabel": "Add Shipping Info", "reachPct": 53.3, "stageToStageRetentionPct": 100.0, "nSegmentUsers": 7779}, {"stageOrder": 4, "stageLabel": "Add Payment Info", "reachPct": 14.8, "stageToStageRetentionPct": 27.7, "nSegmentUsers": 7779}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 0.0, "stageToStageRetentionPct": 0.0, "nSegmentUsers": 7779}]}}, {"segment": "Converter", "color": "#EA4335", "order": 4, "userCount": 4445, "userSharePct": 1.6, "conversionRatePct": 99.42, "siteAvgConversionRatePct": 1.64, "convRateVsSiteAvgPp": 97.78, "repeatVisitorPct": 75.7, "engagementRatePct": 100.0, "engagementDetail": {"twoPlusPages": 100.0, "tenPlusSec": 100.0}, "sessionStructure": {"newUserSharePct": 79.5, "singleSessionPct": 24.3, "multiSessionPct": 75.7}, "meanConsiderationWindowDays": 11.88, "medianConsiderationWindowDays": 3.21, "repeatPurchaserPctAmongConverters": 17.5, "dominantDevice": "desktop", "dominantCategory": "Apparel", "dominantCategoryCoveragePct": 94.8, "behavioralMetrics": {"session_count": {"mean": 3.588, "median": 3.0, "siteMean": 1.333, "siteMedian": 1.0, "meanVsSiteAvgPct": 169.1}, "page_views": {"mean": 51.971, "median": 40.0, "siteMean": 4.999, "siteMedian": 2.0, "meanVsSiteAvgPct": 939.7}, "items_viewed": {"mean": 22.63, "median": 15.0, "siteMean": 1.429, "siteMedian": 0.0, "meanVsSiteAvgPct": 1483.5}, "add_to_cart": {"mean": 5.984, "median": 2.0, "siteMean": 0.217, "siteMedian": 0.0, "meanVsSiteAvgPct": 2661.6}, "consideration_window_days": {"mean": 11.884, "median": 3.206, "siteMean": 1.239, "siteMedian": 0.0, "meanVsSiteAvgPct": 859.3}, "engagement_time_msec_total": {"mean": 1418466.513, "median": 1061827.0, "siteMean": 93774.158, "siteMedian": 10437.0, "meanVsSiteAvgPct": 1412.6}, "session_span_sec_max": {"mean": 1719.58, "median": 1403.0, "siteMean": 225.899, "siteMedian": 17.0, "meanVsSiteAvgPct": 661.2}}, "funnels": {"broad": [{"stageOrder": 1, "stageLabel": "Page Views", "reachPct": 100.0, "stageToStageRetentionPct": null, "nSegmentUsers": 4445}, {"stageOrder": 2, "stageLabel": "Items Viewed", "reachPct": 99.4, "stageToStageRetentionPct": 99.4, "nSegmentUsers": 4445}, {"stageOrder": 3, "stageLabel": "Add to Cart", "reachPct": 66.1, "stageToStageRetentionPct": 66.5, "nSegmentUsers": 4445}, {"stageOrder": 4, "stageLabel": "Checkout", "reachPct": 100.0, "stageToStageRetentionPct": 100.0, "nSegmentUsers": 4445}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 99.4, "stageToStageRetentionPct": 99.4, "nSegmentUsers": 4445}], "checkout": [{"stageOrder": 1, "stageLabel": "Add to Cart", "reachPct": 66.1, "stageToStageRetentionPct": null, "nSegmentUsers": 4445}, {"stageOrder": 2, "stageLabel": "Begin Checkout", "reachPct": 100.0, "stageToStageRetentionPct": 100.0, "nSegmentUsers": 4445}, {"stageOrder": 3, "stageLabel": "Add Shipping Info", "reachPct": 100.0, "stageToStageRetentionPct": 100.0, "nSegmentUsers": 4445}, {"stageOrder": 4, "stageLabel": "Add Payment Info", "reachPct": 99.9, "stageToStageRetentionPct": 99.9, "nSegmentUsers": 4445}, {"stageOrder": 5, "stageLabel": "Purchase", "reachPct": 99.4, "stageToStageRetentionPct": 99.5, "nSegmentUsers": 4445}]}}], "browserSubSegmentation": {"parentSegmentId": "Browser", "title": "Inside the Browser Cluster", "subtitle": "What the 81.1% \"Browser\" segment is actually made of", "researchQuestion": "Is the Browser cluster one homogeneous segment, or does it contain distinct behavioral sub-types that k=4 collapsed together?", "method": "Rule-based sequential classification on session-level engagement signals (session_span_sec_max, page_views_total, engagement_time_msec_total, engagement_pings_total, n_sessions), priority-ordered: a user matches the first rule they satisfy.", "crawlerThresholdNote": "Crawler-like page-view threshold derived from data itself: 75th percentile of page views among single-session, zero-engagement-time users (= 2), not an arbitrary cutoff.", "usersClassified": 205914, "browserSegmentTotal": 219153, "coveragePct": 94.0, "coverageNote": "session-level engagement data; 94.0% of Browser cluster users covered by session-level file", "categories": ["likely_human", "uncertain", "likely_bot"], "subSegments": [{"id": "quick_but_engaged", "name": "Quick but Engaged", "dashboardLabel": "Quick but Engaged", "category": "likely_human", "userCount": 168009, "pctOfClassified": 81.6, "rule": "single session, GA4 marked session_engaged or non-zero engagement time", "detail": "1 session, ~2.1 page views, 75% of sessions engaged", "meanMetrics": {"nSessions": 1.0, "pageViewsTotal": 2.1, "engagementTimeMsecTotal": 28173.66, "engagementPingsTotal": 1.4, "sessionSpanSecMax": 101.45, "sessionEngagedAnyRate": 0.75}}, {"id": "instant_leave", "name": "Instant Leave", "dashboardLabel": "Instant Leave", "category": "uncertain", "userCount": 20077, "pctOfClassified": 9.8, "rule": "single session, zero span, at most one page view, not GA4-engaged", "detail": "1 session, ~1.0 page view, 0% engaged, 0s on site", "meanMetrics": {"nSessions": 1.0, "pageViewsTotal": 0.99, "engagementTimeMsecTotal": 0.0, "engagementPingsTotal": 0.01, "sessionSpanSecMax": 0.0, "sessionEngagedAnyRate": 0.0}}, {"id": "returning_visitor", "name": "Returning Visitor", "dashboardLabel": "Returning Visitor", "category": "likely_human", "userCount": 11138, "pctOfClassified": 5.4, "rule": "came back for more than one session, regardless of per-session engagement", "detail": "~2.0 sessions, ~2.0 page views, 61% engaged", "meanMetrics": {"nSessions": 2.0, "pageViewsTotal": 1.97, "engagementTimeMsecTotal": 19090.62, "engagementPingsTotal": 1.34, "sessionSpanSecMax": 115.41, "sessionEngagedAnyRate": 0.61}}, {"id": "crawler_like", "name": "Crawler-like", "dashboardLabel": "Bot-like", "category": "likely_bot", "userCount": 4334, "pctOfClassified": 2.1, "rule": "single session, multiple page views (>= 2), zero measured engagement time", "detail": "1 session, ~2.2 page views, 0ms engagement despite ~66s span", "note": "Behavioral heuristic, not a verified bot flag. GA4 already excludes known bots/spiders at collection time.", "meanMetrics": {"nSessions": 1.0, "pageViewsTotal": 2.22, "engagementTimeMsecTotal": 0.0, "engagementPingsTotal": 0.0, "sessionSpanSecMax": 65.97, "sessionEngagedAnyRate": 1.0}}, {"id": "other_bounce", "name": "Other Bounce", "dashboardLabel": "Other Bounce", "category": "uncertain", "userCount": 2356, "pctOfClassified": 1.1, "rule": "single session, catch-all (fits none of the above rules)", "detail": "1 session, 1.0 page view, 0% engaged", "meanMetrics": {"nSessions": 1.0, "pageViewsTotal": 1.0, "engagementTimeMsecTotal": 0.0, "engagementPingsTotal": 0.0, "sessionSpanSecMax": 34.9, "sessionEngagedAnyRate": 0.0}}], "summary": {"likelyHumanPct": 87.0, "likelyHumanCount": 179147, "uncertainPct": 10.9, "uncertainCount": 22433, "likelyBotPct": 2.1, "likelyBotCount": 4334}, "methodologicalLimitations": ["The bot heuristic is behavioral, not ground-truth. GA4 already excludes known bots/spiders at collection time; 'Crawler-like' means rapid multi-page traversal with zero measured engagement time, a pattern consistent with non-human behavior, not a verified bot label.", "Single-session dominance limits statistical power; most Browser-cluster users have exactly one session.", "Obfuscation still limits deeper interpretation of item- and category-level context.", "This is a descriptive sub-segmentation, not a validated typology, consistent with the 'no persona claims' framing used throughout the project."]}};
 
-const TAGLINES = {
-  "Browser": "Skims the surface, never dips below it.",
-  "Explorer": "Looks around, but never commits.",
-  "Engaged Non-Converter": "Returns, fills the cart again, but never pays.",
-  "Converter": "Makes it through the funnel, closes the deal."
+/* ============================================================
+   i18n: EN is the authored markup, DE comes from this dictionary.
+   Language is shared across portfolio pages via localStorage 'sw-lang'.
+   ============================================================ */
+const LANG_KEY = 'sw-lang';
+let currentLang = 'en';
+const DE = {
+ "sub-aria": "Abschnitte auf dieser Seite",
+ "sub-label": "Auf dieser Seite",
+ "sub-acq": "Akquise",
+ "sub-problem": "Problem",
+ "sub-approach": "Vorgehen",
+ "sub-dash": "Dashboard",
+ "sub-subseg": "Subsegmentierung",
+ "sub-insights": "Erkenntnisse",
+ "sub-answer": "Fazit",
+ "cookie-text": "Diese Seite nutzt PostHog für datenschutzfreundliche Analysen, gehostet auf Servern in der EU. <a href=\"https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html\" target=\"_blank\">Datenschutzerklärung</a>",
+ "cookie-decline": "Ablehnen",
+ "cookie-accept": "Akzeptieren",
+ "nav-portfolio": "Portfolio",
+ "nav-about": "Über mich",
+ "nav-imprint": "Impressum",
+ "menu-open": "Menü öffnen",
+ "menu-close": "Menü schließen",
+ "h1": "Verhaltensbasierte GA4-Segmentierung der Nutzer des Google Merchandise Store",
+ "lede": "Für das Abschlussprojekt meines Data Analytics &amp; AI Bootcamps habe ich 270.154 Nutzer des Google Merchandise Store anhand roher GA4-Eventdaten analysiert. Das Projekt begann als Team-Pitch für verhaltensbasierte, datengetriebene Personas mit einem echten Unternehmen und wurde zur Solo-Segmentierung, als dieser Datenzugang wegfiel.",
+ "hero-alt": "Zwei Browserfenster mit dem GA4 Behavioral Segmentation Dashboard, eines zeigt das Segment Explorer, eines das Segment Browser",
+ "meta-role": "Rolle",
+ "meta-role-v": "Solo: Pipeline, Clustering, Dashboard, Präsentation",
+ "meta-time": "Zeitraum",
+ "meta-data": "Datensatz",
+ "acq-eyebrow": "01 · Phase 0: Datenbeschaffung",
+ "acq-h2": "Vor der ersten Abfrage: die richtigen Partner finden.",
+ "acq-p": "Ursprüngliches Ziel waren verhaltensbasierte, datengetriebene Personas auf Basis echter Nutzerdaten eines Unternehmens. Das Angebot an Partner war einfach: eine kostenlose Analyse, ein fertiges Dashboard und konkrete Handlungsempfehlungen im Austausch gegen Datenzugang. Bevor jemand kontaktiert wurde, durchlief jeder Kandidat denselben Auswahl- und Prüfprozess.",
+ "acq-s1-h": "Longlist aufbauen",
+ "acq-s1-p": "37 Kandidaten aus meinem beruflichen Netzwerk, mit Fokus auf die Digitalbranche in Köln und NRW.",
+ "acq-s2-h": "Nach Eignung priorisieren",
+ "acq-s2-p": "Jeder Kandidat wurde nach drei Kriterien bewertet: thematischer Bezug zu Nutzerverhalten auf digitalen Plattformen, Nähe der bestehenden Beziehung und ob das Unternehmen tatsächlich über Verhaltensdaten von Endnutzern verfügt.",
+ "acq-s3-h": "Rechtliche und Compliance-Risiken prüfen",
+ "acq-s3-p": "Kandidaten wurden mit jeweils dokumentierter Begründung ausgeschlossen, wenn gegen sie laufende Gerichts- oder Behördenverfahren zum Umgang mit Nutzern oder deren Daten bestanden, Analytics-Kompetenz bereits im Haus war, keine verbraucherorientierte Plattform existierte oder kein eigenes Produkt vorhanden war.",
+ "acq-s4-h": "Individuell kontaktieren",
+ "acq-s4-p": "Übrig blieben 20 Kontakte: 16 potenzielle Partner und 4 Multiplikatoren aus meinem Netzwerk, die die Anfrage weitergeben konnten. Jede Nachricht war individuell recherchiert und ging per E-Mail oder LinkedIn raus, begleitet von einem öffentlichen LinkedIn-Post mit dem Aufruf an mögliche Partner.",
+ "acq-metrics-aria": "Ergebnisse der Akquise",
+ "m-cand": "Kandidaten",
+ "m-cand-sub": "auf der Longlist",
+ "m-cont": "Kontaktiert",
+ "m-cont-sub": "nach der Prüfung",
+ "m-int": "Interessierte Partner",
+ "m-int-sub": "passend zum Vorhaben",
+ "m-rate-num": "20 %",
+ "m-rate": "Rückmeldequote",
+ "m-rate-sub": "4 von 20 haben geantwortet",
+ "acq-result": "Eine Rückmeldung war eine Absage aus Kapazitätsgründen. Die anderen drei kamen von Unternehmen, die zum Vorhaben passten und echtes Interesse hatten: Zwei führten zu konkreten Gesprächen, eines bot Unterstützung an, als das Projekt bereits solo lief. Für eine Kaltanfrage, die Unternehmen um ihre Nutzerdaten bittet, ist das ein solides Ergebnis. Zu nutzbaren Daten führte nichts davon, aus Gründen, die der nächste Abschnitt erklärt.",
+ "pr-eyebrow": "02 · Das Problem",
+ "pr-h2": "Warum dieses Projekt bei Segmenten endet, nicht bei Personas.",
+ "pr-p1": "Ein Unternehmen kam am weitesten: echtes Interesse, ein gutes Gespräch, bis sein Vertrag alles stoppte. Keine Weitergabe von Trackingdaten an Dritte, nicht einmal anonymisiert. Ein zweites zog sich aus demselben Grund zurück, nachdem ich selbst Datenschutzbedenken angesprochen hatte, noch bevor sie danach fragten. Beides war keine Absage. Beides ließ mich ohne echte Nutzerdaten zurück.",
+ "pr-p2": "Ich hätte das weiterhin „Personas“ nennen können. Habe ich nicht, weil quantitative Daten allein diesen Anspruch nicht tragen. Ohne qualitative Datenebene habe ich den Umfang auf Segmentierung reduziert.",
+ "pr-p3": "Drei Fallback-Datensätze lagen vorab bereit. <em>UC Irvines Online Retail II</em> hatte die sauberste Lizenz, aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> hatte vollständige Eventdaten, reichte aber nur bis zu transaktionaler RFM-Segmentierung. <em>Das öffentliche GA4-Sample des Google Merchandise Store</em> war der einzige mit vollständigem Verhaltensfunnel und den zusätzlichen BigQuery-Aufwand wert.",
+ "pr-p4": "Es ist aus demselben Grund vorab anonymisiert, aus dem sich beide Unternehmen zurückgezogen hatten: Schutz der Privatsphäre der Nutzer, eine der echten Erkenntnisse hier. Die Daten eines echten Partners hätten eine qualitative Ebene möglich gemacht. Ein pseudonymisiertes öffentliches Sample schließt diese Tür vollständig. Ab hier wurde die Arbeit zum Soloprojekt, und aus Personas wurde Segmentierung.",
+ "ap-eyebrow": "03 · Vorgehen",
+ "ap-h2": "k=4 wählen, wenn die Zahlen k=2 sagen.",
+ "ap-tag3": "Statistische Validierung",
+ "ap-tag4": "Verhaltensanalyse",
+ "ap-p": "Sechs Verhaltensmerkmale flossen in das Modell ein: <em>Anzahl der Sessions</em>, <em>Seitenaufrufe</em>, <em>angesehene Artikel</em>, <em>Add-to-Cart</em>, <em>Checkouts</em> und <em>Käufe</em>, jeweils log-transformiert und standardisiert. Die beiden gängigen Validierungsmetriken waren sich nicht einig. Die Elbow-Methode flacht nach k=3 ohne deutlichen Knick ab. Der Silhouette Score erreicht sein Maximum bei k=2, nicht bei k=4. Ich habe mich trotzdem für k=4 entschieden, wegen der Interpretierbarkeit und einer geschäftlich relevanten Differenzierung, und diesen Widerspruch offen dokumentiert, statt stillschweigend die Zahl zu nehmen, die die bessere Geschichte erzählt.",
+ "ap-fig-alt": "Trägheitskurve der Elbow-Methode und Silhouette Score nach k: Der Ellbogen flacht nach k=3 ab, der Silhouette Score erreicht sein Maximum bei k=2",
+ "ap-caption": "Die Elbow-Trägheit fällt ohne deutlichen Knick weiter; der Silhouette Score erreicht sein Maximum bei k=2, nicht bei k=4. Genau dieser Widerspruch steht hinter der Entscheidung.",
+ "ap-s1-h": "Scope und EDA",
+ "ap-s1-p": "Den rohen GA4-Eventstream in BigQuery abgefragt und einen übernommenen Filter entdeckt, der vor der Modellierung 92,3 % der Nutzer ausschloss.",
+ "ap-s2-h": "Feature Engineering und Clustering",
+ "ap-s2-p": "Sechs Verhaltensmerkmale, log1p-transformiert und skaliert, k-Means mit k=4.",
+ "ap-s3-h": "Der Konflikt k=4 vs. k=2",
+ "ap-s3-p": "Den Widerspruch zwischen Elbow und Silhouette offen benannt, statt eine Metrik stillschweigend entscheiden zu lassen.",
+ "ap-s4-h": "Subsegmentierung als Stresstest",
+ "ap-s4-p": "Den dominanten Browser-Cluster mit 81 % über eine regelbasierte Ebene aufgeschlüsselt, um zu prüfen, ob k-Means echte Strukturen geglättet hatte.",
+ "out-eyebrow": "04 · Das Ergebnis",
+ "out-h2": "Am Ende standen vier Segmente.",
+ "out-total": "270.154",
+ "out-total-sub": "Nutzer gesamt",
+ "out-pct-81.1%": "81,1 %",
+ "out-pct-14.3%": "14,3 %",
+ "out-pct-2.9%": "2,9 %",
+ "out-pct-1.6%": "1,6 %",
+ "out-p": "Das ist das Artefakt, nicht das Urteil. Erkunde unten die vier Verhaltenssegmente, genau so, wie sie aus der Clustering-Pipeline kamen. Ob sie als „aussagekräftig und belastbar“ standhalten, beantwortet erst der nächste Abschnitt.",
+ "dash-title": "Verhaltensbasierte GA4-Segmentierung der Nutzer des Google Merchandise&nbsp;Store",
+ "dash-footer": "DATENSATZ: GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270.154 Nutzer · k-Means-Clustering (k=4)<br>METHODISCHER HINWEIS: k=4 statt des algorithmisch bevorzugten k=2 wegen der Interpretierbarkeit gewählt; eine dokumentierte, begründete Designentscheidung.<br>Die Subsegmentierung des Browser-Clusters ist eine deskriptive, regelbasierte Heuristik, keine validierte Typologie.",
+ "ss-eyebrow": "05 · Ein genauerer Blick",
+ "ss-h2": "Im Inneren des Browser-Clusters.",
+ "ss-p": "Browser macht 81,1 % des gesamten Datensatzes aus und ist mit Abstand das größte der vier Segmente. Ein so dominanter Cluster verdient einen zweiten Blick: Ist er wirklich eine einheitliche Verhaltensgruppe, oder hat k=4 darunterliegende Strukturen eingeebnet? Um das herauszufinden, habe ich eine regelbasierte Klassifikation anhand von Engagement-Signalen auf Session-Ebene durchgeführt.",
+ "ss-o-engaged": "87,0 %",
+ "ss-o-explorer": "10,9 %",
+ "ss-o-converter": "2,1 %",
+ "ss-o-human-k": "Wahrscheinlich menschlich · 179.147 Nutzer",
+ "ss-o-unc-k": "Unklar · 22.433 Nutzer",
+ "ss-o-bot-k": "Wahrscheinlich botartig · 4.334 Nutzer",
+ "cat-human": "wahrscheinlich menschlich",
+ "cat-unc": "unklar",
+ "cat-bot": "wahrscheinlich Bot",
+ "ss-qbe-count": "168.009",
+ "ss-qbe-pct": "81,6 % der klassifizierten",
+ "ss-qbe-detail": "1 Session, ~2,1 Seitenaufrufe, 75 % der Sessions engagiert",
+ "ss-qbe-meaning": "Echte Einmalbesucher. Sie schauen sich um, zeigen echtes Interesse und gehen, ohne zu konvertieren.",
+ "ss-rv-count": "11.138",
+ "ss-rv-pct": "5,4 % der klassifizierten",
+ "ss-rv-detail": "~2,0 Sessions, ~2,0 Seitenaufrufe, 61 % engagiert",
+ "ss-rv-meaning": "Kamen mehr als einmal zurück, blieben engagiert, haben aber nie konvertiert.",
+ "ss-il-count": "20.077",
+ "ss-il-pct": "9,8 % der klassifizierten",
+ "ss-il-detail": "1 Session, ~1,0 Seitenaufruf, 0 % engagiert, 0 s auf der Seite",
+ "ss-il-meaning": "Klassische Bounces: eine Seite, kein Engagement, nach Sekunden weg.",
+ "ss-ob-count": "2.356",
+ "ss-ob-pct": "1,1 % der klassifizierten",
+ "ss-ob-detail": "1 Session, 1,0 Seitenaufruf, 0 % engagiert",
+ "ss-ob-meaning": "Passt in keines der anderen Muster; Sammelkategorie für Einzelbesuche mit wenig Signal.",
+ "ss-bl-count": "4.334",
+ "ss-bl-pct": "2,1 % der klassifizierten",
+ "ss-bl-detail": "1 Session, ~2,2 Seitenaufrufe, 0 ms Engagement trotz ~66 s Dauer",
+ "ss-bl-meaning": "Schnelle Besuche über mehrere Seiten ohne messbares Engagement, ein Muster, das auf nicht menschlichen Traffic hindeutet.",
+ "ss-coverage": "205.914 von 219.153 Browser-Nutzern klassifiziert · 94,0 % Abdeckung (Engagement-Daten auf Session-Ebene)",
+ "ss-note": "„Botartig“ ist eine Verhaltensheuristik (eine Session, mehrere Seiten, keine gemessene Engagement-Zeit) und keine verifizierte Bot-Kennzeichnung. GA4 schließt bekannte Bots und Spider bereits bei der Erfassung aus. Es handelt sich um eine deskriptive Klassifikation, keine validierte Typologie, nach demselben Anspruch an Ehrlichkeit wie im Rest des Projekts.",
+ "in-eyebrow": "06 · „Belastbar“ auf dem Prüfstand",
+ "in-h2": "Was hat den zweiten Blick überstanden?",
+ "in-p": "Zurück zu den vier Segmenten aus dem Dashboard, nicht zu den Browser-Subtypen oben: drei Prüfungen. Eine hält, eine wird zu etwas Nützlicherem, eine zeigt eine echte Grenze.",
+ "in-s1-h": "Eine Grenze, die wirklich hält",
+ "in-s1-p": "Browser und Explorer nutzen dieselben Geräte und Traffic-Quellen. Explorer verbringt nur rund 13-mal mehr Zeit mit aktivem Engagement. Das ist kein bequemer Schnitt in den Daten. Das ist ein echter Verhaltensunterschied.",
+ "in-s2-h": "Zwei Segmente, ein Problem",
+ "in-s2-p": "Explorer und Engaged Non-Converter wirken wie getrennte Zielgruppen, bis man sieht, wo sie tatsächlich abspringen: beim Schritt von den Versandinformationen zu den Zahlungsinformationen. Dort liegt die Retention bei 13,6 % bzw. 27,6 %. Wer diesen einen Schritt verbessert, verbessert beide Segmente zugleich.",
+ "in-s3-h": "Gebaut für eine Weihnachtssaison, nicht für ein ganzes Jahr",
+ "in-s3-p": "Der Datensatz umfasste immer nur drei Monate, November bis Januar, also bewusst die Weihnachtssaison. Das war von Anfang an bekannt. Nicht bekannt war, wie viel sich innerhalb dieses Fensters bewegt: Der Converter-Anteil halbiert sich fast (von 2,5 % auf 0,9 %), und die Conversion der gesamten Website fällt dabei um rund 60 %. Genau diese Art von Instabilität sollte ein Saisonmodell sichtbar machen, und genau deshalb wäre es übertrieben, hier von einer stabilen Nutzertypologie zu sprechen.",
+ "in-close": "Eine hält. Eine wird zur Lösung. Eine bestätigt, dass dies immer eine Momentaufnahme der Weihnachtssaison war. Genau das bringt die Prüfung auf „belastbar“: keinen glatten Durchlauf, sondern eine ehrlichere Landkarte.",
+ "re-eyebrow": "07 · Die Antwort",
+ "re-h2": "War die Beschränkung auf Segmente die richtige Entscheidung?",
+ "re-p1": "Ja, und die drei Prüfungen oben sind der Grund. Eine Segmentgrenze erwies sich als wirklich solide (Browser vs. Explorer). Eine wirkte solide, war es aber nicht (der gemeinsame Reibungspunkt im Checkout). Und die gesamte Segmentierung bestätigte, was das dreimonatige Zeitfenster schon immer nahelegte: eine Momentaufnahme der Weihnachtssaison, keine stabile Typologie. Hätte ich sie „Personas“ statt „Segmente“ genannt, wäre jede dieser Einschränkungen ein falsches Versprechen gewesen statt einer ehrlichen Fußnote.",
+ "re-p2": "Der nützlichste Teil dieses Projekts war nicht das Clustering. Es war die genaue Dokumentation, ab wo es nicht mehr vertrauenswürdig ist. k=4 erzählt eine klarere Geschichte als k=2, aber der Silhouette Score widerspricht, und das offen auszusprechen fühlte sich riskanter an, als es in einem Anhang zu vergraben. War es nicht: Die methodische Kritik wurde zum stärksten Teil des Ergebnisses, nicht zum schwächsten.",
+ "re-p3": "Der Weg zurück zum ursprünglichen Ziel, echten Personas, braucht die qualitative Ebene, die diesem Projekt fehlte: Interviews, Kontext, das „Warum“. HDBSCAN könnte die Segmente selbst noch schärfen, angesichts der ungleichmäßigen Dichte der Daten (81 % in einem Cluster), aber das wäre ein besseres Clustering, keine Persona. Der ehrliche Weg von hier führt über User Research, nicht über mehr Modellierung.",
+ "cta-h3": "Weitere Projekte",
+ "cta-btn": "Zur Projektübersicht →",
+ "foot-sig": "Sebastian Weber · UX/UI Designer · Design-to-Code · Köln 2026",
+ "foot-legal": "Impressum &amp; Datenschutz",
+ "foot-cookie": "Cookie-Einstellungen"
 };
+const EN_CACHE = new Map();
+const ATTR_CACHE = new Map();
+const EN_TITLE = document.title;
+const DE_TITLE = 'Verhaltensbasierte GA4-Segmentierung der Nutzer des Google Merchandise Store · Case Study';
+
+function applyStaticI18n(){
+  document.documentElement.lang = currentLang;
+  document.title = currentLang === 'de' ? DE_TITLE : EN_TITLE;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    if(!EN_CACHE.has(el)) EN_CACHE.set(el, el.innerHTML);
+    const de = DE[el.dataset.i18n];
+    el.innerHTML = (currentLang === 'de' && de !== undefined) ? de : EN_CACHE.get(el);
+  });
+  [['data-i18n-aria','aria-label'],['data-i18n-alt','alt']].forEach(([marker,attr])=>{
+    document.querySelectorAll('['+marker+']').forEach(el=>{
+      const cacheKey = el;
+      if(!ATTR_CACHE.has(cacheKey)) ATTR_CACHE.set(cacheKey, {});
+      const c = ATTR_CACHE.get(cacheKey);
+      if(c[attr] === undefined) c[attr] = el.getAttribute(attr);
+      const de = DE[el.getAttribute(marker)];
+      el.setAttribute(attr, (currentLang === 'de' && de !== undefined) ? de : c[attr]);
+    });
+  });
+  document.querySelectorAll('[data-lang]').forEach(b=>b.classList.toggle('active', b.dataset.lang === currentLang));
+}
+
+window.switchLang = function(lang){
+  if(lang !== 'en' && lang !== 'de') return;
+  if(lang === currentLang) return;
+  currentLang = lang;
+  try { localStorage.setItem(LANG_KEY, lang); } catch(e) {}
+  applyStaticI18n();
+  renderDashboard();
+};
+
+/* ---------- Dashboard strings ---------- */
+const UI = {
+  en: {
+    title: seg => `The ${seg}`,
+    users: 'Users', ofTotal: n => `of ${n} in total`,
+    userShare: 'User share', ofAll: 'of all users',
+    convRate: 'Conversion rate', repeat: 'Repeat visitors',
+    engagement: 'Engagement with the site', pages: '2+ pages', secs: '10+ sec', purchase: 'Purchase',
+    activeTime: 'Avg. active time',
+    funnel: 'Funnel reach', funnelSub: n => `% of ${n} segment users reaching each stage`,
+    noise: t => `likely tracking noise, not meaningful progression (below ${t} reach).`, at: 'at',
+    checkout: n => `Checkout sub-funnel: among users who added to cart (n=${n})`,
+    metrics: 'Behavioral metrics', segMean: 'Segment mean', siteAvg: 'Site-wide average',
+    rows: {session_count:'Sessions', page_views:'Page views', items_viewed:'Items viewed', add_to_cart:'Add to cart'},
+    signals: 'Additional Signals', repeatBuyers: 'Repeat purchasers (among converters)',
+    coverage: 'Category Data Coverage', coverageSub: 'viewed a specific product category',
+    mascot: seg => `${seg} mascot`,
+    taglines: {
+      "Browser": "Skims the surface, never dips below it.",
+      "Explorer": "Looks around, but never commits.",
+      "Engaged Non-Converter": "Returns, fills the cart again, but never pays.",
+      "Converter": "Makes it through the funnel, closes the deal."
+    },
+    stages: {}
+  },
+  de: {
+    title: seg => seg,
+    users: 'Nutzer', ofTotal: n => `von ${n} insgesamt`,
+    userShare: 'Nutzeranteil', ofAll: 'aller Nutzer',
+    convRate: 'Conversion-Rate', repeat: 'Wiederkehrende Besucher',
+    engagement: 'Engagement mit der Website', pages: '2+ Seiten', secs: '10+ Sek.', purchase: 'Kauf',
+    activeTime: 'Ø aktive Zeit',
+    funnel: 'Funnel-Reichweite', funnelSub: n => `% der ${n} Segmentnutzer, die die jeweilige Stufe erreichen`,
+    noise: t => `vermutlich Tracking-Rauschen, kein echter Fortschritt (unter ${t} Reichweite).`, at: 'bei',
+    checkout: n => `Checkout-Teilfunnel: unter Nutzern mit Warenkorb-Aktion (n=${n})`,
+    metrics: 'Verhaltensmetriken', segMean: 'Segment-Mittelwert', siteAvg: 'Durchschnitt der Website',
+    rows: {session_count:'Sessions', page_views:'Seitenaufrufe', items_viewed:'Angesehene Artikel', add_to_cart:'Warenkorb'},
+    signals: 'Weitere Signale', repeatBuyers: 'Wiederholungskäufer (unter Convertern)',
+    coverage: 'Abdeckung Kategoriedaten', coverageSub: 'hat eine bestimmte Produktkategorie angesehen',
+    mascot: seg => `Maskottchen ${seg}`,
+    taglines: {
+      "Browser": "Bleibt an der Oberfläche, taucht nie tiefer ein.",
+      "Explorer": "Schaut sich um, legt sich aber nie fest.",
+      "Engaged Non-Converter": "Kommt wieder, füllt den Warenkorb erneut, zahlt aber nie.",
+      "Converter": "Schafft es durch den Funnel und schließt ab."
+    },
+    stages: {
+      "Page Views":"Seitenaufrufe", "Items Viewed":"Angesehene Artikel", "Add to Cart":"Warenkorb",
+      "Checkout":"Checkout", "Purchase":"Kauf", "Begin Checkout":"Checkout gestartet",
+      "Add Shipping Info":"Versandinfo", "Add Payment Info":"Zahlungsinfo"
+    }
+  }
+};
+function ui(){ return UI[currentLang]; }
+function stageLabel(l){ return ui().stages[l] || l; }
 
 const IMG = {
   "Browser": "img/browser.png",
@@ -904,15 +1337,19 @@ const CSS_VAR = {
   "Engaged Non-Converter":"var(--engaged)","Converter":"var(--converter)"
 };
 
-function fmt(n, d=1){ if(n===null||n===undefined) return "N/A"; return n.toLocaleString('de-DE',{minimumFractionDigits:d,maximumFractionDigits:d}); }
-function fmtInt(n){ return n.toLocaleString('de-DE'); }
+function locale(){ return currentLang === 'de' ? 'de-DE' : 'en-US'; }
+function fmt(n, d=1){ if(n===null||n===undefined) return "N/A"; return n.toLocaleString(locale(),{minimumFractionDigits:d,maximumFractionDigits:d}); }
+function fmtInt(n){ return n.toLocaleString(locale()); }
+function pct(n, d=1){ return currentLang === 'de' ? `${fmt(n,d)}\u00a0%` : `${fmt(n,d)}%`; }
 
 /* ---------- Tabs ---------- */
+let activeTarget = null;
 function buildTabs(){
   const tabs = document.getElementById('tabs');
-  DATA.segments.forEach((seg,i)=>{
+  tabs.innerHTML = '';
+  DATA.segments.forEach((seg)=>{
     const btn = document.createElement('button');
-    btn.className = 'tab-btn' + (i===0 ? ' active' : '');
+    btn.className = 'tab-btn' + (('panel-' + slug(seg.segment))===activeTarget ? ' active' : '');
     btn.dataset.target = 'panel-' + slug(seg.segment);
     btn.style.setProperty('--tab-color', seg.color);
     btn.innerHTML = `<span class="tab-dot"></span>${seg.segment}`;
@@ -925,6 +1362,7 @@ function buildTabs(){
 }
 function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-'); }
 function activate(targetId){
+  activeTarget = targetId;
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.target===targetId));
   document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id===targetId));
 }
@@ -947,30 +1385,30 @@ function buildTrack(seg){
     if(isNoise) noisyStages.push(s);
     return `<div class="stage ${hit?'hit':''}" style="left:${leftPct}%;--stage-color:${seg.color}">
       <div class="hurdle"></div>
-      <div class="stage-label">${s.stageLabel}</div>
-      <div class="stage-pct mono" style="color:${hit?seg.color:'var(--ink-faint)'}">${fmt(s.reachPct)}%${isNoise?'*':''}</div>
+      <div class="stage-label">${stageLabel(s.stageLabel)}</div>
+      <div class="stage-pct mono" style="color:${hit?seg.color:'var(--ink-faint)'}">${pct(s.reachPct)}${isNoise?'*':''}</div>
     </div>`;
   }).join('');
 
   const checkout = seg.funnels.checkout;
   const miniHtml = checkout.map(s=>`
-    <div class="mini-stage"><div class="v">${fmt(s.reachPct)}%</div><div class="k">${s.stageLabel}</div></div>`).join('');
+    <div class="mini-stage"><div class="v">${pct(s.reachPct)}</div><div class="k">${stageLabel(s.stageLabel)}</div></div>`).join('');
 
   const noiseNote = `<div class="track-noise-note">${
     noisyStages.length
-      ? `* ${noisyStages.map(s=>`${fmt(s.reachPct)}% at ${s.stageLabel}`).join(', ')}: likely tracking noise, not meaningful progression (below ${NOISE_THRESHOLD}% reach).`
+      ? `* ${noisyStages.map(s=>`${pct(s.reachPct)} ${ui().at} ${stageLabel(s.stageLabel)}`).join(', ')}: ${ui().noise(pct(NOISE_THRESHOLD,0))}`
       : '&nbsp;'
   }</div>`;
 
   return `
-    <div class="section-h" style="--sec-color:${seg.color}">Funnel reach</div>
-    <div class="section-sub">% of ${fmtInt(seg.userCount)} segment users reaching each stage</div>
+    <div class="section-h" style="--sec-color:${seg.color}">${ui().funnel}</div>
+    <div class="section-sub">${ui().funnelSub(fmtInt(seg.userCount))}</div>
     <div class="track"><div class="track-fill" style="width:${fillPct}%;background:${seg.color}"></div></div>
     <div class="track-stages">${stagesHtml}</div>
     ${noiseNote}
     <div class="card-inner-footer">
       <details class="checkout-toggle">
-        <summary>Checkout sub-funnel: among users who added to cart (n=${fmtInt(checkout[0].nSegmentUsers)})<svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5.5L7 9.5L11 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+        <summary>${ui().checkout(fmtInt(checkout[0].nSegmentUsers))}<svg class="chevron" width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 5.5L7 9.5L11 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
         <div class="mini-funnel">${miniHtml}</div>
       </details>
     </div>
@@ -978,15 +1416,15 @@ function buildTrack(seg){
 }
 
 function buildMetricRows(seg){
-  const rows = [["session_count","Sessions"],["page_views","Page views"],["items_viewed","Items viewed"],["add_to_cart","Add to cart"]];
-  return rows.map(([key,label])=>{
+  const keys = ["session_count","page_views","items_viewed","add_to_cart"];
+  return keys.map((key)=>{
     const m = seg.behavioralMetrics[key];
     if(!m) return '';
     const maxScale = Math.max(m.mean, m.siteMean) * 1.15;
     const fillPct = Math.min(100,(m.mean/maxScale)*100);
     const avgPct = Math.min(100,(m.siteMean/maxScale)*100);
     return `<div class="metric-row">
-      <div class="metric-name">${label}</div>
+      <div class="metric-name">${ui().rows[key]}</div>
       <div class="metric-bar-track">
         <div class="metric-bar-fill" style="width:${fillPct}%;background:${seg.color}"></div>
         <div class="metric-bar-avg" style="left:${avgPct}%"></div>
@@ -996,9 +1434,9 @@ function buildMetricRows(seg){
   }).join('');
 }
 
-function buildDonut(pct, color){
+function buildDonut(p, color){
   const r = 16, c = 2*Math.PI*r;
-  const offset = c * (1 - pct/100);
+  const offset = c * (1 - p/100);
   return `<svg width="40" height="40" viewBox="0 0 40 40">
     <circle cx="20" cy="20" r="${r}" fill="none" stroke="var(--hairline)" stroke-width="5"/>
     <circle cx="20" cy="20" r="${r}" fill="none" stroke="${color}" stroke-width="5"
@@ -1007,60 +1445,61 @@ function buildDonut(pct, color){
   </svg>`;
 }
 
-function buildSegmentPanel(seg, idx){
+function buildSegmentPanel(seg){
+  const U = ui();
   const panel = document.createElement('div');
-  panel.className = 'panel' + (idx===0 ? ' active' : '');
   panel.id = 'panel-' + slug(seg.segment);
+  panel.className = 'panel' + (panel.id===activeTarget ? ' active' : '');
   panel.innerHTML = `
     <div class="card">
       <div class="card-header">
-        <img src="${IMG[seg.segment]}" alt="${seg.segment} mascot">
+        <img src="${IMG[seg.segment]}" alt="${U.mascot(seg.segment)}">
         <div>
-          <div class="card-title"><span class="dot" style="background:${seg.color}"></span>The ${seg.segment}</div>
-          <div class="card-tagline">${TAGLINES[seg.segment]}</div>
+          <div class="card-title"><span class="dot" style="background:${seg.color}"></span>${U.title(seg.segment)}</div>
+          <div class="card-tagline">${U.taglines[seg.segment]}</div>
         </div>
       </div>
 
       <div class="kpi-strip">
         <div class="kpi-col">
-          <div class="kpi-col-title">Users</div>
+          <div class="kpi-col-title">${U.users}</div>
           <div class="kpi-col-value" style="color:${seg.color}">${fmtInt(seg.userCount)}</div>
-          <div class="kpi-sub">of ${fmtInt(DATA.meta.totalUsers)} in total</div>
+          <div class="kpi-sub">${U.ofTotal(fmtInt(DATA.meta.totalUsers))}</div>
         </div>
         <div class="kpi-col">
-          <div class="kpi-col-title">User share</div>
+          <div class="kpi-col-title">${U.userShare}</div>
           <div class="kpi-donut-row">
             ${buildDonut(seg.userSharePct, seg.color)}
             <div>
-              <div class="kpi-col-value" style="color:${seg.color}">${fmt(seg.userSharePct)}%</div>
-              <div class="kpi-sub">of all users</div>
+              <div class="kpi-col-value" style="color:${seg.color}">${pct(seg.userSharePct)}</div>
+              <div class="kpi-sub">${U.ofAll}</div>
             </div>
           </div>
         </div>
         <div class="kpi-col">
-          <div class="kpi-col-title">Conversion rate</div>
-          <div class="kpi-col-value" style="color:${seg.color}">${fmt(seg.conversionRatePct)}%</div>
+          <div class="kpi-col-title">${U.convRate}</div>
+          <div class="kpi-col-value" style="color:${seg.color}">${pct(seg.conversionRatePct)}</div>
         </div>
       </div>
 
       <div class="kpi-strip">
         <div class="kpi-col">
-          <div class="kpi-col-title">Repeat visitors</div>
-          <div class="kpi-col-value" style="color:${seg.color}">${fmt(seg.repeatVisitorPct)}%</div>
+          <div class="kpi-col-title">${U.repeat}</div>
+          <div class="kpi-col-value" style="color:${seg.color}">${pct(seg.repeatVisitorPct)}</div>
         </div>
         <div class="kpi-col">
-          <div class="kpi-col-title">Engagement with the site</div>
+          <div class="kpi-col-title">${U.engagement}</div>
           <div class="kpi-donut-row">
-            <div class="kpi-col-value" style="color:${seg.color}">${fmt(seg.engagementRatePct)}%</div>
+            <div class="kpi-col-value" style="color:${seg.color}">${pct(seg.engagementRatePct)}</div>
             <div class="kpi-detail-lines">
-              <span>2+ pages: <b>${fmt(seg.engagementDetail.twoPlusPages)}%</b></span>
-              <span>10+ sec: <b>${fmt(seg.engagementDetail.tenPlusSec)}%</b></span>
-              <span>Purchase: <b>${fmt(seg.conversionRatePct)}%</b></span>
+              <span>${U.pages}: <b>${pct(seg.engagementDetail.twoPlusPages)}</b></span>
+              <span>${U.secs}: <b>${pct(seg.engagementDetail.tenPlusSec)}</b></span>
+              <span>${U.purchase}: <b>${pct(seg.conversionRatePct)}</b></span>
             </div>
           </div>
         </div>
         <div class="kpi-col">
-          <div class="kpi-col-title">Avg. active time</div>
+          <div class="kpi-col-title">${U.activeTime}</div>
           <div class="kpi-col-value" style="color:${seg.color}">${fmt(seg.behavioralMetrics.engagement_time_msec_total.mean/60000,1)} min</div>
         </div>
       </div>
@@ -1070,12 +1509,12 @@ function buildSegmentPanel(seg, idx){
           ${buildTrack(seg)}
         </div>
         <div class="card-inner-block">
-          <div class="section-h" style="--sec-color:${seg.color};margin-bottom:16px;">Behavioral metrics</div>
+          <div class="section-h" style="--sec-color:${seg.color};margin-bottom:16px;">${U.metrics}</div>
           ${buildMetricRows(seg)}
           <div class="card-inner-footer">
             <div class="metric-legend">
-              <span class="legend-item"><span class="legend-swatch-bar" style="background:${seg.color}"></span>Segment mean</span>
-              <span class="legend-item"><span class="legend-swatch-tick"></span>Site-wide average</span>
+              <span class="legend-item"><span class="legend-swatch-bar" style="background:${seg.color}"></span>${U.segMean}</span>
+              <span class="legend-item"><span class="legend-swatch-tick"></span>${U.siteAvg}</span>
             </div>
           </div>
         </div>
@@ -1084,14 +1523,14 @@ function buildSegmentPanel(seg, idx){
       ${seg.dominantCategoryCoveragePct || seg.repeatPurchaserPctAmongConverters !== undefined ? `
       <div class="kpi-strip cols-2" style="margin-top:14px;margin-bottom:0;">
         <div class="kpi-col">
-          <div class="kpi-col-title">Additional Signals</div>
-          <div class="kpi-col-value coral">${fmt(seg.repeatPurchaserPctAmongConverters)}%</div>
-          <div class="kpi-sub">Repeat purchasers (among converters)</div>
+          <div class="kpi-col-title">${U.signals}</div>
+          <div class="kpi-col-value coral">${pct(seg.repeatPurchaserPctAmongConverters)}</div>
+          <div class="kpi-sub">${U.repeatBuyers}</div>
         </div>
         <div class="kpi-col">
-          <div class="kpi-col-title">Category Data Coverage</div>
-          <div class="kpi-col-value green">${fmt(seg.dominantCategoryCoveragePct)}%</div>
-          <div class="kpi-sub">viewed a specific product category</div>
+          <div class="kpi-col-title">${U.coverage}</div>
+          <div class="kpi-col-value green">${pct(seg.dominantCategoryCoveragePct)}</div>
+          <div class="kpi-sub">${U.coverageSub}</div>
         </div>
       </div>` : ''}
     </div>
@@ -1099,10 +1538,24 @@ function buildSegmentPanel(seg, idx){
   return panel;
 }
 
+function renderDashboard(){
+  if(!activeTarget) activeTarget = 'panel-' + slug(DATA.segments[0].segment);
+  buildTabs();
+  const panels = document.getElementById('panels');
+  panels.innerHTML = '';
+  DATA.segments.forEach(seg=> panels.appendChild(buildSegmentPanel(seg)) );
+}
+
 /* ---------- Mount ---------- */
-buildTabs();
-const panels = document.getElementById('panels');
-DATA.segments.forEach((seg,i)=> panels.appendChild(buildSegmentPanel(seg,i)) );
+try {
+  const savedLang = localStorage.getItem(LANG_KEY);
+  if (savedLang === 'de' || savedLang === 'en') currentLang = savedLang;
+} catch(e) {}
+document.querySelectorAll('[data-lang]').forEach(btn=>{
+  btn.addEventListener('click', ()=> window.switchLang(btn.dataset.lang));
+});
+applyStaticI18n();
+renderDashboard();
 posthog.capture('segment_tab_viewed', { segment: DATA.segments[0].segment });
 
 /* ---------- Cookie consent ---------- */
@@ -1127,6 +1580,77 @@ window.addEventListener('scroll', () => {
   const total = document.body.scrollHeight - window.innerHeight;
   document.getElementById('progress').style.width = (scrolled / total * 100) + '%';
 });
+</script>
+
+<script>
+(function () {
+  var toggle = document.getElementById('navToggle');
+  var closeBtn = document.getElementById('navDrawerClose');
+  var drawer = document.getElementById('navDrawer');
+  var overlay = document.getElementById('navOverlay');
+  var lastFocused = null;
+
+  function openDrawer() {
+    lastFocused = document.activeElement;
+    drawer.setAttribute('data-open', 'true');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.setAttribute('data-open', 'true');
+    toggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+    document.addEventListener('keydown', onKeydown);
+  }
+
+  function closeDrawer() {
+    drawer.setAttribute('data-open', 'false');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.setAttribute('data-open', 'false');
+    toggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+    document.removeEventListener('keydown', onKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  function onKeydown(e) {
+    if (e.key === 'Escape') closeDrawer();
+    if (e.key === 'Tab') {
+      var focusables = drawer.querySelectorAll('a, button');
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  }
+
+  toggle.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+})();
+
+/* ---------- Subnav: active jump point + drawer close on jump ---------- */
+(function(){
+  var ids = ['acquisition','problem','approach','result','subsegmentation','insights','reflection'];
+  var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var links = document.querySelectorAll('.subnav a, .subnav-drawer-item');
+  function update(){
+    var offset = window.innerWidth <= 640 ? 80 : 120;
+    var current = null;
+    sections.forEach(function(sec){ if (sec.getBoundingClientRect().top - offset <= 0) current = sec.id; });
+    links.forEach(function(a){ a.classList.toggle('active', current !== null && a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+  document.querySelectorAll('.subnav-drawer-item').forEach(function(a){
+    a.addEventListener('click', function(){
+      var close = document.getElementById('navDrawerClose');
+      if (close) close.click();
+    });
+  });
+})();
 </script>
 
 </body>
