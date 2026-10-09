@@ -819,7 +819,7 @@
      ============================================================ -->
 <section class="cs-block" id="result">
   <div class="cs-eyebrow" data-i18n="out-eyebrow">04 · The Output</div>
-  <h2 class="cs-h2" data-i18n="out-h2">Four behavioral segments.</h2>
+  <h2 class="cs-h2" data-i18n="out-h2">What the clustering produced.</h2>
 
   <div class="cs-donut-block">
     <svg width="220" height="220" viewBox="0 0 220 220">
@@ -843,7 +843,7 @@
     </div>
   </div>
 
-  <p class="cs-body-text" style="margin-top:32px;margin-bottom:0;" data-i18n="out-p">The dashboard below shows the four segments exactly as the clustering produced them. The following sections test whether they are meaningful and defensible.</p>
+  <p class="cs-body-text" style="margin-top:32px;margin-bottom:0;" data-i18n="out-p">The dashboard below shows the four segments exactly as the clustering produced them. In the following sections, I test whether they are meaningful and defensible.</p>
 </section>
 
 </div><!-- /.cs-content (reopens below the dashboard) -->
@@ -876,9 +876,9 @@
      ============================================================ -->
 <section class="cs-block" id="subsegmentation" style="padding-bottom:0;">
   <div class="cs-eyebrow" data-i18n="ss-eyebrow">05 · Check 1</div>
-  <h2 class="cs-h2" data-i18n="ss-h2">Is the Browser cluster one group?</h2>
+  <h2 class="cs-h2" data-i18n="ss-h2">Is the Browser cluster really one group?</h2>
   <p class="cs-body-text" data-i18n="ss-p">
-    Browser accounts for 81.1% of all users. With a cluster this dominant, k=4 may have merged groups that behave differently. To check this, I classified Browser users with rules based on session-level engagement signals.
+    Browser accounts for 81.1% of all users. With a cluster that large, I suspected that k=4 might have merged groups that behave differently. To check this, I sorted Browser users into sub-types using rules based on their engagement per session.
   </p>
 </section>
 
@@ -918,7 +918,7 @@
             <div class="bar-track"><div class="bar-fill" style="width:5.4%"></div></div>
           </div>
           <div class="detail" data-i18n="ss-rv-detail">~2.0 sessions, ~2.0 page views, 61% engaged</div>
-          <div class="meaning" data-i18n="ss-rv-meaning">Came back more than once, stayed engaged, just never converted.</div>
+          <div class="meaning" data-i18n="ss-rv-meaning">Came back several times and stayed engaged, but never bought anything.</div>
         </div>
       </div>
     </div>
@@ -980,7 +980,7 @@
 <div class="cs-content" style="padding-top:16px;">
 
 <p class="cs-body-text" style="margin-bottom:64px;" data-i18n="ss-note">
-  Result: 87.0% of the classified Browser users show likely human behavior, and Quick but Engaged alone accounts for 81.6%. "Bot-like" is a behavioral heuristic (one session, several pages, no measured engagement time) and not a verified bot flag. GA4 already excludes known bots and spiders at collection time. The classification is descriptive and has not been validated as a typology.
+  Most of the classified Browser users (87.0%) behave like humans, and the largest sub-type, Quick but Engaged, alone accounts for 81.6%. I derived the "bot-like" label from behavior (one session, several pages, no measured engagement time), so it is not a verified bot flag. GA4 already removes known bots and spiders when collecting data. The classification is descriptive and has not been validated as a typology.
 </p>
 
 <!-- ============================================================
@@ -988,32 +988,32 @@
      ============================================================ -->
 <section class="cs-block" id="insights">
   <div class="cs-eyebrow" data-i18n="in-eyebrow">06 · Checks 2 to 4</div>
-  <h2 class="cs-h2" data-i18n="in-h2">How the four segments hold up.</h2>
-  <p class="cs-body-text" data-i18n="in-p">Three further checks on the four segments from the dashboard.</p>
+  <h2 class="cs-h2" data-i18n="in-h2">How well the four segments hold up.</h2>
+  <p class="cs-body-text" data-i18n="in-p">I then checked the four segments from the dashboard in three more ways.</p>
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
       <div>
-        <h4 data-i18n="in-s1-h">Browser and Explorer: a clear boundary</h4>
-        <p data-i18n="in-s1-p">Browser and Explorer use the same devices and traffic sources, but Explorer spends roughly 13 times as much engaged time. The two segments are separated by behavior, not by device or channel.</p>
+        <h4 data-i18n="in-s1-h">Browser and Explorer differ clearly</h4>
+        <p data-i18n="in-s1-p">Although Browser and Explorer use the same devices and traffic sources, Explorer users spend roughly 13 times as much time actively engaged. What separates the two segments is their behavior, not their device or channel.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">2</div>
       <div>
-        <h4 data-i18n="in-s2-h">Explorer and Engaged Non-Converter: a weaker boundary, a shared drop-off</h4>
-        <p data-i18n="in-s2-p">Both segments drop off at the same step, from Shipping Info to Payment Info, with retention of 13.6% and 27.6% respectively. The boundary between them is therefore weaker than the clustering suggests. For the shop, the shared drop-off is the more useful finding: this step is the first place to test an improvement for both segments.</p>
+        <h4 data-i18n="in-s2-h">Explorer and Engaged Non-Converter drop off at the same point</h4>
+        <p data-i18n="in-s2-p">Both segments drop off at the step from shipping to payment information, where only 13.6% and 27.6% continue. The boundary between them is therefore weaker than the clustering suggests. For the shop, though, this shared drop-off is the more useful finding, because it is the first place to test an improvement that would help both segments.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">3</div>
       <div>
-        <h4 data-i18n="in-s3-h">A holiday-season snapshot</h4>
-        <p data-i18n="in-s3-p">The dataset covers three months, November to January. Within this window, the Converter share drops from 2.5% to 0.9%, and site-wide conversion falls by about 60%. The segments therefore describe behavior during one holiday season and cannot be read as a stable user typology.</p>
+        <h4 data-i18n="in-s3-h">Valid for one holiday season</h4>
+        <p data-i18n="in-s3-p">The dataset covers only three months, from November to January. Even within this window, the Converter share drops from 2.5% to 0.9%, and site-wide conversion falls by about 60%. The segments therefore describe behavior during one holiday season, and I would not read them as a stable user typology.</p>
       </div>
     </div>
   </div>
-  <p class="cs-body-text" style="margin-top:20px;margin-bottom:0;" data-i18n="in-close">In summary: one boundary holds, one is weaker but points to a concrete starting point, and the time window limits how far the results can be generalized.</p>
+  <p class="cs-body-text" style="margin-top:20px;margin-bottom:0;" data-i18n="in-close">In short, one boundary holds, the other is weaker but points to a concrete starting point, and the time window limits how far the results can be generalized.</p>
 </section>
 
 <!-- ============================================================
@@ -1023,13 +1023,13 @@
   <div class="cs-eyebrow" data-i18n="re-eyebrow">07 · Conclusion</div>
   <h2 class="cs-h2" data-i18n="re-h2">Meaningful and defensible, within limits.</h2>
   <p class="cs-body-text" data-i18n="re-p1">
-    Behavioral data alone produced segments that are meaningful within one season: at least one boundary holds, and the analysis points to a concrete problem in the checkout. Calling them personas would have promised more than the data can show.
+    My answer to the guiding question is a qualified yes. Behavioral data alone produced segments that are meaningful within one season: at least one boundary holds, and the analysis points to a concrete problem in the checkout. If I had called them personas, I would have promised more than the data can show.
   </p>
   <p class="cs-body-text" data-i18n="re-p2">
-    The case study and the dashboard name the limits of the analysis: the conflict between k=4 and k=2, the heuristic nature of the Browser sub-types and the short time window. Readers can judge for themselves how far the segments carry.
+    I named the limits of the analysis in both the case study and the dashboard: the conflict between k=4 and k=2, the heuristic nature of the Browser sub-types and the short time window. That way, readers can judge for themselves how far the segments carry.
   </p>
   <p class="cs-body-text" style="margin-bottom:0;" data-i18n="re-p3">
-    Getting from segments to personas requires the qualitative layer this project lacked: interviews, context and the reasons behind the behavior. HDBSCAN could sharpen the segments, since the data is very unevenly dense (81% in one cluster), but it would not add that layer. The next step is user research.
+    To get from segments to personas, I would need the qualitative layer this project lacked: interviews, context and the reasons behind the behavior. HDBSCAN could sharpen the segments, since the data is very unevenly distributed (81% in one cluster), but it would not add that layer. The next step would therefore be user research.
   </p>
 </section>
 
@@ -1125,19 +1125,19 @@ const DE = {
  "ap-s4-h": "Den größten Cluster hinterfragen",
  "ap-s4-p": "Als mir auffiel, wie groß der Browser-Cluster war, nämlich 81 % aller Nutzer, habe ich ihn mit Regeln weiter aufgeschlüsselt, um zu sehen, ob k-Means dort Unterschiede eingeebnet hat.",
  "out-eyebrow": "04 · Das Ergebnis",
- "out-h2": "Vier Verhaltenssegmente.",
+ "out-h2": "Was das Clustering ergeben hat.",
  "out-total": "270.154",
  "out-total-sub": "Nutzer gesamt",
  "out-pct-81.1%": "81,1 %",
  "out-pct-14.3%": "14,3 %",
  "out-pct-2.9%": "2,9 %",
  "out-pct-1.6%": "1,6 %",
- "out-p": "Das Dashboard unten zeigt die vier Segmente so, wie das Clustering sie ergeben hat. Die folgenden Abschnitte prüfen, ob sie aussagekräftig und belastbar sind.",
+ "out-p": "Im Dashboard unten siehst Du die vier Segmente so, wie das Clustering sie ergeben hat. In den folgenden Abschnitten prüfe ich, ob sie aussagekräftig und belastbar sind.",
  "dash-title": "Verhaltensbasierte GA4-Segmentierung der Nutzer des Google Merchandise&nbsp;Store",
  "dash-footer": "DATENSATZ: GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270.154 Nutzer · k-Means-Clustering (k=4)<br>METHODISCHER HINWEIS: k=4 statt des algorithmisch bevorzugten k=2 gewählt, passend zur üblichen Zahl von Personas im UX Design.<br>Die Subsegmentierung des Browser-Clusters ist eine deskriptive, regelbasierte Heuristik und nicht als Typologie validiert.",
  "ss-eyebrow": "05 · Prüfung 1",
- "ss-h2": "Ist der Browser-Cluster eine einheitliche Gruppe?",
- "ss-p": "Browser umfasst 81,1 % aller Nutzer. Bei einem so dominanten Cluster kann k=4 Gruppen zusammengefasst haben, die sich unterschiedlich verhalten. Um das zu prüfen, habe ich die Browser-Nutzer regelbasiert anhand von Engagement-Signalen auf Session-Ebene klassifiziert.",
+ "ss-h2": "Ist der Browser-Cluster wirklich eine Gruppe?",
+ "ss-p": "Der Browser-Cluster umfasst 81,1 % aller Nutzer. Bei einem so großen Cluster lag der Verdacht nahe, dass k=4 Gruppen zusammengefasst hatte, die sich unterschiedlich verhalten. Um das zu prüfen, habe ich die Browser-Nutzer anhand ihres Engagements pro Session regelbasiert in Untergruppen eingeteilt.",
  "ss-o-engaged": "87,0 %",
  "ss-o-explorer": "10,9 %",
  "ss-o-converter": "2,1 %",
@@ -1154,7 +1154,7 @@ const DE = {
  "ss-rv-count": "11.138",
  "ss-rv-pct": "5,4 % der klassifizierten",
  "ss-rv-detail": "~2,0 Sessions, ~2,0 Seitenaufrufe, 61 % engagiert",
- "ss-rv-meaning": "Kamen mehr als einmal zurück, blieben engagiert, haben aber nie konvertiert.",
+ "ss-rv-meaning": "Kamen mehrmals wieder und blieben aktiv, haben aber nie etwas gekauft.",
  "ss-il-count": "20.077",
  "ss-il-pct": "9,8 % der klassifizierten",
  "ss-il-detail": "1 Session, ~1,0 Seitenaufruf, 0 % engagiert, 0 s auf der Seite",
@@ -1168,22 +1168,22 @@ const DE = {
  "ss-bl-detail": "1 Session, ~2,2 Seitenaufrufe, 0 ms Engagement trotz ~66 s Dauer",
  "ss-bl-meaning": "Schnelle Besuche über mehrere Seiten ohne messbares Engagement. Dieses Muster passt zu nicht menschlichem Traffic.",
  "ss-coverage": "205.914 von 219.153 Browser-Nutzern klassifiziert · 94,0 % Abdeckung (Engagement-Daten auf Session-Ebene)",
- "ss-note": "Ergebnis: 87,0 % der klassifizierten Browser-Nutzer zeigen wahrscheinlich menschliches Verhalten, und Quick but Engaged allein macht 81,6 % aus. „Botartig“ ist eine Verhaltensheuristik (eine Session, mehrere Seiten, keine gemessene Engagement-Zeit) und keine verifizierte Bot-Kennzeichnung. GA4 schließt bekannte Bots und Spider bereits bei der Erfassung aus. Die Klassifikation ist deskriptiv und nicht als Typologie validiert.",
+ "ss-note": "Die meisten klassifizierten Browser-Nutzer (87,0 %) verhalten sich wahrscheinlich menschlich, und die größte Untergruppe, Quick but Engaged, macht allein 81,6 % aus. Die Bezeichnung „botartig“ habe ich aus dem Verhalten abgeleitet (eine Session, mehrere Seiten, keine gemessene Engagement-Zeit), sodass sie keine verifizierte Bot-Kennzeichnung ist. Bekannte Bots und Spider schließt GA4 bereits bei der Erfassung aus. Die Klassifikation ist deskriptiv und nicht als Typologie validiert.",
  "in-eyebrow": "06 · Prüfungen 2 bis 4",
- "in-h2": "Wie belastbar die vier Segmente sind.",
- "in-p": "Drei weitere Prüfungen an den vier Segmenten aus dem Dashboard.",
- "in-s1-h": "Browser und Explorer: eine klare Grenze",
- "in-s1-p": "Browser und Explorer nutzen dieselben Geräte und Traffic-Quellen, Explorer verbringt aber rund 13-mal so viel Zeit mit aktivem Engagement. Die beiden Segmente trennt also ihr Verhalten und nicht Gerät oder Kanal.",
- "in-s2-h": "Explorer und Engaged Non-Converter: schwächere Grenze, gemeinsamer Abbruchpunkt",
- "in-s2-p": "Beide Segmente brechen an derselben Stelle ab, beim Schritt von den Versand- zu den Zahlungsinformationen, mit einer Retention von 13,6 % bzw. 27,6 %. Die Grenze zwischen ihnen ist damit schwächer, als das Clustering nahelegt. Für den Shop ist der gemeinsame Abbruchpunkt der nützlichere Befund: An diesem Schritt lässt sich eine Verbesserung für beide Segmente zuerst testen.",
- "in-s3-h": "Eine Momentaufnahme der Weihnachtssaison",
- "in-s3-p": "Der Datensatz umfasst drei Monate, November bis Januar. Innerhalb dieses Fensters sinkt der Converter-Anteil von 2,5 % auf 0,9 %, und die Conversion der gesamten Website fällt um rund 60 %. Die Segmente beschreiben daher das Verhalten während einer Weihnachtssaison und lassen sich nicht als stabile Nutzertypologie lesen.",
- "in-close": "Zusammengefasst: Eine Grenze hält, eine ist schwächer, liefert aber einen konkreten Ansatzpunkt, und das Zeitfenster begrenzt, wie weit sich die Ergebnisse verallgemeinern lassen.",
+ "in-h2": "Wie gut die vier Segmente standhalten.",
+ "in-p": "Danach habe ich die vier Segmente aus dem Dashboard auf drei weitere Arten geprüft.",
+ "in-s1-h": "Browser und Explorer unterscheiden sich deutlich",
+ "in-s1-p": "Obwohl Browser und Explorer dieselben Geräte und Traffic-Quellen nutzen, verbringen Explorer rund 13-mal so viel Zeit mit aktivem Engagement. Was die beiden Segmente trennt, ist also ihr Verhalten und nicht Gerät oder Kanal.",
+ "in-s2-h": "Explorer und Engaged Non-Converter steigen an derselben Stelle aus",
+ "in-s2-p": "Beide Segmente brechen beim Schritt von den Versand- zu den Zahlungsinformationen ab, wo nur 13,6 % bzw. 27,6 % weitermachen. Die Grenze zwischen ihnen ist damit schwächer, als das Clustering nahelegt. Für den Shop ist dieser gemeinsame Abbruchpunkt trotzdem der nützlichere Befund, weil sich hier zuerst eine Verbesserung testen ließe, die beiden Segmenten hilft.",
+ "in-s3-h": "Gültig für eine Weihnachtssaison",
+ "in-s3-p": "Der Datensatz umfasst nur drei Monate, von November bis Januar. Selbst innerhalb dieses Zeitraums sinkt der Converter-Anteil von 2,5 % auf 0,9 %, während die Conversion der gesamten Website um rund 60 % fällt. Die Segmente beschreiben deshalb das Verhalten während einer Weihnachtssaison, und als stabile Nutzertypologie würde ich sie nicht lesen.",
+ "in-close": "Unterm Strich hält eine Grenze, die andere ist schwächer, liefert aber einen konkreten Ansatzpunkt, und das Zeitfenster begrenzt, wie weit sich die Ergebnisse verallgemeinern lassen.",
  "re-eyebrow": "07 · Fazit",
- "re-h2": "Aussagekräftig und belastbar, mit Grenzen.",
- "re-p1": "Reine Verhaltensdaten haben Segmente ergeben, die innerhalb einer Saison aussagekräftig sind: Mindestens eine Grenze hält, und die Analyse zeigt ein konkretes Problem im Checkout. Sie Personas zu nennen, hätte mehr versprochen, als die Daten zeigen können.",
- "re-p2": "Case Study und Dashboard benennen die Grenzen der Analyse: den Widerspruch zwischen k=4 und k=2, den heuristischen Charakter der Browser-Subtypen und das kurze Zeitfenster. So können Leser selbst beurteilen, wie weit die Segmente tragen.",
- "re-p3": "Der Weg von Segmenten zu Personas braucht die qualitative Ebene, die diesem Projekt fehlte: Interviews, Kontext und die Gründe hinter dem Verhalten. HDBSCAN könnte die Segmente schärfen, da die Daten sehr ungleichmäßig verteilt sind (81 % in einem Cluster), diese Ebene ergänzt es aber nicht. Der nächste Schritt ist User Research.",
+ "re-h2": "Aussagekräftig und belastbar, aber mit Grenzen.",
+ "re-p1": "Meine Antwort auf die Leitfrage ist ein eingeschränktes Ja. Reine Verhaltensdaten haben Segmente ergeben, die innerhalb einer Saison aussagekräftig sind, weil mindestens eine Grenze hält und die Analyse ein konkretes Problem im Checkout aufzeigt. Hätte ich sie Personas genannt, hätte ich mehr versprochen, als die Daten zeigen können.",
+ "re-p2": "Die Grenzen der Analyse habe ich sowohl in der Case Study als auch im Dashboard benannt: den Widerspruch zwischen k=4 und k=2, den heuristischen Charakter der Browser-Untergruppen und das kurze Zeitfenster. So kannst Du selbst beurteilen, wie weit die Segmente tragen.",
+ "re-p3": "Um von Segmenten zu Personas zu kommen, bräuchte ich die qualitative Ebene, die diesem Projekt fehlte: Interviews, Kontext und die Gründe hinter dem Verhalten. HDBSCAN könnte die Segmente zwar schärfen, weil die Daten sehr ungleich verteilt sind (81 % in einem Cluster), diese Ebene ergänzt es aber nicht. Der nächste Schritt wäre deshalb User Research.",
  "cta-h3": "Weitere Projekte",
  "cta-btn": "Zur Projektübersicht →",
  "foot-sig": "Sebastian Weber · UX/UI Designer · Design-to-Code · Köln 2026",
