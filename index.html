@@ -518,14 +518,15 @@
   .nav-toggle svg{display:block;}
   .nav-drawer{
     position:fixed;top:0;right:0;height:100%;width:min(78vw,320px);
-    background:var(--cs-paper);z-index:300;padding:20px;
+    background:var(--cs-paper);z-index:300;padding: 0 20px 20px;
     transform:translateX(100%);transition:transform .28s ease;
     display:flex;flex-direction:column;box-shadow:-8px 0 24px rgba(0,0,0,0.08);
     overflow-y:auto;
   }
   .nav-drawer[data-open="true"]{transform:translateX(0);}
-  .nav-drawer__header{display:flex;justify-content:flex-end;margin-bottom:24px;}
-  .nav-drawer__close{background:none;border:none;padding:8px;cursor:pointer;color:var(--cs-text);}
+  .nav-drawer__header { height: 55px; margin-bottom: 25px; flex-shrink: 0; }
+  .nav-drawer__close { position: absolute; top: 7.5px; right: 20px; background: none; border: none; padding: 8px; margin: 0; cursor: pointer; color: var(--cs-text); -webkit-appearance: none; appearance: none; }
+    .nav-drawer__close svg { display: block; }
   .nav-drawer__links{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;}
   .nav-drawer__links li{border-bottom:1px solid var(--cs-border);}
   .nav-drawer__links a{display:flex;align-items:center;padding:16px 4px;text-decoration:none;font-size:18px;min-height:44px;color:var(--cs-muted);font-weight:500;}
@@ -1533,13 +1534,29 @@ window.addEventListener('scroll', () => {
   var overlay = document.getElementById('navOverlay');
   var lastFocused = null;
 
-  function openDrawer() {
+  function alignCloseToToggle() {
+      /* Close-Button exakt auf die gemessene Position des Hamburgers legen */
+      var t = document.getElementById('navToggle'), c = document.getElementById('navDrawerClose'), d = document.getElementById('navDrawer');
+      if (!t || !c || !d) return;
+      var tr = t.getBoundingClientRect(), dr = d.getBoundingClientRect();
+      var tf = getComputedStyle(d).transform;
+      var shift = (tf && tf !== 'none') ? new DOMMatrixReadOnly(tf).m41 : 0;
+      c.style.left = (tr.left - (dr.left - shift)) + 'px';
+      c.style.top = tr.top + 'px';
+      c.style.right = 'auto';
+    }
+    window.addEventListener('resize', function () {
+      var d = document.getElementById('navDrawer');
+      if (d && d.getAttribute('data-open') === 'true') alignCloseToToggle();
+    });
+    function openDrawer() {
     lastFocused = document.activeElement;
     drawer.setAttribute('data-open', 'true');
     drawer.setAttribute('aria-hidden', 'false');
     overlay.setAttribute('data-open', 'true');
     toggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    alignCloseToToggle();
     closeBtn.focus();
     document.addEventListener('keydown', onKeydown);
   }
