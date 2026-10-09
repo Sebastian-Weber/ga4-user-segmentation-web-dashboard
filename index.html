@@ -786,29 +786,29 @@
     <div class="cs-step">
       <div class="cs-step-num">1</div>
       <div>
-        <h4 data-i18n="ap-s1-h">Scope & EDA</h4>
-        <p data-i18n="ap-s1-p">Queried the raw GA4 event stream in BigQuery and caught an inherited filter excluding 92.3% of users before modeling began.</p>
+        <h4 data-i18n="ap-s1-h">Getting to know the data</h4>
+        <p data-i18n="ap-s1-p">Before narrowing anything down, I examined the raw GA4 event stream in BigQuery without filters. It showed that 82.5% of users had only a single session.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">2</div>
       <div>
-        <h4 data-i18n="ap-s2-h">Feature engineering & clustering</h4>
-        <p data-i18n="ap-s2-p">Six behavioral features, log1p-transformed and scaled, k-means at k=4.</p>
+        <h4 data-i18n="ap-s2-h">Turning behavior into numbers</h4>
+        <p data-i18n="ap-s2-p">From the events, I built six behavioral features, applied log1p and scaling, and used k-means to calculate four clusters.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">3</div>
       <div>
-        <h4 data-i18n="ap-s3-h">The k=4 vs. k=2 conflict</h4>
-        <p data-i18n="ap-s3-p">Documented the disagreement between Elbow and Silhouette and justified the choice of k=4.</p>
+        <h4 data-i18n="ap-s3-h">Dealing with the conflict</h4>
+        <p data-i18n="ap-s3-p">Because Elbow and Silhouette pointed to different values of k, I documented the conflict and explained why I stayed with k=4.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">4</div>
       <div>
-        <h4 data-i18n="ap-s4-h">Sub-segmentation as a stress test</h4>
-        <p data-i18n="ap-s4-p">Broke the dominant 81% Browser cluster apart with a rule-based layer to test whether k-means had smoothed over real structure.</p>
+        <h4 data-i18n="ap-s4-h">Questioning the largest cluster</h4>
+        <p data-i18n="ap-s4-p">When I noticed how large the Browser cluster was, 81% of all users, I broke it down with rules to see whether k-means had smoothed over real differences.</p>
       </div>
     </div>
   </div>
@@ -1116,14 +1116,14 @@ const DE = {
  "ap-p": "In das Modell habe ich sechs Verhaltensmerkmale gegeben: <em>Anzahl der Sessions</em>, <em>Seitenaufrufe</em>, <em>angesehene Artikel</em>, <em>Add-to-Cart</em>, <em>Checkouts</em> und <em>Käufe</em>. Alle habe ich log-transformiert und standardisiert, bevor ich sie geclustert habe. Bei der Wahl von k widersprachen sich die beiden gängigen Validierungsmetriken: Während die Elbow-Kurve nach k=3 ohne deutlichen Knick abflacht, erreicht der Silhouette Score sein Maximum bei k=2. Ich habe mich trotzdem für k=4 entschieden, weil zwei Segmente für die Gestaltung zu wenig Unterscheidung bieten. Pruitt und Grudin (2003) empfehlen für die Praxis drei bis sechs Personas, sodass k=2 unter diesem Bereich läge. Den Widerspruch habe ich in der Case Study und im Dashboard dokumentiert.",
  "ap-fig-alt": "Trägheitskurve der Elbow-Methode und Silhouette Score nach k: Der Ellbogen flacht nach k=3 ab, der Silhouette Score erreicht sein Maximum bei k=2",
  "ap-caption": "Die Elbow-Trägheit fällt ohne deutlichen Knick weiter; der Silhouette Score erreicht sein Maximum bei k=2.",
- "ap-s1-h": "Scope und EDA",
- "ap-s1-p": "Den rohen GA4-Eventstream in BigQuery abgefragt und einen übernommenen Filter entdeckt, der vor der Modellierung 92,3 % der Nutzer ausschloss.",
- "ap-s2-h": "Feature Engineering und Clustering",
- "ap-s2-p": "Sechs Verhaltensmerkmale, log1p-transformiert und skaliert, k-Means mit k=4.",
- "ap-s3-h": "Der Konflikt k=4 vs. k=2",
- "ap-s3-p": "Den Widerspruch zwischen Elbow und Silhouette dokumentiert und die Wahl von k=4 begründet.",
- "ap-s4-h": "Subsegmentierung als Stresstest",
- "ap-s4-p": "Den dominanten Browser-Cluster mit 81 % über eine regelbasierte Ebene aufgeschlüsselt, um zu prüfen, ob k-Means echte Strukturen geglättet hatte.",
+ "ap-s1-h": "Die Daten kennenlernen",
+ "ap-s1-p": "Bevor ich etwas eingegrenzt habe, habe ich den rohen GA4-Eventstream in BigQuery ungefiltert untersucht. Dabei zeigte sich, dass 82,5 % der Nutzer nur eine einzige Session hatten.",
+ "ap-s2-h": "Verhalten in Zahlen übersetzen",
+ "ap-s2-p": "Aus den Events habe ich sechs Verhaltensmerkmale gebildet, sie log1p-transformiert und skaliert und daraus mit k-Means vier Cluster berechnet.",
+ "ap-s3-h": "Mit dem Widerspruch umgehen",
+ "ap-s3-p": "Weil Elbow und Silhouette unterschiedliche Werte für k nahelegten, habe ich den Konflikt dokumentiert und begründet, warum ich bei k=4 geblieben bin.",
+ "ap-s4-h": "Den größten Cluster hinterfragen",
+ "ap-s4-p": "Als mir auffiel, wie groß der Browser-Cluster war, nämlich 81 % aller Nutzer, habe ich ihn mit Regeln weiter aufgeschlüsselt, um zu sehen, ob k-Means dort Unterschiede eingeebnet hat.",
  "out-eyebrow": "04 · Das Ergebnis",
  "out-h2": "Vier Verhaltenssegmente.",
  "out-total": "270.154",
