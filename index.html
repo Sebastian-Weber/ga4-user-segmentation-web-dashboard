@@ -768,7 +768,7 @@
      ============================================================ -->
 <section class="cs-block" id="approach">
   <div class="cs-eyebrow" data-i18n="ap-eyebrow">03 · Approach</div>
-  <h2 class="cs-h2" data-i18n="ap-h2">Features, clustering and the choice of k.</h2>
+  <h2 class="cs-h2" data-i18n="ap-h2">Why I chose four segments.</h2>
   <div class="cs-tag-row">
     <span class="cs-tag">Feature Engineering</span>
     <span class="cs-tag">K-Means Clustering</span>
@@ -776,7 +776,7 @@
     <span class="cs-tag" data-i18n="ap-tag4">Behavioral Analytics</span>
   </div>
   <p class="cs-body-text" data-i18n="ap-p">
-    Six behavioral features fed the model: <em>session count</em>, <em>page views</em>, <em>items viewed</em>, <em>add-to-cart</em>, <em>checkouts</em> and <em>purchases</em>, each log-transformed and standardized. The two standard validation metrics pointed in different directions: the Elbow curve flattens after k=3 without a clear bend, and the Silhouette Score peaks at k=2. I chose k=4 because four segments are easier to interpret and to act on, and I documented the conflict in the case study and in the dashboard.
+    I fed six behavioral features into the model: <em>session count</em>, <em>page views</em>, <em>items viewed</em>, <em>add-to-cart</em>, <em>checkouts</em> and <em>purchases</em>. I log-transformed and standardized all of them before clustering. When choosing k, the two standard validation metrics disagreed: the Elbow curve flattens after k=3 without a clear bend, while the Silhouette Score peaks at k=2. I still chose k=4, because four segments are easier to interpret and to turn into actions. I documented the disagreement in the case study and in the dashboard.
   </p>
   <figure class="cs-figure">
     <img src="img/elbow_silhouette.png" data-i18n-alt="ap-fig-alt" alt="Elbow method inertia curve and silhouette score by k, showing the elbow flattening after k=3 while silhouette peaks at k=2">
@@ -1110,10 +1110,10 @@ const DE = {
  "pr-p3": "Für diesen Fall hatte ich drei öffentliche Datensätze vorbereitet. <em>Online Retail II</em> der UC Irvine hat zwar die sauberste Lizenz, enthält aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> bietet vollständige Eventdaten, die allerdings nur für eine RFM-Segmentierung auf Basis von Käufen reichen. Da nur das <em>öffentliche GA4-Sample des Google Merchandise Store</em> den ganzen Weg vom ersten Seitenaufruf bis zum Kauf abbildet, habe ich den Mehraufwand mit BigQuery in Kauf genommen.",
  "pr-p4": "Google veröffentlicht diese Daten nur verschleiert, um die Nutzer zu schützen, also aus demselben Grund, aus dem sich beide Unternehmen zurückgezogen hatten. Die Menschen hinter den Daten lassen sich deshalb ebenfalls nicht befragen.",
  "ap-eyebrow": "03 · Vorgehen",
- "ap-h2": "Merkmale, Clustering und die Wahl von k.",
+ "ap-h2": "Warum ich mich für vier Segmente entschieden habe.",
  "ap-tag3": "Statistische Validierung",
  "ap-tag4": "Verhaltensanalyse",
- "ap-p": "Sechs Verhaltensmerkmale flossen in das Modell ein: <em>Anzahl der Sessions</em>, <em>Seitenaufrufe</em>, <em>angesehene Artikel</em>, <em>Add-to-Cart</em>, <em>Checkouts</em> und <em>Käufe</em>, jeweils log-transformiert und standardisiert. Die beiden gängigen Validierungsmetriken wiesen in unterschiedliche Richtungen: Die Elbow-Kurve flacht nach k=3 ohne deutlichen Knick ab, und der Silhouette Score erreicht sein Maximum bei k=2. Ich habe k=4 gewählt, weil sich vier Segmente leichter interpretieren und in Maßnahmen übersetzen lassen, und den Widerspruch in der Case Study und im Dashboard dokumentiert.",
+ "ap-p": "In das Modell habe ich sechs Verhaltensmerkmale gegeben: <em>Anzahl der Sessions</em>, <em>Seitenaufrufe</em>, <em>angesehene Artikel</em>, <em>Add-to-Cart</em>, <em>Checkouts</em> und <em>Käufe</em>. Alle habe ich log-transformiert und standardisiert, bevor ich sie geclustert habe. Bei der Wahl von k widersprachen sich die beiden gängigen Validierungsmetriken: Während die Elbow-Kurve nach k=3 ohne deutlichen Knick abflacht, erreicht der Silhouette Score sein Maximum bei k=2. Ich habe mich trotzdem für k=4 entschieden, weil sich vier Segmente leichter interpretieren und in Maßnahmen übersetzen lassen. Den Widerspruch habe ich in der Case Study und im Dashboard dokumentiert.",
  "ap-fig-alt": "Trägheitskurve der Elbow-Methode und Silhouette Score nach k: Der Ellbogen flacht nach k=3 ab, der Silhouette Score erreicht sein Maximum bei k=2",
  "ap-caption": "Die Elbow-Trägheit fällt ohne deutlichen Knick weiter; der Silhouette Score erreicht sein Maximum bei k=2.",
  "ap-s1-h": "Scope und EDA",
