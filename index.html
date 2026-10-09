@@ -684,7 +684,7 @@
   <div class="cs-eyebrow" data-i18n="acq-eyebrow">01 · Phase 0: Data Acquisition</div>
   <h2 class="cs-h2" data-i18n="acq-h2">Searching for a data partner.</h2>
   <p class="cs-body-text" data-i18n="acq-p">
-    My original idea was to develop behavioral personas based on a real company's user data. The offer to potential partners: a free analysis, a finished dashboard and concrete recommendations in exchange for data access. Before I contacted anyone, every candidate went through the same selection and screening process.
+    My original idea was to develop behavioral personas based on a real company's user data. Since personas need a qualitative layer such as interviews in addition to behavioral data, I was looking for a partner company that could provide both. In return, I offered a free analysis, a finished dashboard and concrete recommendations. Before I contacted anyone, every candidate went through the same selection and screening process.
   </p>
   <div class="cs-steps">
     <div class="cs-step">
@@ -750,10 +750,10 @@
   <div class="cs-eyebrow" data-i18n="pr-eyebrow">02 · The Problem</div>
   <h2 class="cs-h2" data-i18n="pr-h2">Why personas weren't possible in the end.</h2>
   <p class="cs-body-text" data-i18n="pr-p1">
-    Two companies led to concrete talks. After a meeting with two product owners, the first had already agreed to work on the project plan with us. A week later, they called it off: their contract doesn't allow them to share tracking data with third parties, not even anonymized. The second company withdrew for the same reason, after I had raised the data-protection question myself. In neither case was the project itself the problem.
+    I had concrete talks with two companies. The first was planning something similar itself and had recently commissioned a qualitative study with interviews, whose results had just come in. After a meeting with two product owners, we had already agreed to work on the project plan together. A week later, they called it off: their contract doesn't allow them to share tracking data with third parties, not even anonymized. The second company withdrew for the same reason, after I had raised the data-protection question myself. In neither case was the project itself the problem.
   </p>
   <p class="cs-body-text" data-i18n="pr-p2">
-    Without interviews and context, personas have no foundation. Behavioral data doesn't reveal motives, so I limited the project to segmentation.
+    Without a partner, I had neither the behavioral data nor the qualitative layer. Since behavioral data alone doesn't reveal motives, I limited the project to segmentation.
   </p>
   <p class="cs-body-text" data-i18n="pr-p3">
     For this case, I had prepared three public datasets. <em>UC Irvine's Online Retail II</em> has the cleanest license but no browsing data and no funnel. <em>REES46</em> has full event data but only supports purchase-based RFM segmentation. Only <em>the Google Merchandise Store's public GA4 sample</em> covers the full path from first page view to purchase, so I accepted the extra BigQuery setup.
@@ -1083,7 +1083,7 @@ const DE = {
  "meta-data": "Datensatz",
  "acq-eyebrow": "01 · Phase 0: Datenbeschaffung",
  "acq-h2": "Die Suche nach einem Datenpartner.",
- "acq-p": "Meine ursprüngliche Idee war es, verhaltensbasierte Personas auf Basis echter Nutzerdaten eines Unternehmens zu entwickeln. Das Angebot an potenzielle Partner: eine kostenlose Analyse, ein fertiges Dashboard und konkrete Handlungsempfehlungen im Austausch gegen Datenzugang. Bevor ich jemanden kontaktiert habe, durchlief jeder Kandidat denselben Auswahl- und Prüfprozess.",
+ "acq-p": "Meine ursprüngliche Idee war es, verhaltensbasierte Personas auf Basis echter Nutzerdaten eines Unternehmens zu entwickeln. Weil Personas neben Verhaltensdaten auch eine qualitative Ebene brauchen, etwa Interviews, suchte ich ein Partnerunternehmen, das beides liefern konnte. Im Gegenzug bot ich eine kostenlose Analyse, ein fertiges Dashboard und konkrete Handlungsempfehlungen an. Bevor ich jemanden kontaktiert habe, durchlief jeder Kandidat denselben Auswahl- und Prüfprozess.",
  "acq-s1-h": "Longlist aufbauen",
  "acq-s1-p": "37 Kandidaten aus meinem beruflichen Netzwerk, mit Fokus auf die Digitalbranche in Köln und NRW.",
  "acq-s2-h": "Nach Eignung priorisieren",
@@ -1105,8 +1105,8 @@ const DE = {
  "acq-result": "Eine der vier Antworten war eine Absage aus Kapazitätsgründen. Von den drei interessierten Unternehmen bot eines seine Unterstützung erst an, als das Projekt bereits solo lief.",
  "pr-eyebrow": "02 · Das Problem",
  "pr-h2": "Warum es am Ende keine Personas werden konnten.",
- "pr-p1": "Zwei Unternehmen führten zu konkreten Gesprächen. Mit dem ersten hatte ich nach einem Termin mit zwei Product Ownern bereits vereinbart, gemeinsam an der Projektplanung zu arbeiten. Eine Woche später kam die Absage, weil das Unternehmen laut Vertrag keine Trackingdaten an Dritte weitergeben darf, auch nicht anonymisiert. Das zweite zog sich aus demselben Grund zurück, nachdem ich die Datenschutzfrage selbst angesprochen hatte. Am Projekt selbst lag es in beiden Fällen nicht.",
- "pr-p2": "Weil sich aus reinen Verhaltensdaten keine Motive ablesen lassen und Personas ohne Interviews und Kontext die Grundlage fehlt, habe ich das Projekt auf eine Segmentierung beschränkt.",
+ "pr-p1": "Mit zwei Unternehmen führte ich konkrete Gespräche. Das erste hatte selbst etwas Ähnliches vor und kurz zuvor eine qualitative Studie mit Interviews in Auftrag gegeben, deren Ergebnisse gerade vorlagen. Mit ihm hatte ich nach einem Termin mit zwei Product Ownern bereits vereinbart, gemeinsam an der Projektplanung zu arbeiten. Eine Woche später kam die Absage, weil das Unternehmen laut Vertrag keine Trackingdaten an Dritte weitergeben darf, auch nicht anonymisiert. Das zweite zog sich aus demselben Grund zurück, nachdem ich die Datenschutzfrage selbst angesprochen hatte. Am Projekt selbst lag es in beiden Fällen nicht.",
+ "pr-p2": "Ohne Partner fehlten mir damit sowohl die Verhaltensdaten als auch die qualitative Ebene. Weil sich Motive aus reinen Verhaltensdaten nicht ablesen lassen, habe ich das Projekt auf eine Segmentierung beschränkt.",
  "pr-p3": "Für diesen Fall hatte ich drei öffentliche Datensätze vorbereitet. <em>Online Retail II</em> der UC Irvine hat zwar die sauberste Lizenz, enthält aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> bietet vollständige Eventdaten, die allerdings nur für eine RFM-Segmentierung auf Basis von Käufen reichen. Da nur das <em>öffentliche GA4-Sample des Google Merchandise Store</em> den ganzen Weg vom ersten Seitenaufruf bis zum Kauf abbildet, habe ich den Mehraufwand mit BigQuery in Kauf genommen.",
  "pr-p4": "Google veröffentlicht diese Daten nur verschleiert, um die Nutzer zu schützen, also aus demselben Grund, aus dem sich beide Unternehmen zurückgezogen hatten. Die Menschen hinter den Daten lassen sich deshalb ebenfalls nicht befragen.",
  "ap-eyebrow": "03 · Vorgehen",
