@@ -619,8 +619,8 @@
   <a href="#problem" data-i18n="sub-problem">Problem</a>
   <a href="#approach" data-i18n="sub-approach">Approach</a>
   <a href="#result" data-i18n="sub-dash">Dashboard</a>
-  <a href="#subsegmentation" data-i18n="sub-subseg">Subsegmentation</a>
-  <a href="#insights" data-i18n="sub-insights">Insights</a>
+  <a href="#subsegmentation" data-i18n="sub-subseg">Check 1</a>
+  <a href="#insights" data-i18n="sub-insights">Checks 2 to 4</a>
   <a href="#reflection" data-i18n="sub-answer">Conclusion</a>
 </div>
 
@@ -649,8 +649,8 @@
     <li><a href="#problem" class="subnav-drawer-item" data-i18n="sub-problem">Problem</a></li>
     <li><a href="#approach" class="subnav-drawer-item" data-i18n="sub-approach">Approach</a></li>
     <li><a href="#result" class="subnav-drawer-item" data-i18n="sub-dash">Dashboard</a></li>
-    <li><a href="#subsegmentation" class="subnav-drawer-item" data-i18n="sub-subseg">Subsegmentation</a></li>
-    <li><a href="#insights" class="subnav-drawer-item" data-i18n="sub-insights">Insights</a></li>
+    <li><a href="#subsegmentation" class="subnav-drawer-item" data-i18n="sub-subseg">Check 1</a></li>
+    <li><a href="#insights" class="subnav-drawer-item" data-i18n="sub-insights">Checks 2 to 4</a></li>
     <li><a href="#reflection" class="subnav-drawer-item" data-i18n="sub-answer">Conclusion</a></li>
   </ul>
 </aside>
@@ -661,7 +661,7 @@
 <header class="cs-hero">
   <div class="cs-eyebrow-hero">Case Study</div>
   <h1 class="cs-h1" data-i18n="h1">GA4 Behavioral Segmentation of Google Merchandise Store Users</h1>
-  <p class="cs-lede" data-i18n="lede">For the capstone project of my Data Analytics &amp; AI Bootcamp, I analyzed 270,154 Google Merchandise Store users through raw GA4 event data. The project started as a team pitch for behavioral data-driven personas with a real company, and became solo segmentation once that data access fell through.</p>
+  <p class="cs-lede" data-i18n="lede">For the capstone project of my Data Analytics &amp; AI Bootcamp, I analyzed 270,154 Google Merchandise Store users from raw GA4 event data. It started as a team pitch for behavioral, data-driven personas with a real company. When that data access fell through, it became a solo segmentation project with one guiding question: can behavioral data alone produce segments that are meaningful and defensible?</p>
 
   <div class="cs-hero-image">
     <img src="img/hero-dashboards.png" data-i18n-alt="hero-alt" alt="Two browser windows showing the GA4 Behavioral Segmentation dashboard, one open on the Explorer segment, one on the Browser segment">
@@ -682,7 +682,7 @@
      ============================================================ -->
 <section class="cs-block" id="acquisition">
   <div class="cs-eyebrow" data-i18n="acq-eyebrow">01 · Phase 0: Data Acquisition</div>
-  <h2 class="cs-h2" data-i18n="acq-h2">Before the first query: finding a partner worth asking.</h2>
+  <h2 class="cs-h2" data-i18n="acq-h2">Finding a data partner before the first query.</h2>
   <p class="cs-body-text" data-i18n="acq-p">
     The original goal was behavioral, data-driven personas built on a real company's user data. The offer to partners was simple: a free analysis, a finished dashboard and concrete recommendations in exchange for data access. Before anyone was contacted, every candidate went through the same selection and screening process.
   </p>
@@ -739,7 +739,7 @@
     </div>
   </div>
   <p class="cs-body-text" style="margin-bottom:0;" data-i18n="acq-result">
-    One response was a decline for lack of capacity. The other three came from companies that fit the brief and were genuinely interested: two led to concrete talks, one offered support after the project had already gone solo. For a cold request asking companies to share user data, that is a solid result. None of it turned into usable data, for reasons the next section covers.
+    One reply was a decline for lack of capacity. The other three came from companies that matched the brief: two led to concrete talks, and one offered support after the project had already gone solo. None of these contacts produced usable data.
   </p>
 </section>
 
@@ -748,18 +748,18 @@
      ============================================================ -->
 <section class="cs-block" id="problem">
   <div class="cs-eyebrow" data-i18n="pr-eyebrow">02 · The Problem</div>
-  <h2 class="cs-h2" data-i18n="pr-h2">Why this project stops at segments, not personas.</h2>
+  <h2 class="cs-h2" data-i18n="pr-h2">Why the scope changed from personas to segments.</h2>
   <p class="cs-body-text" data-i18n="pr-p1">
-    One company got furthest, real interest, a good call, before its contract stopped everything cold: no sharing tracking data with third parties, not even anonymized. A second backed off the same way, after I raised data-protection concerns with them myself, before they'd asked. Neither was a rejection. Neither left me with real user data.
+    The company that got furthest showed real interest, and we had a good call. Then its contract ended the talks: tracking data may not be shared with third parties, not even in anonymized form. A second company withdrew for the same reason after I raised data-protection concerns myself, before they had asked about them. Neither company rejected the project, but neither could provide user data.
   </p>
   <p class="cs-body-text" data-i18n="pr-p2">
-    I could have kept calling this "personas." I didn't, because quantitative data alone couldn't carry that claim. Without a qualitative data layer I scoped it down to segmentation instead.
+    Personas need a qualitative layer: interviews, context, motives. Quantitative data alone cannot carry that claim, so I narrowed the scope to segmentation.
   </p>
   <p class="cs-body-text" data-i18n="pr-p3">
-    Three fallback datasets were lined up in advance. <em>UC Irvine's Online Retail II</em> had the cleanest license but no browsing data, no funnel. <em>REES46</em> had full event data but capped out at transactional RFM segmentation. <em>The Google Merchandise Store's public GA4 sample</em> was the only one with a complete behavioral funnel, worth the extra BigQuery setup.
+    Three fallback datasets were lined up in advance. <em>UC Irvine's Online Retail II</em> had the cleanest license but no browsing data and no funnel. <em>REES46</em> had full event data but only supported transactional RFM segmentation. <em>The Google Merchandise Store's public GA4 sample</em> was the only one with a complete behavioral funnel, which justified the extra BigQuery setup.
   </p>
   <p class="cs-body-text" style="margin-bottom:0;" data-i18n="pr-p4">
-    It's pre-anonymized for the same reason both companies had backed away: user privacy, one of the real takeaways here. A real partner's data would have kept a qualitative layer possible. A pseudonymized public sample closes that door outright. From there, the work became solo, and personas became segmentation.
+    Google publishes this sample in obfuscated form to protect user privacy, the same reason both companies had withdrawn. This also rules out a qualitative layer: there is no way to interview the people behind the data.
   </p>
 </section>
 
@@ -768,7 +768,7 @@
      ============================================================ -->
 <section class="cs-block" id="approach">
   <div class="cs-eyebrow" data-i18n="ap-eyebrow">03 · Approach</div>
-  <h2 class="cs-h2" data-i18n="ap-h2">Choosing k=4 when the numbers say k=2.</h2>
+  <h2 class="cs-h2" data-i18n="ap-h2">Features, clustering and the choice of k.</h2>
   <div class="cs-tag-row">
     <span class="cs-tag">Feature Engineering</span>
     <span class="cs-tag">K-Means Clustering</span>
@@ -776,11 +776,11 @@
     <span class="cs-tag" data-i18n="ap-tag4">Behavioral Analytics</span>
   </div>
   <p class="cs-body-text" data-i18n="ap-p">
-    Six behavioral features fed the model: <em>session count</em>, <em>page views</em>, <em>items viewed</em>, <em>add-to-cart</em>, <em>checkouts</em>, and <em>purchases</em>, each log-transformed and standardized. The two standard validation metrics couldn't agree with each other. The Elbow Method flattens out with no sharp bend after k=3. The Silhouette Score peaks at k=2, not k=4. I chose k=4 anyway, for interpretability and business-relevant differentiation, and documented that disagreement openly instead of quietly picking the number that told a better story.
+    Six behavioral features fed the model: <em>session count</em>, <em>page views</em>, <em>items viewed</em>, <em>add-to-cart</em>, <em>checkouts</em> and <em>purchases</em>, each log-transformed and standardized. The two standard validation metrics pointed in different directions: the Elbow curve flattens after k=3 without a clear bend, and the Silhouette Score peaks at k=2. I chose k=4 because four segments are easier to interpret and to act on, and I documented the conflict in the case study and in the dashboard.
   </p>
   <figure class="cs-figure">
     <img src="img/elbow_silhouette.png" data-i18n-alt="ap-fig-alt" alt="Elbow method inertia curve and silhouette score by k, showing the elbow flattening after k=3 while silhouette peaks at k=2">
-    <div class="cs-figure-caption" data-i18n="ap-caption">Elbow inertia keeps dropping past any sharp bend; silhouette score peaks at k=2, not k=4, the exact disagreement behind this decision.</div>
+    <div class="cs-figure-caption" data-i18n="ap-caption">Elbow inertia keeps falling without a clear bend; the Silhouette Score peaks at k=2.</div>
   </figure>
   <div class="cs-steps">
     <div class="cs-step">
@@ -801,7 +801,7 @@
       <div class="cs-step-num">3</div>
       <div>
         <h4 data-i18n="ap-s3-h">The k=4 vs. k=2 conflict</h4>
-        <p data-i18n="ap-s3-p">Named the disagreement between Elbow and Silhouette openly instead of letting one metric quietly decide.</p>
+        <p data-i18n="ap-s3-p">Documented the disagreement between Elbow and Silhouette and justified the choice of k=4.</p>
       </div>
     </div>
     <div class="cs-step">
@@ -819,7 +819,7 @@
      ============================================================ -->
 <section class="cs-block" id="result">
   <div class="cs-eyebrow" data-i18n="out-eyebrow">04 · The Output</div>
-  <h2 class="cs-h2" data-i18n="out-h2">Four segments came out the other end.</h2>
+  <h2 class="cs-h2" data-i18n="out-h2">Four behavioral segments.</h2>
 
   <div class="cs-donut-block">
     <svg width="220" height="220" viewBox="0 0 220 220">
@@ -843,7 +843,7 @@
     </div>
   </div>
 
-  <p class="cs-body-text" style="margin-top:32px;margin-bottom:0;" data-i18n="out-p">This is the artifact, not the verdict. Explore the four behavioral segments below, exactly as they came out of the clustering pipeline. Whether they hold up as "meaningful and defensible" is the question the next section actually answers.</p>
+  <p class="cs-body-text" style="margin-top:32px;margin-bottom:0;" data-i18n="out-p">The dashboard below shows the four segments exactly as the clustering produced them. The following sections test whether they are meaningful and defensible.</p>
 </section>
 
 </div><!-- /.cs-content (reopens below the dashboard) -->
@@ -863,8 +863,8 @@
 <footer>
   <div class="wrap" data-i18n="dash-footer">
     DATASET: GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270,154 users · k-means clustering (k=4)<br>
-    METHOD NOTE: k=4 chosen over the algorithmically preferred k=2 for interpretability; documented, defended design decision.<br>
-    Sub-segmentation of the Browser cluster is a descriptive, rule-based heuristic, not a validated typology.
+    METHOD NOTE: k=4 chosen over the algorithmically preferred k=2 for interpretability.<br>
+    Sub-segmentation of the Browser cluster is a descriptive, rule-based heuristic and has not been validated as a typology.
   </div>
 </footer>
 </div><!-- /.dashboard-embed -->
@@ -875,10 +875,10 @@
      CASE STUDY: INSIDE THE BROWSER CLUSTER (extracted sub-segmentation)
      ============================================================ -->
 <section class="cs-block" id="subsegmentation" style="padding-bottom:0;">
-  <div class="cs-eyebrow" data-i18n="ss-eyebrow">05 · A Closer Look</div>
-  <h2 class="cs-h2" data-i18n="ss-h2">Inside the Browser cluster.</h2>
+  <div class="cs-eyebrow" data-i18n="ss-eyebrow">05 · Check 1</div>
+  <h2 class="cs-h2" data-i18n="ss-h2">Is the Browser cluster one group?</h2>
   <p class="cs-body-text" data-i18n="ss-p">
-    Browser is 81.1% of the whole dataset, by far the largest of the four segments. A cluster that dominant is worth a second pass: is it really one behavioral group, or did k=4 flatten real structure underneath it? I ran a rule-based classification on session-level engagement signals to find out.
+    Browser accounts for 81.1% of all users. With a cluster this dominant, k=4 may have merged groups that behave differently. To check this, I classified Browser users with rules based on session-level engagement signals.
   </p>
 </section>
 
@@ -904,7 +904,7 @@
             <div class="bar-track"><div class="bar-fill" style="width:81.6%"></div></div>
           </div>
           <div class="detail" data-i18n="ss-qbe-detail">1 session, ~2.1 page views, 75% of sessions engaged</div>
-          <div class="meaning" data-i18n="ss-qbe-meaning">Genuine single-visit browsers. They look, show real signs of interest, and leave without converting.</div>
+          <div class="meaning" data-i18n="ss-qbe-meaning">Single-visit users who engage with the content and leave without converting.</div>
         </div>
         <div class="subseg-card">
           <img src="img/returning_visitor.png" alt="Returning Visitor">
@@ -950,7 +950,7 @@
             <div class="bar-track"><div class="bar-fill" style="width:1.1%"></div></div>
           </div>
           <div class="detail" data-i18n="ss-ob-detail">1 session, 1.0 page view, 0% engaged</div>
-          <div class="meaning" data-i18n="ss-ob-meaning">Doesn't fit the other patterns, a catch-all for single-session, low-signal visits.</div>
+          <div class="meaning" data-i18n="ss-ob-meaning">Catch-all for single-session visits with little signal that fit no other pattern.</div>
         </div>
       </div>
     </div>
@@ -968,7 +968,7 @@
             <div class="bar-track"><div class="bar-fill" style="width:2.1%"></div></div>
           </div>
           <div class="detail" data-i18n="ss-bl-detail">1 session, ~2.2 page views, 0ms engagement despite ~66s span</div>
-          <div class="meaning" data-i18n="ss-bl-meaning">Fast, multi-page visits with zero measurable engagement, a pattern consistent with non-human traffic.</div>
+          <div class="meaning" data-i18n="ss-bl-meaning">Fast visits across several pages without measurable engagement. This pattern is consistent with non-human traffic.</div>
         </div>
       </div>
     </div>
@@ -980,56 +980,56 @@
 <div class="cs-content" style="padding-top:16px;">
 
 <p class="cs-body-text" style="margin-bottom:64px;" data-i18n="ss-note">
-  "bot-like" is a behavioral heuristic, single session, multiple pages, zero measured engagement time, not a verified bot flag. GA4 already excludes known bots and spiders at collection time. This is a descriptive classification, not a validated typology, the same honesty standard the rest of this project holds to.
+  Result: 87.0% of the classified Browser users show likely human behavior, and Quick but Engaged alone accounts for 81.6%. "Bot-like" is a behavioral heuristic (one session, several pages, no measured engagement time) and not a verified bot flag. GA4 already excludes known bots and spiders at collection time. The classification is descriptive and has not been validated as a typology.
 </p>
 
 <!-- ============================================================
      CASE STUDY: KEY INSIGHTS (after the dashboard)
      ============================================================ -->
 <section class="cs-block" id="insights">
-  <div class="cs-eyebrow" data-i18n="in-eyebrow">06 · Testing "Defensible"</div>
-  <h2 class="cs-h2" data-i18n="in-h2">What survived the second look?</h2>
-  <p class="cs-body-text" data-i18n="in-p">Zooming back out to the four segments from the dashboard, not the Browser sub-types above: three checks, one holds up, one turns into something more useful, one is a real limit.</p>
+  <div class="cs-eyebrow" data-i18n="in-eyebrow">06 · Checks 2 to 4</div>
+  <h2 class="cs-h2" data-i18n="in-h2">How the four segments hold up.</h2>
+  <p class="cs-body-text" data-i18n="in-p">Three further checks on the four segments from the dashboard.</p>
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
       <div>
-        <h4 data-i18n="in-s1-h">A boundary that actually holds</h4>
-        <p data-i18n="in-s1-p">Browser and Explorer share the same devices and traffic. Explorer just spends roughly 13 times longer engaged. This is not a convenient cut in the data. This is a real behavioural difference.</p>
+        <h4 data-i18n="in-s1-h">Browser and Explorer: a clear boundary</h4>
+        <p data-i18n="in-s1-p">Browser and Explorer use the same devices and traffic sources, but Explorer spends roughly 13 times as much engaged time. The two segments are separated by behavior, not by device or channel.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">2</div>
       <div>
-        <h4 data-i18n="in-s2-h">Two segments, one problem</h4>
-        <p data-i18n="in-s2-p">Explorer and Engaged Non-Converter look like separate audiences until you find where they actually drop off: at the step from Shipping Info to Payment Info. There, retention is 13.6% and 27.6%, respectively. Fix that one step and both segments will improve at once.</p>
+        <h4 data-i18n="in-s2-h">Explorer and Engaged Non-Converter: a weaker boundary, a shared drop-off</h4>
+        <p data-i18n="in-s2-p">Both segments drop off at the same step, from Shipping Info to Payment Info, with retention of 13.6% and 27.6% respectively. The boundary between them is therefore weaker than the clustering suggests. For the shop, the shared drop-off is the more useful finding: this step is the first place to test an improvement for both segments.</p>
       </div>
     </div>
     <div class="cs-step">
       <div class="cs-step-num">3</div>
       <div>
-        <h4 data-i18n="in-s3-h">Built to read one holiday season, not a whole year</h4>
-        <p data-i18n="in-s3-p">The dataset only ever covered three months, November through January, holiday season by design. That was known going in. What wasn't known was how much moves inside that window: Converter share nearly halves (2.5% down to 0.9%), and site-wide conversion falls with it by about 60%. Exactly the kind of instability a holiday-season model should surface, and exactly why calling this a stable user typology would overstate it.</p>
+        <h4 data-i18n="in-s3-h">A holiday-season snapshot</h4>
+        <p data-i18n="in-s3-p">The dataset covers three months, November to January. Within this window, the Converter share drops from 2.5% to 0.9%, and site-wide conversion falls by about 60%. The segments therefore describe behavior during one holiday season and cannot be read as a stable user typology.</p>
       </div>
     </div>
   </div>
-  <p class="cs-body-text" style="margin-top:20px;margin-bottom:0;" data-i18n="in-close">One holds. One becomes a solution. One confirms this was always a holiday-season read. That's what checking "defensible" actually gets you: not a clean pass, but a more honest map.</p>
+  <p class="cs-body-text" style="margin-top:20px;margin-bottom:0;" data-i18n="in-close">In summary: one boundary holds, one is weaker but points to a concrete starting point, and the time window limits how far the results can be generalized.</p>
 </section>
 
 <!-- ============================================================
      CASE STUDY: REFLECTION / CLOSING
      ============================================================ -->
 <section class="cs-block" id="reflection">
-  <div class="cs-eyebrow" data-i18n="re-eyebrow">07 · The Answer</div>
-  <h2 class="cs-h2" data-i18n="re-h2">Was scoping down to segments the right call?</h2>
+  <div class="cs-eyebrow" data-i18n="re-eyebrow">07 · Conclusion</div>
+  <h2 class="cs-h2" data-i18n="re-h2">Meaningful and defensible, within limits.</h2>
   <p class="cs-body-text" data-i18n="re-p1">
-    Yes, and the three checks above are why. One segment boundary turned out genuinely solid (Browser vs. Explorer). One looked solid but wasn't (the shared checkout-friction point). And the whole segmentation confirmed what the three-month window always implied: a holiday-season read, not a stable typology. If I'd called these "personas" instead of "segments," every one of those caveats would have been a false promise instead of an honest footnote.
+    Behavioral data alone produced segments that are meaningful within one season: at least one boundary holds, and the analysis points to a concrete problem in the checkout. Calling them personas would have promised more than the data can show.
   </p>
   <p class="cs-body-text" data-i18n="re-p2">
-    The most useful part of this project wasn't the clustering. It was documenting exactly where it stops being trustworthy. k=4 tells a cleaner story than k=2, but the Silhouette Score doesn't agree, and saying that out loud felt riskier than burying it in an appendix. It wasn't: the methodological critique became the strongest part of the deliverable, not the weakest.
+    The case study and the dashboard name the limits of the analysis: the conflict between k=4 and k=2, the heuristic nature of the Browser sub-types and the short time window. Readers can judge for themselves how far the segments carry.
   </p>
   <p class="cs-body-text" style="margin-bottom:0;" data-i18n="re-p3">
-    Getting back to the original goal, actual personas, needs the qualitative layer this project never had: interviews, context, the "why." HDBSCAN could still sharpen the segments themselves, given how unevenly dense the data is (81% in one cluster), but that's a better clustering, not a persona. The honest path from here runs through user research, not more modeling.
+    Getting from segments to personas requires the qualitative layer this project lacked: interviews, context and the reasons behind the behavior. HDBSCAN could sharpen the segments, since the data is very unevenly dense (81% in one cluster), but it would not add that layer. The next step is user research.
   </p>
 </section>
 
@@ -1066,8 +1066,8 @@ const DE = {
  "sub-problem": "Problem",
  "sub-approach": "Vorgehen",
  "sub-dash": "Dashboard",
- "sub-subseg": "Subsegmentierung",
- "sub-insights": "Erkenntnisse",
+ "sub-subseg": "Prüfung 1",
+ "sub-insights": "Prüfungen 2 bis 4",
  "sub-answer": "Fazit",
  "nav-portfolio": "Portfolio",
  "nav-about": "Über mich",
@@ -1075,14 +1075,14 @@ const DE = {
  "menu-open": "Menü öffnen",
  "menu-close": "Menü schließen",
  "h1": "Verhaltensbasierte GA4-Segmentierung der Nutzer des Google Merchandise Store",
- "lede": "Für das Abschlussprojekt meines Data Analytics &amp; AI Bootcamps habe ich 270.154 Nutzer des Google Merchandise Store anhand roher GA4-Eventdaten analysiert. Das Projekt begann als Team-Pitch für verhaltensbasierte, datengetriebene Personas mit einem echten Unternehmen und wurde zur Solo-Segmentierung, als dieser Datenzugang wegfiel.",
+ "lede": "Für das Abschlussprojekt meines Data Analytics &amp; AI Bootcamps habe ich 270.154 Nutzer des Google Merchandise Store anhand roher GA4-Eventdaten analysiert. Begonnen hat es als Team-Pitch für verhaltensbasierte, datengetriebene Personas mit einem echten Unternehmen. Als dieser Datenzugang wegfiel, wurde daraus eine Solo-Segmentierung mit einer Leitfrage: Lassen sich aus reinen Verhaltensdaten Segmente bilden, die aussagekräftig und belastbar sind?",
  "hero-alt": "Zwei Browserfenster mit dem GA4 Behavioral Segmentation Dashboard, eines zeigt das Segment Explorer, eines das Segment Browser",
  "meta-role": "Rolle",
  "meta-role-v": "Solo: Pipeline, Clustering, Dashboard, Präsentation",
  "meta-time": "Zeitraum",
  "meta-data": "Datensatz",
  "acq-eyebrow": "01 · Phase 0: Datenbeschaffung",
- "acq-h2": "Vor der ersten Abfrage: die richtigen Partner finden.",
+ "acq-h2": "Einen Datenpartner finden, bevor die erste Abfrage läuft.",
  "acq-p": "Ursprüngliches Ziel waren verhaltensbasierte, datengetriebene Personas auf Basis echter Nutzerdaten eines Unternehmens. Das Angebot an Partner war einfach: eine kostenlose Analyse, ein fertiges Dashboard und konkrete Handlungsempfehlungen im Austausch gegen Datenzugang. Bevor jemand kontaktiert wurde, durchlief jeder Kandidat denselben Auswahl- und Prüfprozess.",
  "acq-s1-h": "Longlist aufbauen",
  "acq-s1-p": "37 Kandidaten aus meinem beruflichen Netzwerk, mit Fokus auf die Digitalbranche in Köln und NRW.",
@@ -1102,42 +1102,42 @@ const DE = {
  "m-rate-num": "20 %",
  "m-rate": "Rückmeldequote",
  "m-rate-sub": "4 von 20 haben geantwortet",
- "acq-result": "Eine Rückmeldung war eine Absage aus Kapazitätsgründen. Die anderen drei kamen von Unternehmen, die zum Vorhaben passten und echtes Interesse hatten: Zwei führten zu konkreten Gesprächen, eines bot Unterstützung an, als das Projekt bereits solo lief. Für eine Kaltanfrage, die Unternehmen um ihre Nutzerdaten bittet, ist das ein solides Ergebnis. Zu nutzbaren Daten führte nichts davon, aus Gründen, die der nächste Abschnitt erklärt.",
+ "acq-result": "Eine Rückmeldung war eine Absage aus Kapazitätsgründen. Die anderen drei kamen von Unternehmen, die zum Vorhaben passten: Zwei führten zu konkreten Gesprächen, eines bot Unterstützung an, als das Projekt bereits solo lief. Nutzbare Daten ergaben sich aus keinem dieser Kontakte.",
  "pr-eyebrow": "02 · Das Problem",
- "pr-h2": "Warum dieses Projekt bei Segmenten endet, nicht bei Personas.",
- "pr-p1": "Ein Unternehmen kam am weitesten: echtes Interesse, ein gutes Gespräch, bis sein Vertrag alles stoppte. Keine Weitergabe von Trackingdaten an Dritte, nicht einmal anonymisiert. Ein zweites zog sich aus demselben Grund zurück, nachdem ich selbst Datenschutzbedenken angesprochen hatte, noch bevor sie danach fragten. Beides war keine Absage. Beides ließ mich ohne echte Nutzerdaten zurück.",
- "pr-p2": "Ich hätte das weiterhin „Personas“ nennen können. Habe ich nicht, weil quantitative Daten allein diesen Anspruch nicht tragen. Ohne qualitative Datenebene habe ich den Umfang auf Segmentierung reduziert.",
- "pr-p3": "Drei Fallback-Datensätze lagen vorab bereit. <em>UC Irvines Online Retail II</em> hatte die sauberste Lizenz, aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> hatte vollständige Eventdaten, reichte aber nur bis zu transaktionaler RFM-Segmentierung. <em>Das öffentliche GA4-Sample des Google Merchandise Store</em> war der einzige mit vollständigem Verhaltensfunnel und den zusätzlichen BigQuery-Aufwand wert.",
- "pr-p4": "Es ist aus demselben Grund vorab anonymisiert, aus dem sich beide Unternehmen zurückgezogen hatten: Schutz der Privatsphäre der Nutzer, eine der echten Erkenntnisse hier. Die Daten eines echten Partners hätten eine qualitative Ebene möglich gemacht. Ein pseudonymisiertes öffentliches Sample schließt diese Tür vollständig. Ab hier wurde die Arbeit zum Soloprojekt, und aus Personas wurde Segmentierung.",
+ "pr-h2": "Warum aus Personas Segmente wurden.",
+ "pr-p1": "Das Unternehmen, das am weitesten kam, zeigte echtes Interesse, und wir hatten ein gutes Gespräch. Dann beendete sein Vertrag die Gespräche: Trackingdaten dürfen nicht an Dritte weitergegeben werden, auch nicht anonymisiert. Ein zweites Unternehmen zog sich aus demselben Grund zurück, nachdem ich Datenschutzbedenken selbst angesprochen hatte, bevor danach gefragt wurde. Keines der beiden lehnte das Projekt ab, aber keines konnte Nutzerdaten bereitstellen.",
+ "pr-p2": "Personas brauchen eine qualitative Ebene: Interviews, Kontext, Motive. Quantitative Daten allein tragen diesen Anspruch nicht, deshalb habe ich den Umfang auf Segmentierung reduziert.",
+ "pr-p3": "Drei Fallback-Datensätze lagen vorab bereit. <em>UC Irvines Online Retail II</em> hatte die sauberste Lizenz, aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> hatte vollständige Eventdaten, ermöglichte aber nur eine transaktionale RFM-Segmentierung. <em>Das öffentliche GA4-Sample des Google Merchandise Store</em> war der einzige mit vollständigem Verhaltensfunnel, was den zusätzlichen Aufwand für BigQuery rechtfertigte.",
+ "pr-p4": "Google veröffentlicht dieses Sample in verschleierter Form, um die Privatsphäre der Nutzer zu schützen, also aus demselben Grund, aus dem sich beide Unternehmen zurückgezogen hatten. Damit ist auch eine qualitative Ebene ausgeschlossen: Die Menschen hinter den Daten lassen sich nicht befragen.",
  "ap-eyebrow": "03 · Vorgehen",
- "ap-h2": "k=4 wählen, wenn die Zahlen k=2 sagen.",
+ "ap-h2": "Merkmale, Clustering und die Wahl von k.",
  "ap-tag3": "Statistische Validierung",
  "ap-tag4": "Verhaltensanalyse",
- "ap-p": "Sechs Verhaltensmerkmale flossen in das Modell ein: <em>Anzahl der Sessions</em>, <em>Seitenaufrufe</em>, <em>angesehene Artikel</em>, <em>Add-to-Cart</em>, <em>Checkouts</em> und <em>Käufe</em>, jeweils log-transformiert und standardisiert. Die beiden gängigen Validierungsmetriken waren sich nicht einig. Die Elbow-Methode flacht nach k=3 ohne deutlichen Knick ab. Der Silhouette Score erreicht sein Maximum bei k=2, nicht bei k=4. Ich habe mich trotzdem für k=4 entschieden, wegen der Interpretierbarkeit und einer geschäftlich relevanten Differenzierung, und diesen Widerspruch offen dokumentiert, statt stillschweigend die Zahl zu nehmen, die die bessere Geschichte erzählt.",
+ "ap-p": "Sechs Verhaltensmerkmale flossen in das Modell ein: <em>Anzahl der Sessions</em>, <em>Seitenaufrufe</em>, <em>angesehene Artikel</em>, <em>Add-to-Cart</em>, <em>Checkouts</em> und <em>Käufe</em>, jeweils log-transformiert und standardisiert. Die beiden gängigen Validierungsmetriken wiesen in unterschiedliche Richtungen: Die Elbow-Kurve flacht nach k=3 ohne deutlichen Knick ab, und der Silhouette Score erreicht sein Maximum bei k=2. Ich habe k=4 gewählt, weil sich vier Segmente leichter interpretieren und in Maßnahmen übersetzen lassen, und den Widerspruch in der Case Study und im Dashboard dokumentiert.",
  "ap-fig-alt": "Trägheitskurve der Elbow-Methode und Silhouette Score nach k: Der Ellbogen flacht nach k=3 ab, der Silhouette Score erreicht sein Maximum bei k=2",
- "ap-caption": "Die Elbow-Trägheit fällt ohne deutlichen Knick weiter; der Silhouette Score erreicht sein Maximum bei k=2, nicht bei k=4. Genau dieser Widerspruch steht hinter der Entscheidung.",
+ "ap-caption": "Die Elbow-Trägheit fällt ohne deutlichen Knick weiter; der Silhouette Score erreicht sein Maximum bei k=2.",
  "ap-s1-h": "Scope und EDA",
  "ap-s1-p": "Den rohen GA4-Eventstream in BigQuery abgefragt und einen übernommenen Filter entdeckt, der vor der Modellierung 92,3 % der Nutzer ausschloss.",
  "ap-s2-h": "Feature Engineering und Clustering",
  "ap-s2-p": "Sechs Verhaltensmerkmale, log1p-transformiert und skaliert, k-Means mit k=4.",
  "ap-s3-h": "Der Konflikt k=4 vs. k=2",
- "ap-s3-p": "Den Widerspruch zwischen Elbow und Silhouette offen benannt, statt eine Metrik stillschweigend entscheiden zu lassen.",
+ "ap-s3-p": "Den Widerspruch zwischen Elbow und Silhouette dokumentiert und die Wahl von k=4 begründet.",
  "ap-s4-h": "Subsegmentierung als Stresstest",
  "ap-s4-p": "Den dominanten Browser-Cluster mit 81 % über eine regelbasierte Ebene aufgeschlüsselt, um zu prüfen, ob k-Means echte Strukturen geglättet hatte.",
  "out-eyebrow": "04 · Das Ergebnis",
- "out-h2": "Am Ende standen vier Segmente.",
+ "out-h2": "Vier Verhaltenssegmente.",
  "out-total": "270.154",
  "out-total-sub": "Nutzer gesamt",
  "out-pct-81.1%": "81,1 %",
  "out-pct-14.3%": "14,3 %",
  "out-pct-2.9%": "2,9 %",
  "out-pct-1.6%": "1,6 %",
- "out-p": "Das ist das Artefakt, nicht das Urteil. Erkunde unten die vier Verhaltenssegmente, genau so, wie sie aus der Clustering-Pipeline kamen. Ob sie als „aussagekräftig und belastbar“ standhalten, beantwortet erst der nächste Abschnitt.",
+ "out-p": "Das Dashboard unten zeigt die vier Segmente so, wie das Clustering sie ergeben hat. Die folgenden Abschnitte prüfen, ob sie aussagekräftig und belastbar sind.",
  "dash-title": "Verhaltensbasierte GA4-Segmentierung der Nutzer des Google Merchandise&nbsp;Store",
- "dash-footer": "DATENSATZ: GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270.154 Nutzer · k-Means-Clustering (k=4)<br>METHODISCHER HINWEIS: k=4 statt des algorithmisch bevorzugten k=2 wegen der Interpretierbarkeit gewählt; eine dokumentierte, begründete Designentscheidung.<br>Die Subsegmentierung des Browser-Clusters ist eine deskriptive, regelbasierte Heuristik, keine validierte Typologie.",
- "ss-eyebrow": "05 · Ein genauerer Blick",
- "ss-h2": "Im Inneren des Browser-Clusters.",
- "ss-p": "Browser macht 81,1 % des gesamten Datensatzes aus und ist mit Abstand das größte der vier Segmente. Ein so dominanter Cluster verdient einen zweiten Blick: Ist er wirklich eine einheitliche Verhaltensgruppe, oder hat k=4 darunterliegende Strukturen eingeebnet? Um das herauszufinden, habe ich eine regelbasierte Klassifikation anhand von Engagement-Signalen auf Session-Ebene durchgeführt.",
+ "dash-footer": "DATENSATZ: GA4 (bigquery-public-data.ga4_obfuscated_sample_ecommerce) · 270.154 Nutzer · k-Means-Clustering (k=4)<br>METHODISCHER HINWEIS: k=4 statt des algorithmisch bevorzugten k=2 wegen der Interpretierbarkeit gewählt.<br>Die Subsegmentierung des Browser-Clusters ist eine deskriptive, regelbasierte Heuristik und nicht als Typologie validiert.",
+ "ss-eyebrow": "05 · Prüfung 1",
+ "ss-h2": "Ist der Browser-Cluster eine einheitliche Gruppe?",
+ "ss-p": "Browser umfasst 81,1 % aller Nutzer. Bei einem so dominanten Cluster kann k=4 Gruppen zusammengefasst haben, die sich unterschiedlich verhalten. Um das zu prüfen, habe ich die Browser-Nutzer regelbasiert anhand von Engagement-Signalen auf Session-Ebene klassifiziert.",
  "ss-o-engaged": "87,0 %",
  "ss-o-explorer": "10,9 %",
  "ss-o-converter": "2,1 %",
@@ -1150,7 +1150,7 @@ const DE = {
  "ss-qbe-count": "168.009",
  "ss-qbe-pct": "81,6 % der klassifizierten",
  "ss-qbe-detail": "1 Session, ~2,1 Seitenaufrufe, 75 % der Sessions engagiert",
- "ss-qbe-meaning": "Echte Einmalbesucher. Sie schauen sich um, zeigen echtes Interesse und gehen, ohne zu konvertieren.",
+ "ss-qbe-meaning": "Einmalbesucher, die sich mit den Inhalten beschäftigen und ohne Kauf gehen.",
  "ss-rv-count": "11.138",
  "ss-rv-pct": "5,4 % der klassifizierten",
  "ss-rv-detail": "~2,0 Sessions, ~2,0 Seitenaufrufe, 61 % engagiert",
@@ -1162,28 +1162,28 @@ const DE = {
  "ss-ob-count": "2.356",
  "ss-ob-pct": "1,1 % der klassifizierten",
  "ss-ob-detail": "1 Session, 1,0 Seitenaufruf, 0 % engagiert",
- "ss-ob-meaning": "Passt in keines der anderen Muster; Sammelkategorie für Einzelbesuche mit wenig Signal.",
+ "ss-ob-meaning": "Sammelkategorie für Einzelbesuche mit wenig Signal, die in kein anderes Muster passen.",
  "ss-bl-count": "4.334",
  "ss-bl-pct": "2,1 % der klassifizierten",
  "ss-bl-detail": "1 Session, ~2,2 Seitenaufrufe, 0 ms Engagement trotz ~66 s Dauer",
- "ss-bl-meaning": "Schnelle Besuche über mehrere Seiten ohne messbares Engagement, ein Muster, das auf nicht menschlichen Traffic hindeutet.",
+ "ss-bl-meaning": "Schnelle Besuche über mehrere Seiten ohne messbares Engagement. Dieses Muster passt zu nicht menschlichem Traffic.",
  "ss-coverage": "205.914 von 219.153 Browser-Nutzern klassifiziert · 94,0 % Abdeckung (Engagement-Daten auf Session-Ebene)",
- "ss-note": "„Botartig“ ist eine Verhaltensheuristik (eine Session, mehrere Seiten, keine gemessene Engagement-Zeit) und keine verifizierte Bot-Kennzeichnung. GA4 schließt bekannte Bots und Spider bereits bei der Erfassung aus. Es handelt sich um eine deskriptive Klassifikation, keine validierte Typologie, nach demselben Anspruch an Ehrlichkeit wie im Rest des Projekts.",
- "in-eyebrow": "06 · „Belastbar“ auf dem Prüfstand",
- "in-h2": "Was hat den zweiten Blick überstanden?",
- "in-p": "Zurück zu den vier Segmenten aus dem Dashboard, nicht zu den Browser-Subtypen oben: drei Prüfungen. Eine hält, eine wird zu etwas Nützlicherem, eine zeigt eine echte Grenze.",
- "in-s1-h": "Eine Grenze, die wirklich hält",
- "in-s1-p": "Browser und Explorer nutzen dieselben Geräte und Traffic-Quellen. Explorer verbringt nur rund 13-mal mehr Zeit mit aktivem Engagement. Das ist kein bequemer Schnitt in den Daten. Das ist ein echter Verhaltensunterschied.",
- "in-s2-h": "Zwei Segmente, ein Problem",
- "in-s2-p": "Explorer und Engaged Non-Converter wirken wie getrennte Zielgruppen, bis man sieht, wo sie tatsächlich abspringen: beim Schritt von den Versandinformationen zu den Zahlungsinformationen. Dort liegt die Retention bei 13,6 % bzw. 27,6 %. Wer diesen einen Schritt verbessert, verbessert beide Segmente zugleich.",
- "in-s3-h": "Gebaut für eine Weihnachtssaison, nicht für ein ganzes Jahr",
- "in-s3-p": "Der Datensatz umfasste immer nur drei Monate, November bis Januar, also bewusst die Weihnachtssaison. Das war von Anfang an bekannt. Nicht bekannt war, wie viel sich innerhalb dieses Fensters bewegt: Der Converter-Anteil halbiert sich fast (von 2,5 % auf 0,9 %), und die Conversion der gesamten Website fällt dabei um rund 60 %. Genau diese Art von Instabilität sollte ein Saisonmodell sichtbar machen, und genau deshalb wäre es übertrieben, hier von einer stabilen Nutzertypologie zu sprechen.",
- "in-close": "Eine hält. Eine wird zur Lösung. Eine bestätigt, dass dies immer eine Momentaufnahme der Weihnachtssaison war. Genau das bringt die Prüfung auf „belastbar“: keinen glatten Durchlauf, sondern eine ehrlichere Landkarte.",
- "re-eyebrow": "07 · Die Antwort",
- "re-h2": "War die Beschränkung auf Segmente die richtige Entscheidung?",
- "re-p1": "Ja, und die drei Prüfungen oben sind der Grund. Eine Segmentgrenze erwies sich als wirklich solide (Browser vs. Explorer). Eine wirkte solide, war es aber nicht (der gemeinsame Reibungspunkt im Checkout). Und die gesamte Segmentierung bestätigte, was das dreimonatige Zeitfenster schon immer nahelegte: eine Momentaufnahme der Weihnachtssaison, keine stabile Typologie. Hätte ich sie „Personas“ statt „Segmente“ genannt, wäre jede dieser Einschränkungen ein falsches Versprechen gewesen statt einer ehrlichen Fußnote.",
- "re-p2": "Der nützlichste Teil dieses Projekts war nicht das Clustering. Es war die genaue Dokumentation, ab wo es nicht mehr vertrauenswürdig ist. k=4 erzählt eine klarere Geschichte als k=2, aber der Silhouette Score widerspricht, und das offen auszusprechen fühlte sich riskanter an, als es in einem Anhang zu vergraben. War es nicht: Die methodische Kritik wurde zum stärksten Teil des Ergebnisses, nicht zum schwächsten.",
- "re-p3": "Der Weg zurück zum ursprünglichen Ziel, echten Personas, braucht die qualitative Ebene, die diesem Projekt fehlte: Interviews, Kontext, das „Warum“. HDBSCAN könnte die Segmente selbst noch schärfen, angesichts der ungleichmäßigen Dichte der Daten (81 % in einem Cluster), aber das wäre ein besseres Clustering, keine Persona. Der ehrliche Weg von hier führt über User Research, nicht über mehr Modellierung.",
+ "ss-note": "Ergebnis: 87,0 % der klassifizierten Browser-Nutzer zeigen wahrscheinlich menschliches Verhalten, und Quick but Engaged allein macht 81,6 % aus. „Botartig“ ist eine Verhaltensheuristik (eine Session, mehrere Seiten, keine gemessene Engagement-Zeit) und keine verifizierte Bot-Kennzeichnung. GA4 schließt bekannte Bots und Spider bereits bei der Erfassung aus. Die Klassifikation ist deskriptiv und nicht als Typologie validiert.",
+ "in-eyebrow": "06 · Prüfungen 2 bis 4",
+ "in-h2": "Wie belastbar die vier Segmente sind.",
+ "in-p": "Drei weitere Prüfungen an den vier Segmenten aus dem Dashboard.",
+ "in-s1-h": "Browser und Explorer: eine klare Grenze",
+ "in-s1-p": "Browser und Explorer nutzen dieselben Geräte und Traffic-Quellen, Explorer verbringt aber rund 13-mal so viel Zeit mit aktivem Engagement. Die beiden Segmente trennt also ihr Verhalten und nicht Gerät oder Kanal.",
+ "in-s2-h": "Explorer und Engaged Non-Converter: schwächere Grenze, gemeinsamer Abbruchpunkt",
+ "in-s2-p": "Beide Segmente brechen an derselben Stelle ab, beim Schritt von den Versand- zu den Zahlungsinformationen, mit einer Retention von 13,6 % bzw. 27,6 %. Die Grenze zwischen ihnen ist damit schwächer, als das Clustering nahelegt. Für den Shop ist der gemeinsame Abbruchpunkt der nützlichere Befund: An diesem Schritt lässt sich eine Verbesserung für beide Segmente zuerst testen.",
+ "in-s3-h": "Eine Momentaufnahme der Weihnachtssaison",
+ "in-s3-p": "Der Datensatz umfasst drei Monate, November bis Januar. Innerhalb dieses Fensters sinkt der Converter-Anteil von 2,5 % auf 0,9 %, und die Conversion der gesamten Website fällt um rund 60 %. Die Segmente beschreiben daher das Verhalten während einer Weihnachtssaison und lassen sich nicht als stabile Nutzertypologie lesen.",
+ "in-close": "Zusammengefasst: Eine Grenze hält, eine ist schwächer, liefert aber einen konkreten Ansatzpunkt, und das Zeitfenster begrenzt, wie weit sich die Ergebnisse verallgemeinern lassen.",
+ "re-eyebrow": "07 · Fazit",
+ "re-h2": "Aussagekräftig und belastbar, mit Grenzen.",
+ "re-p1": "Reine Verhaltensdaten haben Segmente ergeben, die innerhalb einer Saison aussagekräftig sind: Mindestens eine Grenze hält, und die Analyse zeigt ein konkretes Problem im Checkout. Sie Personas zu nennen, hätte mehr versprochen, als die Daten zeigen können.",
+ "re-p2": "Case Study und Dashboard benennen die Grenzen der Analyse: den Widerspruch zwischen k=4 und k=2, den heuristischen Charakter der Browser-Subtypen und das kurze Zeitfenster. So können Leser selbst beurteilen, wie weit die Segmente tragen.",
+ "re-p3": "Der Weg von Segmenten zu Personas braucht die qualitative Ebene, die diesem Projekt fehlte: Interviews, Kontext und die Gründe hinter dem Verhalten. HDBSCAN könnte die Segmente schärfen, da die Daten sehr ungleichmäßig verteilt sind (81 % in einem Cluster), diese Ebene ergänzt es aber nicht. Der nächste Schritt ist User Research.",
  "cta-h3": "Weitere Projekte",
  "cta-btn": "Zur Projektübersicht →",
  "foot-sig": "Sebastian Weber · UX/UI Designer · Design-to-Code · Köln 2026",
