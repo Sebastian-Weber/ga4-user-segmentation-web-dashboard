@@ -576,19 +576,6 @@
   }
 
   /* ---------- Cookie banner ---------- */
-  #cookie-banner{
-    position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
-    background:#0F1117;color:#fff;padding:16px 24px;border-radius:12px;
-    display:none;align-items:center;gap:16px;z-index:200;font-size:13px;
-    max-width:560px;width:calc(100% - 48px);
-    box-shadow:0 8px 32px rgba(0,0,0,0.18);
-    font-family:'Montserrat',sans-serif;
-  }
-  #cookie-banner p{margin:0;flex:1;color:#ccc;line-height:1.5;}
-  #cookie-banner a{color:#fff;}
-  .cookie-btn{padding:8px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;border:none;white-space:nowrap;font-family:inherit;}
-  .cookie-accept{background:var(--cs-coral, #E06040);color:#fff;}
-  .cookie-decline{background:transparent;color:#ccc;border:1px solid #555 !important;}
 </style>
 </head>
 <body>
@@ -1078,9 +1065,6 @@ const DE = {
  "sub-subseg": "Subsegmentierung",
  "sub-insights": "Erkenntnisse",
  "sub-answer": "Fazit",
- "cookie-text": "Diese Seite nutzt PostHog für datenschutzfreundliche Analysen, gehostet auf Servern in der EU. <a href=\"https://sebastian-weber.github.io/uxui-portfolio/datenschutz.html\" target=\"_blank\">Datenschutzerklärung</a>",
- "cookie-decline": "Ablehnen",
- "cookie-accept": "Akzeptieren",
  "nav-portfolio": "Portfolio",
  "nav-about": "Über mich",
  "nav-imprint": "Impressum",
@@ -1533,23 +1517,6 @@ document.querySelectorAll('[data-lang]').forEach(btn=>{
 applyStaticI18n();
 renderDashboard();
 posthog.capture('segment_tab_viewed', { segment: DATA.segments[0].segment });
-
-/* ---------- Cookie consent ---------- */
-function decideConsent(accepted){
-  document.getElementById('cookie-banner').style.display = 'none';
-  if (accepted) {
-    posthog.opt_in_capturing();
-  } else {
-    posthog.opt_out_capturing();
-  }
-  posthog.capture('cookie_consent', { accepted: accepted });
-}
-
-// Revocation must be as easy as consent (Art. 7(3) GDPR)
-document.getElementById('cookie-settings-link').addEventListener('click', function (e) {
-  e.preventDefault();
-  document.getElementById('cookie-banner').style.display = 'flex';
-});
 
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
