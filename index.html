@@ -748,18 +748,18 @@
      ============================================================ -->
 <section class="cs-block" id="problem">
   <div class="cs-eyebrow" data-i18n="pr-eyebrow">02 · The Problem</div>
-  <h2 class="cs-h2" data-i18n="pr-h2">Why the scope changed from personas to segments.</h2>
+  <h2 class="cs-h2" data-i18n="pr-h2">Why it didn't end up as personas.</h2>
   <p class="cs-body-text" data-i18n="pr-p1">
-    The company that got furthest showed real interest, and we had a good call. Then its contract ended the talks: tracking data may not be shared with third parties, not even in anonymized form. A second company withdrew for the same reason after I raised data-protection concerns myself, before they had asked about them. Neither company rejected the project, but neither could provide user data.
+    Two companies led to concrete talks. After a meeting with two product owners, the first had already agreed to work on the project plan with us. A week later, they called it off: their contract doesn't allow them to share tracking data with third parties, not even anonymized. The second company withdrew for the same reason, after I had raised the data-protection question myself. In neither case was the project itself the problem.
   </p>
   <p class="cs-body-text" data-i18n="pr-p2">
-    Personas need a qualitative layer: interviews, context, motives. Quantitative data alone cannot carry that claim, so I narrowed the scope to segmentation.
+    Without interviews and context, personas have no foundation. Behavioral data doesn't reveal motives, so I limited the project to segmentation.
   </p>
   <p class="cs-body-text" data-i18n="pr-p3">
-    Three fallback datasets were lined up in advance. <em>UC Irvine's Online Retail II</em> had the cleanest license but no browsing data and no funnel. <em>REES46</em> had full event data but only supported transactional RFM segmentation. <em>The Google Merchandise Store's public GA4 sample</em> was the only one with a complete behavioral funnel, which justified the extra BigQuery setup.
+    For this case, I had prepared three public datasets. <em>UC Irvine's Online Retail II</em> has the cleanest license but no browsing data and no funnel. <em>REES46</em> has full event data but only supports purchase-based RFM segmentation. Only <em>the Google Merchandise Store's public GA4 sample</em> covers the full path from first page view to purchase, so I accepted the extra BigQuery setup.
   </p>
   <p class="cs-body-text" style="margin-bottom:0;" data-i18n="pr-p4">
-    Google publishes this sample in obfuscated form to protect user privacy, the same reason both companies had withdrawn. This also rules out a qualitative layer: there is no way to interview the people behind the data.
+    Google only publishes this data in obfuscated form to protect users, the same reason both companies had withdrawn. That also means the people behind the data can't be interviewed.
   </p>
 </section>
 
@@ -1104,11 +1104,11 @@ const DE = {
  "m-rate-sub": "4 von 20 haben geantwortet",
  "acq-result": "Eine Rückmeldung war eine Absage aus Kapazitätsgründen. Die anderen drei kamen von Unternehmen, die zum Vorhaben passten: Zwei führten zu konkreten Gesprächen, eines bot Unterstützung an, als das Projekt bereits solo lief. Nutzbare Daten ergaben sich aus keinem dieser Kontakte.",
  "pr-eyebrow": "02 · Das Problem",
- "pr-h2": "Warum aus Personas Segmente wurden.",
- "pr-p1": "Das Unternehmen, das am weitesten kam, zeigte echtes Interesse, und wir hatten ein gutes Gespräch. Dann beendete sein Vertrag die Gespräche: Trackingdaten dürfen nicht an Dritte weitergegeben werden, auch nicht anonymisiert. Ein zweites Unternehmen zog sich aus demselben Grund zurück, nachdem ich Datenschutzbedenken selbst angesprochen hatte, bevor danach gefragt wurde. Keines der beiden lehnte das Projekt ab, aber keines konnte Nutzerdaten bereitstellen.",
- "pr-p2": "Personas brauchen eine qualitative Ebene: Interviews, Kontext, Motive. Quantitative Daten allein tragen diesen Anspruch nicht, deshalb habe ich den Umfang auf Segmentierung reduziert.",
- "pr-p3": "Drei Fallback-Datensätze lagen vorab bereit. <em>UC Irvines Online Retail II</em> hatte die sauberste Lizenz, aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> hatte vollständige Eventdaten, ermöglichte aber nur eine transaktionale RFM-Segmentierung. <em>Das öffentliche GA4-Sample des Google Merchandise Store</em> war der einzige mit vollständigem Verhaltensfunnel, was den zusätzlichen Aufwand für BigQuery rechtfertigte.",
- "pr-p4": "Google veröffentlicht dieses Sample in verschleierter Form, um die Privatsphäre der Nutzer zu schützen, also aus demselben Grund, aus dem sich beide Unternehmen zurückgezogen hatten. Damit ist auch eine qualitative Ebene ausgeschlossen: Die Menschen hinter den Daten lassen sich nicht befragen.",
+ "pr-h2": "Warum es am Ende keine Personas wurden.",
+ "pr-p1": "Zwei Unternehmen führten zu konkreten Gesprächen. Mit dem ersten hatte ich nach einem Termin mit zwei Product Ownern bereits vereinbart, gemeinsam an der Projektplanung zu arbeiten. Eine Woche später kam die Absage, weil das Unternehmen laut Vertrag keine Trackingdaten an Dritte weitergeben darf, auch nicht anonymisiert. Das zweite zog sich aus demselben Grund zurück, nachdem ich die Datenschutzfrage selbst angesprochen hatte. Am Projekt selbst lag es in beiden Fällen nicht.",
+ "pr-p2": "Weil sich aus reinen Verhaltensdaten keine Motive ablesen lassen und Personas ohne Interviews und Kontext die Grundlage fehlt, habe ich das Projekt auf eine Segmentierung beschränkt.",
+ "pr-p3": "Für diesen Fall hatte ich drei öffentliche Datensätze vorbereitet. <em>Online Retail II</em> der UC Irvine hat zwar die sauberste Lizenz, enthält aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> bietet vollständige Eventdaten, die allerdings nur für eine RFM-Segmentierung auf Basis von Käufen reichen. Da nur das <em>öffentliche GA4-Sample des Google Merchandise Store</em> den ganzen Weg vom ersten Seitenaufruf bis zum Kauf abbildet, habe ich den Mehraufwand mit BigQuery in Kauf genommen.",
+ "pr-p4": "Google veröffentlicht diese Daten nur verschleiert, um die Nutzer zu schützen, also aus demselben Grund, aus dem sich beide Unternehmen zurückgezogen hatten. Die Menschen hinter den Daten lassen sich deshalb ebenfalls nicht befragen.",
  "ap-eyebrow": "03 · Vorgehen",
  "ap-h2": "Merkmale, Clustering und die Wahl von k.",
  "ap-tag3": "Statistische Validierung",
