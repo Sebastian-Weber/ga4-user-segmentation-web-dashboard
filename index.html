@@ -654,6 +654,7 @@
   .cs-guide-table .hyp-bullet{color:var(--cs-coral);font-weight:700;}
   .cs-guide-body h5{display:flex;align-items:center;gap:8px;}
   .cs-guide-body .seg-dot{width:10px;height:10px;border-radius:50%;flex:none;}
+  .cs-note{font-size:14px;line-height:1.65;color:var(--cs-text);background:var(--cs-neutral);border-left:3px solid var(--cs-coral);padding:14px 18px;margin:0 0 24px;border-radius:0 8px 8px 0;}
   .cs-offer{max-width:720px;margin:0 auto 56px;padding:0 48px;}
   .cs-offer-inner{background:#F2E6E3;border-radius:16px;padding:36px 40px;display:flex;gap:28px;align-items:flex-start;}
   .cs-offer-icon{flex:none;width:72px;height:72px;border-radius:16px;background:var(--cs-coral);display:flex;align-items:center;justify-content:center;}
@@ -1280,7 +1281,7 @@
 <section class="cs-block" id="guide" style="margin-top:64px;">
   <div class="cs-eyebrow" data-i18n="gd-eyebrow">09 · Interview guide</div>
   <h2 class="cs-h2" data-i18n="gd-h2">How the interviews would run</h2>
-  <p class="cs-body-text" data-i18n="nx-guide">For the follow-up interviews, I developed an example guide. I could not use it in this project: the Google Merchandise Store dataset was only available to me in anonymized form, and there was no way to contact selected users for qualitative research.</p>
+  <p class="cs-note" data-i18n="nx-guide"><strong>Note:</strong> I developed this user research guide as an example. I could not use it in this project, because the dataset was only available in anonymized form and its users could not be reached.</p>
     <div class="cs-guide-body">
       <div data-i18n="gd-who"><h4>Who is interviewed</h4><p>I select participants by their behavior, for example users who entered their shipping details but did not pay.</p><div class="cs-guide-table"><table><thead><tr><th>Segment</th><th>Method</th><th>Why</th></tr></thead><tbody><tr><td>Engaged Non-Converter</td><td>Interview, priority 1</td><td>Gets furthest, drop-off precisely located</td></tr><tr><td>Explorer</td><td>Interview, priority 2</td><td>Large segment with real interest</td></tr><tr><td>Converter</td><td>Interview as comparison</td><td>Shows what carries the purchase</td></tr><tr><td>Browser</td><td>Short survey on exit</td><td>Visits are too short for an interview</td></tr></tbody></table></div><p>5 to 6 people per segment, last visit no more than two weeks ago. Interviews last 45 minutes and take place remotely.</p></div>
       <div data-i18n="gd-flow"><h4>Interview flow</h4><ol><li><strong>Introduction (5 min):</strong> introductions, consent to recording.</li><li><strong>Context (10 min):</strong> How did you come across the shop? What do the brands there mean to you?</li><li><strong>Last visit (10 min):</strong> Tell me about your last visit, from the beginning. What did you want to achieve?</li><li><strong>Segment questions (15 min):</strong> see below.</li><li><strong>Wrap-up (5 min):</strong> If you could change one thing about the shop, what would it be?</li></ol><p>Ground rule: never bring up price, shipping or trust first. Let people tell their story, then follow up.</p></div>
@@ -1495,7 +1496,7 @@ const DE = {
  "nx-eyebrow": "08 · Nächster Schritt",
  "nx-h2": "Von Hypothesen zu Antworten",
  "nx-p": "Das folgende Board zeigt, wo Nutzer abspringen, und liefert Hypothesen dazu, was dahinterstecken könnte. Ob diese Hypothesen stimmen, würden Interviews als nächster Schritt zeigen.",
- "nx-guide": "Für die anschließenden Interviews habe ich einen exemplarischen Leitfaden entwickelt. Einsetzen konnte ich ihn in diesem Projekt nicht: Der Datensatz des Google Merchandise Store lag mir nur anonymisiert vor, und es gab keine Möglichkeit, für eine qualitative Untersuchung Kontakt zu ausgewählten Nutzern aufzunehmen.",
+ "nx-guide": "<strong>Hinweis:</strong> Diesen User-Research-Leitfaden habe ich exemplarisch entwickelt. Einsetzen konnte ich ihn in diesem Projekt nicht, weil der Datensatz nur anonymisiert vorlag und seine Nutzer nicht erreichbar waren.",
  "gd-eyebrow": "09 · Interviewleitfaden",
  "gd-h2": "So würden die Interviews ablaufen",
  "gd-who": "<h4>Wer interviewt wird</h4><p>Ich wähle die Teilnehmer nach ihrem Verhalten aus, zum Beispiel Nutzer, die ihre Versandangaben eingegeben, aber nicht bezahlt haben.</p><div class=\"cs-guide-table\"><table><thead><tr><th>Segment</th><th>Methode</th><th>Warum</th></tr></thead><tbody><tr><td>Engaged Non-Converter</td><td>Interview, Priorität 1</td><td>Kommt am weitesten, Abbruch genau lokalisiert</td></tr><tr><td>Explorer</td><td>Interview, Priorität 2</td><td>Großes Segment mit echtem Interesse</td></tr><tr><td>Converter</td><td>Interview als Vergleich</td><td>Zeigt, was den Kauf trägt</td></tr><tr><td>Browser</td><td>Kurzbefragung beim Verlassen</td><td>Besuche sind zu kurz für ein Interview</td></tr></tbody></table></div><p>Pro Segment nehmen 5 bis 6 Personen teil, deren letzter Besuch höchstens zwei Wochen zurückliegt. Die Interviews dauern 45 Minuten und finden remote statt.</p>",
