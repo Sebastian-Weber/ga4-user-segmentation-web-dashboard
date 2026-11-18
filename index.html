@@ -637,7 +637,9 @@
 
   #next .cs-body-text a{color:var(--cs-coral);}
   .cs-offer{max-width:720px;margin:56px auto 0;padding:0 48px;}
-  .cs-offer-inner{background:#F2E6E3;border-radius:16px;padding:36px 40px;}
+  .cs-offer-inner{background:#F2E6E3;border-radius:16px;padding:36px 40px;display:flex;gap:28px;align-items:flex-start;}
+  .cs-offer-icon{flex:none;width:72px;height:72px;border-radius:16px;background:var(--cs-coral);display:flex;align-items:center;justify-content:center;}
+  .cs-offer-icon svg{width:44px;height:44px;display:block;}
   .cs-offer-inner h3{font-size:20px;font-weight:700;color:var(--cs-dark);margin:0 0 12px;line-height:1.35;}
   .cs-offer-inner p{font-size:15px;color:var(--cs-text);margin:0 0 20px;line-height:1.7;}
 
@@ -649,7 +651,7 @@
     .cs-glance-findings{grid-template-columns:1fr;}
     .cs-glance-finding{border-right:none;border-bottom:1px solid var(--cs-border-light);}
     .cs-glance-finding:last-child{border-bottom:none;}
-    .cs-offer-inner{padding:28px 24px;}
+    .cs-offer-inner{padding:28px 24px;flex-direction:column;gap:20px;}
   }
   @media (max-width:600px){
     .cs-board{padding:0 20px 8px;}
@@ -857,9 +859,18 @@
      ============================================================ -->
 <section class="cs-offer" aria-labelledby="of-h3">
   <div class="cs-offer-inner">
+    <div class="cs-offer-icon" aria-hidden="true">
+      <svg viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 6v32h32"/>
+        <path d="M12 30l8-9 6 5 11-13"/>
+        <path d="M30 13h7v7"/>
+      </svg>
+    </div>
+    <div>
     <h3 id="of-h3" data-i18n="of-h3">I find out where users drop off on your website</h3>
     <p data-i18n="of-p">For marketing and product teams using GA4 or PostHog. I turn your data into concrete UX recommendations, on request as a dashboard in Tableau or HTML.</p>
     <a class="cs-cta-btn" href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener" data-i18n="of-btn">Get in touch on LinkedIn →</a>
+    </div>
   </div>
 </section>
 
