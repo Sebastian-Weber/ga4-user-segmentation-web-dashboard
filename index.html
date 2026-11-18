@@ -635,7 +635,7 @@
   .postit.hypothesis{background:#FFEFA0;}
   .postit .mood{display:block;font-size:22px;font-weight:700;line-height:1;margin-bottom:8px;}
 
-  #next .cs-body-text a{color:var(--cs-coral);}
+  #next .cs-body-text a,#glance .cs-body-text a{color:var(--cs-coral);}
   .cs-offer{max-width:720px;margin:0 auto 56px;padding:0 48px;}
   .cs-offer-inner{background:#F2E6E3;border-radius:16px;padding:36px 40px;display:flex;gap:28px;align-items:flex-start;}
   .cs-offer-icon{flex:none;width:72px;height:72px;border-radius:16px;background:var(--cs-coral);display:flex;align-items:center;justify-content:center;}
@@ -764,7 +764,7 @@
 <section class="cs-glance" id="glance" aria-labelledby="gl-h2">
   <div class="cs-eyebrow" data-i18n="gl-eyebrow">At a glance</div>
   <h2 class="cs-h2" id="gl-h2" data-i18n="gl-h2">Where users drop off, and what follows from it</h2>
-  <p class="cs-body-text" data-i18n="gl-p">The data shows where each user group gets stuck in the Google Merchandise Store. The board further down sets these findings next to possible reasons. The reasons are hypotheses that interviews would have to test.</p>
+  <p class="cs-body-text" data-i18n="gl-p">The data shows where each user group gets stuck in the Google Merchandise Store. In the <a href="#next">last section</a>, a board sets these findings next to possible reasons, as hypotheses for interviews.</p>
   <div class="cs-glance-findings">
     <div class="cs-glance-finding browser">
       <div class="num" data-i18n="gl-f1-num">88.8%</div>
@@ -814,77 +814,6 @@
   </div>
 </section>
 
-<!-- ============================================================
-     CASE STUDY: POST-IT BOARD (findings + hypotheses per segment)
-     ============================================================ -->
-<section class="cs-board" aria-label="Board: findings and hypotheses per segment" data-i18n-aria="bd-aria">
-  <div class="cs-board-legend">
-    <span><span class="swatch finding" aria-hidden="true"></span><span data-i18n="bd-leg-finding">Finding from the data</span></span>
-    <span><span class="swatch hypothesis" aria-hidden="true"></span><span data-i18n="bd-leg-hypo">Hypothesis, not yet tested</span></span>
-    <span><span class="mood" aria-hidden="true">:(</span><span data-i18n="bd-leg-pain">Pain</span></span>
-    <span><span class="mood" aria-hidden="true">:)</span><span data-i18n="bd-leg-gain">Gain</span></span>
-  </div>
-  <div class="cs-board-grid">
-
-    <div class="cs-board-col">
-      <h3><span class="dot" style="background:var(--browser)"></span>Browser <span class="share">· <span data-i18n="bd-b-share">81.1%</span></span></h3>
-      <ul class="cs-board-notes">
-        <li class="postit finding" data-i18n="bd-b-f1"><span>88.8% never see a <strong>product</strong></span></li>
-        <li class="postit finding" data-i18n="bd-b-f2"><span>Avg. 1.05 <strong>visits</strong>, about 2 page views</span></li>
-        <li class="postit finding" data-i18n="bd-b-f3"><span>Median <strong>13 seconds</strong> on the site</span></li>
-      </ul>
-      <ul class="cs-board-notes">
-        <li class="postit hypothesis" data-i18n="bd-b-h1"><span class="mood" role="img" aria-label="Pain">:(</span><span>The <strong>landing page</strong> doesn't match what they were looking for</span></li>
-        <li class="postit hypothesis" data-i18n="bd-b-h2"><span>Visitors arrive without <strong>purchase intent</strong></span></li>
-      </ul>
-    </div>
-
-    <div class="cs-board-col">
-      <h3><span class="dot" style="background:var(--explorer)"></span>Explorer <span class="share">· <span data-i18n="bd-e-share">14.3%</span></span></h3>
-      <ul class="cs-board-notes">
-        <li class="postit finding" data-i18n="bd-e-f1"><span>63.1% look at <strong>products</strong></span></li>
-        <li class="postit finding" data-i18n="bd-e-f2"><span>Only 4.8% add anything to the <strong>cart</strong></span></li>
-        <li class="postit finding" data-i18n="bd-e-f3"><span><strong>Checkout drop-off</strong> at the same step as Engaged Non-Converters</span></li>
-      </ul>
-      <ul class="cs-board-notes">
-        <li class="postit hypothesis" data-i18n="bd-e-h1"><span class="mood" role="img" aria-label="Gain">:)</span><span><strong>Browsing</strong> out of interest in the brands</span></li>
-        <li class="postit hypothesis" data-i18n="bd-e-h2"><span>Looking for <strong>gift ideas</strong>, buying later or elsewhere</span></li>
-        <li class="postit hypothesis" data-i18n="bd-e-h3"><span class="mood" role="img" aria-label="Pain">:(</span><span><strong>Price, size or range</strong> don't fit</span></li>
-        <li class="postit hypothesis" data-i18n="bd-e-h4"><span class="mood" role="img" aria-label="Pain">:(</span><span>Information for the <strong>purchase decision</strong> is missing</span></li>
-      </ul>
-    </div>
-
-    <div class="cs-board-col">
-      <h3><span class="dot" style="background:var(--engaged)"></span>Engaged Non-Converter <span class="share">· <span data-i18n="bd-n-share">2.9%</span></span></h3>
-      <ul class="cs-board-notes">
-        <li class="postit finding" data-i18n="bd-n-f1"><span>53.4% enter <strong>shipping details</strong></span></li>
-        <li class="postit finding" data-i18n="bd-n-f2"><span>Only 14.7% reach <strong>payment details</strong></span></li>
-        <li class="postit finding" data-i18n="bd-n-f3"><span>0% <strong>buy</strong></span></li>
-      </ul>
-      <ul class="cs-board-notes">
-        <li class="postit hypothesis" data-i18n="bd-n-h1"><span class="mood" role="img" aria-label="Pain">:(</span><span><strong>Shipping costs</strong> or <strong>delivery time</strong> come as a surprise</span></li>
-        <li class="postit hypothesis" data-i18n="bd-n-h2"><span class="mood" role="img" aria-label="Pain">:(</span><span>The preferred <strong>payment method</strong> or <strong>trust</strong> is missing</span></li>
-        <li class="postit hypothesis" data-i18n="bd-n-h3"><span>The cart serves as a <strong>wishlist</strong></span></li>
-        <li class="postit hypothesis" data-i18n="bd-n-h4"><span class="mood" role="img" aria-label="Pain">:(</span><span>The <strong>form</strong> takes too much effort</span></li>
-      </ul>
-    </div>
-
-    <div class="cs-board-col">
-      <h3><span class="dot" style="background:var(--converter)"></span>Converter <span class="share">· <span data-i18n="bd-c-share">1.6%</span></span></h3>
-      <ul class="cs-board-notes">
-        <li class="postit finding" data-i18n="bd-c-f1"><span>≥ 99.9% make it through <strong>checkout</strong></span></li>
-        <li class="postit finding" data-i18n="bd-c-f2"><span>75.7% buy across <strong>several visits</strong>, median 7.8 days</span></li>
-        <li class="postit finding" data-i18n="bd-c-f3"><span>17.4% buy <strong>repeatedly</strong></span></li>
-      </ul>
-      <ul class="cs-board-notes">
-        <li class="postit hypothesis" data-i18n="bd-c-h1"><span>The <strong>time to decide</strong> is used to coordinate (gift, budget)</span></li>
-        <li class="postit hypothesis" data-i18n="bd-c-h2"><span>A firm <strong>purchase intent</strong> makes shipping costs a non-issue</span></li>
-        <li class="postit hypothesis" data-i18n="bd-c-h3"><span class="mood" role="img" aria-label="Gain">:)</span><span>Repeat buyers are attached to the <strong>brand</strong></span></li>
-      </ul>
-    </div>
-
-  </div>
-</section>
 
 
 <div class="cs-content" style="margin-top:80px;">
@@ -1189,7 +1118,7 @@
   </div>
 </div><!-- /.cs-block.wide -->
 
-<div class="cs-content" style="padding-top:16px;">
+<div class="cs-content" style="padding-top:16px;padding-bottom:0;">
 
 <p class="cs-body-text" style="margin-bottom:64px;" data-i18n="ss-note">
   Most of the classified Browser users (87.0%) behave like humans, and the largest sub-type, Quick but Engaged, alone accounts for 81.6%. I derived the "bot-like" label from behavior (one session, several pages, no measured engagement time), so it is not a verified bot flag. GA4 already removes known bots and spiders when collecting data. The classification is descriptive and has not been validated as a typology.
@@ -1245,13 +1174,92 @@
   </p>
 </section>
 
+</div><!-- /.cs-content (board breaks out to full width) -->
+<div class="cs-content" style="padding-bottom:40px;">
 <!-- ============================================================
      CASE STUDY: NEXT STEP (from hypotheses to interviews)
      ============================================================ -->
-<section class="cs-block" id="next">
+<section class="cs-block" id="next" style="border-top:1px solid var(--cs-border);padding-top:64px;">
   <div class="cs-eyebrow" data-i18n="nx-eyebrow">08 · Next step</div>
   <h2 class="cs-h2" data-i18n="nx-h2">From hypotheses to answers</h2>
-  <p class="cs-body-text" data-i18n="nx-p">The <a href="#glance">board at the top</a> shows where users drop off and why they might. To test the hypotheses, I prepared an example interview guide. It has not been conducted, because the dataset is anonymized and its users cannot be reached.</p>
+  <p class="cs-body-text" data-i18n="nx-p">The board below shows where users drop off and why they might. To test the hypotheses, I prepared an example interview guide. It has not been conducted, because the dataset is anonymized and its users cannot be reached.</p>
+</section>
+</div>
+
+<!-- ============================================================
+     CASE STUDY: POST-IT BOARD (findings + hypotheses per segment)
+     ============================================================ -->
+<section class="cs-board" aria-label="Board: findings and hypotheses per segment" data-i18n-aria="bd-aria">
+  <div class="cs-board-legend">
+    <span><span class="swatch finding" aria-hidden="true"></span><span data-i18n="bd-leg-finding">Finding from the data</span></span>
+    <span><span class="swatch hypothesis" aria-hidden="true"></span><span data-i18n="bd-leg-hypo">Hypothesis, not yet tested</span></span>
+    <span><span class="mood" aria-hidden="true">:(</span><span data-i18n="bd-leg-pain">Pain</span></span>
+    <span><span class="mood" aria-hidden="true">:)</span><span data-i18n="bd-leg-gain">Gain</span></span>
+  </div>
+  <div class="cs-board-grid">
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--browser)"></span>Browser <span class="share">· <span data-i18n="bd-b-share">81.1%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-b-f1"><span>88.8% never see a <strong>product</strong></span></li>
+        <li class="postit finding" data-i18n="bd-b-f2"><span>Avg. 1.05 <strong>visits</strong>, about 2 page views</span></li>
+        <li class="postit finding" data-i18n="bd-b-f3"><span>Median <strong>13 seconds</strong> on the site</span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-b-h1"><span class="mood" role="img" aria-label="Pain">:(</span><span>The <strong>landing page</strong> doesn't match what they were looking for</span></li>
+        <li class="postit hypothesis" data-i18n="bd-b-h2"><span>Visitors arrive without <strong>purchase intent</strong></span></li>
+      </ul>
+    </div>
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--explorer)"></span>Explorer <span class="share">· <span data-i18n="bd-e-share">14.3%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-e-f1"><span>63.1% look at <strong>products</strong></span></li>
+        <li class="postit finding" data-i18n="bd-e-f2"><span>Only 4.8% add anything to the <strong>cart</strong></span></li>
+        <li class="postit finding" data-i18n="bd-e-f3"><span><strong>Checkout drop-off</strong> at the same step as Engaged Non-Converters</span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-e-h1"><span class="mood" role="img" aria-label="Gain">:)</span><span><strong>Browsing</strong> out of interest in the brands</span></li>
+        <li class="postit hypothesis" data-i18n="bd-e-h2"><span>Looking for <strong>gift ideas</strong>, buying later or elsewhere</span></li>
+        <li class="postit hypothesis" data-i18n="bd-e-h3"><span class="mood" role="img" aria-label="Pain">:(</span><span><strong>Price, size or range</strong> don't fit</span></li>
+        <li class="postit hypothesis" data-i18n="bd-e-h4"><span class="mood" role="img" aria-label="Pain">:(</span><span>Information for the <strong>purchase decision</strong> is missing</span></li>
+      </ul>
+    </div>
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--engaged)"></span>Engaged Non-Converter <span class="share">· <span data-i18n="bd-n-share">2.9%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-n-f1"><span>53.4% enter <strong>shipping details</strong></span></li>
+        <li class="postit finding" data-i18n="bd-n-f2"><span>Only 14.7% reach <strong>payment details</strong></span></li>
+        <li class="postit finding" data-i18n="bd-n-f3"><span>0% <strong>buy</strong></span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-n-h1"><span class="mood" role="img" aria-label="Pain">:(</span><span><strong>Shipping costs</strong> or <strong>delivery time</strong> come as a surprise</span></li>
+        <li class="postit hypothesis" data-i18n="bd-n-h2"><span class="mood" role="img" aria-label="Pain">:(</span><span>The preferred <strong>payment method</strong> or <strong>trust</strong> is missing</span></li>
+        <li class="postit hypothesis" data-i18n="bd-n-h3"><span>The cart serves as a <strong>wishlist</strong></span></li>
+        <li class="postit hypothesis" data-i18n="bd-n-h4"><span class="mood" role="img" aria-label="Pain">:(</span><span>The <strong>form</strong> takes too much effort</span></li>
+      </ul>
+    </div>
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--converter)"></span>Converter <span class="share">· <span data-i18n="bd-c-share">1.6%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-c-f1"><span>≥ 99.9% make it through <strong>checkout</strong></span></li>
+        <li class="postit finding" data-i18n="bd-c-f2"><span>75.7% buy across <strong>several visits</strong>, median 7.8 days</span></li>
+        <li class="postit finding" data-i18n="bd-c-f3"><span>17.4% buy <strong>repeatedly</strong></span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-c-h1"><span>The <strong>time to decide</strong> is used to coordinate (gift, budget)</span></li>
+        <li class="postit hypothesis" data-i18n="bd-c-h2"><span>A firm <strong>purchase intent</strong> makes shipping costs a non-issue</span></li>
+        <li class="postit hypothesis" data-i18n="bd-c-h3"><span class="mood" role="img" aria-label="Gain">:)</span><span>Repeat buyers are attached to the <strong>brand</strong></span></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="cs-content" style="padding-top:40px;">
+<div class="cs-next-steps">
   <div class="cs-steps">
     <div class="cs-step">
       <div class="cs-step-num">1</div>
@@ -1275,7 +1283,7 @@
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- ============================================================
      CASE STUDY: CTA
@@ -1432,7 +1440,7 @@ const DE = {
  "sub-next": "Nächster Schritt",
  "gl-eyebrow": "Auf einen Blick",
  "gl-h2": "Wo Nutzer abspringen und was daraus folgt",
- "gl-p": "Die Daten zeigen, wo jede Nutzergruppe im Google Merchandise Store hängen bleibt. Das Board weiter unten stellt diesen Befunden mögliche Gründe gegenüber. Die Gründe sind Hypothesen, die erst Interviews prüfen müssten.",
+ "gl-p": "Die Daten zeigen, wo jede Nutzergruppe im Google Merchandise Store hängen bleibt. Im <a href=\"#next\">letzten Abschnitt</a> stellt ein Board diesen Befunden mögliche Gründe gegenüber, als Hypothesen für Interviews.",
  "gl-f1-num": "88,8 %",
  "gl-f1": "sehen nie ein einziges Produkt. Browser machen 81,1 % aller Nutzer aus.",
  "gl-f2-num": "4,8 %",
@@ -1478,7 +1486,7 @@ const DE = {
  "of-btn": "Kontakt über LinkedIn →",
  "nx-eyebrow": "08 · Nächster Schritt",
  "nx-h2": "Von Hypothesen zu Antworten",
- "nx-p": "Das <a href=\"#glance\">Board oben</a> zeigt, wo Nutzer abspringen und warum sie es tun könnten. Um die Hypothesen zu prüfen, habe ich einen exemplarischen Interviewleitfaden erstellt. Durchgeführt wurde er nicht, weil der Datensatz anonymisiert ist und seine Nutzer nicht erreichbar sind.",
+ "nx-p": "Das Board darunter zeigt, wo Nutzer abspringen und warum sie es tun könnten. Um die Hypothesen zu prüfen, habe ich einen exemplarischen Interviewleitfaden erstellt. Durchgeführt wurde er nicht, weil der Datensatz anonymisiert ist und seine Nutzer nicht erreichbar sind.",
  "nx-s1-h": "Rekrutieren nach Verhalten",
  "nx-s1-p": "Teilnehmer werden danach ausgewählt, was sie auf der Website getan haben, zum Beispiel Versandangaben gemacht, aber nicht bezahlt.",
  "nx-s2-h": "Eine Frage pro Post-it",
