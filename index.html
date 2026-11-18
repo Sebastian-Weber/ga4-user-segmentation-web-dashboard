@@ -580,6 +580,84 @@
   }
 
   /* ---------- Cookie banner ---------- */
+
+  /* ============================================================
+     CASE STUDY: AT A GLANCE (entry layer) + POST-IT BOARD
+     ============================================================ */
+  .cs-glance{max-width:720px;margin:0 auto;padding:0 48px 40px;}
+  .cs-glance-findings{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    border:1px solid var(--cs-border);border-radius:12px;overflow:hidden;
+    background:var(--cs-white);margin:28px 0 0;
+  }
+  .cs-glance-finding{padding:22px 20px 20px;border-right:1px solid var(--cs-border-light);}
+  .cs-glance-finding:last-child{border-right:none;}
+  .cs-glance-finding .num{font-size:30px;font-weight:700;line-height:1.1;letter-spacing:-0.01em;}
+  .cs-glance-finding .label{font-size:13px;font-weight:700;color:var(--cs-dark);margin-top:10px;}
+  .cs-glance-finding .sub{font-size:12.5px;color:var(--cs-muted);margin-top:4px;line-height:1.45;}
+  .cs-glance-finding.browser .num{color:var(--browser);}
+  .cs-glance-finding.explorer .num{color:var(--explorer);}
+  .cs-glance-finding.engaged .num{color:var(--engaged);}
+
+  .cs-board{max-width:1400px;margin:0 auto;padding:0 28px 8px;}
+  .cs-board-legend{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:10px 24px;
+    margin:0 0 28px;font-size:13px;color:var(--cs-text);
+  }
+  .cs-board-legend span{display:inline-flex;align-items:center;gap:8px;}
+  .cs-board-legend .swatch{width:16px;height:16px;flex:none;box-shadow:0 1px 2px rgba(15,17,23,.15);}
+  .cs-board-legend .swatch.finding{background:#D6E6FD;}
+  .cs-board-legend .swatch.hypothesis{background:#FFEFA0;}
+  .cs-board-legend .mood{font-weight:700;}
+  .cs-board-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;}
+  .cs-board-col{
+    background:var(--cs-white);border:1px solid var(--cs-border);
+    padding:18px 16px 20px;
+  }
+  .cs-board-col h3{
+    display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+    font-size:15px;font-weight:700;color:var(--cs-dark);margin:0 0 16px;line-height:1.3;
+  }
+  .cs-board-col h3 .dot{width:10px;height:10px;border-radius:50%;flex:none;}
+  .cs-board-col h3 .share{font-weight:800;font-size:22px;color:var(--cs-dark);margin-left:auto;}
+  .cs-board-notes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;list-style:none;margin:0;padding:0;}
+  .cs-board-notes + .cs-board-notes{margin-top:24px;}
+  .postit{
+    aspect-ratio:1/1;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:12px;text-align:center;
+    font-size:13.5px;line-height:1.35;color:var(--cs-dark);
+    box-shadow:0 1px 2px rgba(15,17,23,.12),0 4px 10px rgba(15,17,23,.06);
+    hyphens:manual;-webkit-hyphens:manual;overflow-wrap:normal;
+  }
+  .postit strong{font-weight:700;}
+  .postit.finding{background:#D6E6FD;}
+  .postit.hypothesis{background:#FFEFA0;}
+  .postit .mood{display:block;font-size:22px;font-weight:700;line-height:1;margin-bottom:8px;}
+
+  #next .cs-body-text a,#glance .cs-body-text a{color:var(--cs-coral);}
+  .cs-offer{max-width:720px;margin:0 auto 56px;padding:0 48px;}
+  .cs-offer-inner{background:#F2E6E3;border-radius:16px;padding:36px 40px;display:flex;gap:28px;align-items:flex-start;}
+  .cs-offer-icon{flex:none;width:72px;height:72px;border-radius:16px;background:var(--cs-coral);display:flex;align-items:center;justify-content:center;}
+  .cs-offer-icon svg{width:44px;height:44px;display:block;}
+  .cs-offer-cta{display:flex;align-items:center;gap:16px;}
+  .cs-offer-inner h3{font-size:20px;font-weight:700;color:var(--cs-dark);margin:0 0 12px;line-height:1.35;}
+  .cs-offer-inner p{font-size:15px;color:var(--cs-text);margin:0 0 20px;line-height:1.7;}
+
+  @media (max-width:1100px){
+    .cs-board-grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+  }
+  @media (max-width:860px){
+    .cs-glance,.cs-offer{padding-left:20px;padding-right:20px;}
+    .cs-glance-findings{grid-template-columns:1fr;}
+    .cs-glance-finding{border-right:none;border-bottom:1px solid var(--cs-border-light);}
+    .cs-glance-finding:last-child{border-bottom:none;}
+    .cs-offer-inner{padding:28px 24px;flex-direction:column;gap:20px;}
+  }
+  @media (max-width:600px){
+    .cs-board{padding:0 20px 8px;}
+    .cs-board-grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
@@ -615,6 +693,7 @@
 </nav>
 
 <div class="subnav" id="subnav" role="navigation" aria-label="Sections on this page" data-i18n-aria="sub-aria">
+  <a href="#glance" data-i18n="sub-glance">At a glance</a>
   <a href="#acquisition" data-i18n="sub-acq">Data partner</a>
   <a href="#problem" data-i18n="sub-problem">No personas</a>
   <a href="#approach" data-i18n="sub-approach">Four segments</a>
@@ -622,6 +701,7 @@
   <a href="#subsegmentation" data-i18n="sub-subseg">Browser cluster</a>
   <a href="#insights" data-i18n="sub-insights">Robustness</a>
   <a href="#reflection" data-i18n="sub-answer">Conclusion</a>
+  <a href="#next" data-i18n="sub-next">Next step</a>
 </div>
 
 <div class="nav-overlay" id="navOverlay" data-open="false"></div>
@@ -645,6 +725,7 @@
     </li>
     <li><a href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener">LinkedIn</a></li>
     <li class="nav-drawer__section-label" data-i18n="sub-label">On this page</li>
+    <li><a href="#glance" class="subnav-drawer-item" data-i18n="sub-glance">At a glance</a></li>
     <li><a href="#acquisition" class="subnav-drawer-item" data-i18n="sub-acq">Data partner</a></li>
     <li><a href="#problem" class="subnav-drawer-item" data-i18n="sub-problem">No personas</a></li>
     <li><a href="#approach" class="subnav-drawer-item" data-i18n="sub-approach">Four segments</a></li>
@@ -652,6 +733,7 @@
     <li><a href="#subsegmentation" class="subnav-drawer-item" data-i18n="sub-subseg">Browser cluster</a></li>
     <li><a href="#insights" class="subnav-drawer-item" data-i18n="sub-insights">Robustness</a></li>
     <li><a href="#reflection" class="subnav-drawer-item" data-i18n="sub-answer">Conclusion</a></li>
+    <li><a href="#next" class="subnav-drawer-item" data-i18n="sub-next">Next step</a></li>
   </ul>
 </aside>
 
@@ -675,14 +757,66 @@
   </div>
 </header>
 
-<div class="cs-content">
+<!-- ============================================================
+     CASE STUDY: AT A GLANCE (entry layer for quick readers)
+     ============================================================ -->
+<section class="cs-glance" id="glance" aria-labelledby="gl-h2">
+  <div class="cs-eyebrow" data-i18n="gl-eyebrow">At a glance</div>
+  <h2 class="cs-h2" id="gl-h2" data-i18n="gl-h2">Where users drop off, and what follows from it</h2>
+  <p class="cs-body-text" data-i18n="gl-p">The data shows where each user group gets stuck in the Google Merchandise Store. In the <a href="#next">last section</a>, a board sets these findings next to possible reasons, as hypotheses for interviews.</p>
+  <div class="cs-glance-findings">
+    <div class="cs-glance-finding browser">
+      <div class="num" data-i18n="gl-f1-num">88.8%</div>
+      <div class="label">Browser</div>
+      <div class="sub" data-i18n="gl-f1">never see a single product. Browsers make up 81.1% of all users.</div>
+    </div>
+    <div class="cs-glance-finding explorer">
+      <div class="num" data-i18n="gl-f2-num">4.8%</div>
+      <div class="label">Explorer</div>
+      <div class="sub" data-i18n="gl-f2">add anything to the cart, although 63.1% look at products.</div>
+    </div>
+    <div class="cs-glance-finding engaged">
+      <div class="num" data-i18n="gl-f3-num">14.7%</div>
+      <div class="label">Engaged Non-Converter</div>
+      <div class="sub" data-i18n="gl-f3">reach payment details, down from 53.4% at shipping details. Nobody in this group buys.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CASE STUDY: OFFER (what a client gets)
+     ============================================================ -->
+<section class="cs-offer" aria-labelledby="of-h3">
+  <div class="cs-offer-inner">
+    <div class="cs-offer-icon" aria-hidden="true">
+      <!-- Icon: based on Lucide "chart-line" (ISC License), https://lucide.dev; line and arrow adapted -->
+      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 3v16a2 2 0 0 0 2 2h16"/>
+        <path d="M7 12l3-3 2 3 8-8"/>
+        <path d="M16.1 4.7 20 4l-.7 3.9"/>
+      </svg>
+    </div>
+    <div>
+    <div class="cs-eyebrow" style="margin-bottom:10px;font-size:14px;letter-spacing:.1em;" data-i18n="of-eyebrow">Work with me</div>
+    <h3 id="of-h3" data-i18n="of-h3">I find out where users drop off on your website</h3>
+    <p data-i18n="of-p">For marketing and product teams using GA4 or PostHog. I turn your data into concrete UX recommendations, on request as a dashboard in Tableau or HTML.</p>
+    <div class="cs-offer-cta">
+      <a class="cs-cta-btn" href="https://linkedin.com/in/sebastian-weber1708" target="_blank" rel="noopener"><!-- Icon: Bootstrap Icons "linkedin" (MIT License), https://icons.getbootstrap.com --><svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854zm4.943 12.248V6.169H2.542v7.225zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248S2.4 3.226 2.4 3.934c0 .694.521 1.248 1.327 1.248zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225z"/></svg><span data-i18n="of-btn">Get in touch on LinkedIn →</span></a>
+    </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="cs-content" style="margin-top:80px;">
 
 <!-- ============================================================
      CASE STUDY: PHASE 0, DATA ACQUISITION
      ============================================================ -->
 <section class="cs-block" id="acquisition">
   <div class="cs-eyebrow" data-i18n="acq-eyebrow">01 · Data partner</div>
-  <h2 class="cs-h2" data-i18n="acq-h2">Searching for a data partner.</h2>
+  <h2 class="cs-h2" data-i18n="acq-h2">Searching for a data partner</h2>
   <p class="cs-body-text" data-i18n="acq-p">
     My original idea was to develop behavioral personas based on a real company's user data. Since personas need a qualitative layer such as interviews in addition to behavioral data, I was looking for a partner company that could provide both. In return, I offered a free analysis, a finished dashboard and concrete recommendations. Before I contacted anyone, every candidate went through the same selection and screening process.
   </p>
@@ -748,7 +882,7 @@
      ============================================================ -->
 <section class="cs-block" id="problem">
   <div class="cs-eyebrow" data-i18n="pr-eyebrow">02 · No personas</div>
-  <h2 class="cs-h2" data-i18n="pr-h2">Why personas weren't possible in the end.</h2>
+  <h2 class="cs-h2" data-i18n="pr-h2">Why personas weren't possible in the end</h2>
   <p class="cs-body-text" data-i18n="pr-p1">
     I had concrete talks with two companies. The first was planning something similar itself and had recently commissioned a qualitative study with interviews, whose results had just come in. After a meeting with two product owners, we had already agreed to work on the project plan together. A week later, they called it off: their contract doesn't allow them to share tracking data with third parties, not even anonymized. The second company withdrew for the same reason, after I had raised the data-protection question myself. In neither case was the project itself the problem.
   </p>
@@ -768,7 +902,7 @@
      ============================================================ -->
 <section class="cs-block" id="approach">
   <div class="cs-eyebrow" data-i18n="ap-eyebrow">03 · Four segments</div>
-  <h2 class="cs-h2" data-i18n="ap-h2">Why I chose four segments instead.</h2>
+  <h2 class="cs-h2" data-i18n="ap-h2">Why I chose four segments instead</h2>
   <div class="cs-tag-row">
     <span class="cs-tag">Feature Engineering</span>
     <span class="cs-tag">K-Means Clustering</span>
@@ -819,7 +953,7 @@
      ============================================================ -->
 <section class="cs-block" id="result">
   <div class="cs-eyebrow" data-i18n="out-eyebrow">04 · Dashboard</div>
-  <h2 class="cs-h2" data-i18n="out-h2">What the clustering produced.</h2>
+  <h2 class="cs-h2" data-i18n="out-h2">What the clustering produced</h2>
 
   <div class="cs-donut-block">
     <svg width="220" height="220" viewBox="0 0 220 220">
@@ -977,7 +1111,7 @@
   </div>
 </div><!-- /.cs-block.wide -->
 
-<div class="cs-content" style="padding-top:16px;">
+<div class="cs-content" style="padding-top:16px;padding-bottom:0;">
 
 <p class="cs-body-text" style="margin-bottom:64px;" data-i18n="ss-note">
   Most of the classified Browser users (87.0%) behave like humans, and the largest sub-type, Quick but Engaged, alone accounts for 81.6%. I derived the "bot-like" label from behavior (one session, several pages, no measured engagement time), so it is not a verified bot flag. GA4 already removes known bots and spiders when collecting data. The classification is descriptive and has not been validated as a typology.
@@ -988,7 +1122,7 @@
      ============================================================ -->
 <section class="cs-block" id="insights">
   <div class="cs-eyebrow" data-i18n="in-eyebrow">06 · Robustness</div>
-  <h2 class="cs-h2" data-i18n="in-h2">How well the four segments hold up.</h2>
+  <h2 class="cs-h2" data-i18n="in-h2">How well the four segments hold up</h2>
   <p class="cs-body-text" data-i18n="in-p">I then checked the four segments from the dashboard in three more ways.</p>
   <div class="cs-steps">
     <div class="cs-step">
@@ -1021,7 +1155,7 @@
      ============================================================ -->
 <section class="cs-block" id="reflection">
   <div class="cs-eyebrow" data-i18n="re-eyebrow">07 · Conclusion</div>
-  <h2 class="cs-h2" data-i18n="re-h2">Meaningful and defensible, within limits.</h2>
+  <h2 class="cs-h2" data-i18n="re-h2">Meaningful and defensible, within limits</h2>
   <p class="cs-body-text" data-i18n="re-p1">
     My answer to the guiding question is a qualified yes. Behavioral data alone produced segments that are meaningful within one season: at least one boundary holds, and the analysis points to a concrete problem in the checkout. If I had called them personas, I would have promised more than the data can show.
   </p>
@@ -1032,6 +1166,118 @@
     To get from segments to personas, I would need the qualitative layer this project lacked: interviews, context and the reasons behind the behavior. HDBSCAN could sharpen the segments, since the data is very unevenly distributed (81% in one cluster), but it would not add that layer. The next step would therefore be user research.
   </p>
 </section>
+
+</div><!-- /.cs-content (board breaks out to full width) -->
+<div class="cs-content" style="padding-bottom:40px;">
+<!-- ============================================================
+     CASE STUDY: NEXT STEP (from hypotheses to interviews)
+     ============================================================ -->
+<section class="cs-block" id="next" style="border-top:1px solid var(--cs-border);padding-top:64px;">
+  <div class="cs-eyebrow" data-i18n="nx-eyebrow">08 · Next step</div>
+  <h2 class="cs-h2" data-i18n="nx-h2">From hypotheses to answers</h2>
+  <p class="cs-body-text" data-i18n="nx-p">The board below shows where users drop off and what might be behind it. Interviews would show whether these hypotheses hold. I developed the guide for them, but could not use it: the dataset is anonymized and its users cannot be reached.</p>
+</section>
+</div>
+
+<!-- ============================================================
+     CASE STUDY: POST-IT BOARD (findings + hypotheses per segment)
+     ============================================================ -->
+<section class="cs-board" aria-label="Board: findings and hypotheses per segment" data-i18n-aria="bd-aria">
+  <div class="cs-board-legend">
+    <span><span class="swatch finding" aria-hidden="true"></span><span data-i18n="bd-leg-finding">Finding from the data</span></span>
+    <span><span class="swatch hypothesis" aria-hidden="true"></span><span data-i18n="bd-leg-hypo">Hypothesis, not yet tested</span></span>
+    <span><span class="mood" aria-hidden="true">:(</span><span data-i18n="bd-leg-pain">Pain</span></span>
+    <span><span class="mood" aria-hidden="true">:)</span><span data-i18n="bd-leg-gain">Gain</span></span>
+  </div>
+  <div class="cs-board-grid">
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--browser)"></span>Browser <span class="share"><span data-i18n="bd-b-share">81.1%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-b-f1"><span>88.8% never see a <strong>product</strong></span></li>
+        <li class="postit finding" data-i18n="bd-b-f2"><span>Avg. 1.05 <strong>visits</strong>, about 2 page views</span></li>
+        <li class="postit finding" data-i18n="bd-b-f3"><span>Median <strong>13 seconds</strong> on the site</span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-b-h1"><span class="mood" role="img" aria-label="Pain">:(</span><span>The <strong>landing page</strong> doesn't match what they were looking for</span></li>
+        <li class="postit hypothesis" data-i18n="bd-b-h2"><span>Visitors arrive without <strong>purchase intent</strong></span></li>
+      </ul>
+    </div>
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--explorer)"></span>Explorer <span class="share"><span data-i18n="bd-e-share">14.3%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-e-f1"><span>63.1% look at <strong>products</strong></span></li>
+        <li class="postit finding" data-i18n="bd-e-f2"><span>Only 4.8% add anything to the <strong>cart</strong></span></li>
+        <li class="postit finding" data-i18n="bd-e-f3"><span><strong>Checkout drop-off</strong> at the same step as Engaged Non-Converters</span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-e-h1"><span class="mood" role="img" aria-label="Gain">:)</span><span><strong>Browsing</strong> out of interest in the brands</span></li>
+        <li class="postit hypothesis" data-i18n="bd-e-h2"><span class="mood" role="img" aria-label="Gain">:)</span><span>Looking for <strong>inspiration</strong> for gifts</span></li>
+        <li class="postit hypothesis" data-i18n="bd-e-h3"><span class="mood" role="img" aria-label="Pain">:(</span><span><strong>Price, size or range</strong> don't fit</span></li>
+        <li class="postit hypothesis" data-i18n="bd-e-h4"><span class="mood" role="img" aria-label="Pain">:(</span><span>Information for the <strong>purchase decision</strong> is missing</span></li>
+      </ul>
+    </div>
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--engaged)"></span>Engaged Non-Converter <span class="share"><span data-i18n="bd-n-share">2.9%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-n-f1"><span>53.4% enter <strong>shipping details</strong></span></li>
+        <li class="postit finding" data-i18n="bd-n-f2"><span>Only 14.7% reach <strong>payment details</strong></span></li>
+        <li class="postit finding" data-i18n="bd-n-f3"><span>0% <strong>buy</strong></span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-n-h1"><span class="mood" role="img" aria-label="Pain">:(</span><span><strong>Shipping costs</strong> or <strong>delivery time</strong> come as a surprise</span></li>
+        <li class="postit hypothesis" data-i18n="bd-n-h2"><span class="mood" role="img" aria-label="Pain">:(</span><span>The preferred <strong>payment method</strong> is missing</span></li>
+        <li class="postit hypothesis" data-i18n="bd-n-h2b"><span class="mood" role="img" aria-label="Pain">:(</span><span><strong>Trust</strong> is missing at payment</span></li>
+        <li class="postit hypothesis" data-i18n="bd-n-h3"><span>Use the cart as a <strong>wishlist</strong></span></li>
+        <li class="postit hypothesis" data-i18n="bd-n-h4"><span class="mood" role="img" aria-label="Pain">:(</span><span>The <strong>form</strong> takes too much effort</span></li>
+      </ul>
+    </div>
+
+    <div class="cs-board-col">
+      <h3><span class="dot" style="background:var(--converter)"></span>Converter <span class="share"><span data-i18n="bd-c-share">1.6%</span></span></h3>
+      <ul class="cs-board-notes">
+        <li class="postit finding" data-i18n="bd-c-f1"><span>≥ 99.9% make it through <strong>checkout</strong></span></li>
+        <li class="postit finding" data-i18n="bd-c-f2"><span>75.7% buy across <strong>several visits</strong>, median 7.8 days</span></li>
+        <li class="postit finding" data-i18n="bd-c-f3"><span>17.4% buy <strong>repeatedly</strong></span></li>
+      </ul>
+      <ul class="cs-board-notes">
+        <li class="postit hypothesis" data-i18n="bd-c-h1"><span>The <strong>time to decide</strong> is used to coordinate (gift, budget)</span></li>
+        <li class="postit hypothesis" data-i18n="bd-c-h2"><span>A firm <strong>purchase intent</strong> makes shipping costs a non-issue</span></li>
+        <li class="postit hypothesis" data-i18n="bd-c-h3"><span class="mood" role="img" aria-label="Gain">:)</span><span>Repeat buyers are attached to the <strong>brand</strong></span></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<div class="cs-content" style="padding-top:40px;">
+<div class="cs-next-steps">
+  <div class="cs-steps">
+    <div class="cs-step">
+      <div class="cs-step-num">1</div>
+      <div>
+        <h4 data-i18n="nx-s1-h">Select participants by behavior</h4>
+        <p data-i18n="nx-s1-p">I invite users who, for example, entered their shipping details but did not pay.</p>
+      </div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-num">2</div>
+      <div>
+        <h4 data-i18n="nx-s2-h">One question per post-it</h4>
+        <p data-i18n="nx-s2-p">For a pain, I ask what kept them from buying. For a gain, I ask what kept them in the shop.</p>
+      </div>
+    </div>
+    <div class="cs-step">
+      <div class="cs-step-num">3</div>
+      <div>
+        <h4 data-i18n="nx-s3-h">Results back onto the board</h4>
+        <p data-i18n="nx-s3-p">After the interviews, each hypothesis is confirmed, refuted or still open. From confirmed pains, I derive design changes and measure their effect with the same funnel metric.</p>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ============================================================
      CASE STUDY: CTA
@@ -1082,7 +1328,7 @@ const DE = {
  "meta-time": "Zeitraum",
  "meta-data": "Datensatz",
  "acq-eyebrow": "01 · Datenpartner",
- "acq-h2": "Die Suche nach einem Datenpartner.",
+ "acq-h2": "Die Suche nach einem Datenpartner",
  "acq-p": "Meine ursprüngliche Idee war es, verhaltensbasierte Personas auf Basis echter Nutzerdaten eines Unternehmens zu entwickeln. Weil Personas neben Verhaltensdaten auch eine qualitative Ebene brauchen, etwa Interviews, suchte ich ein Partnerunternehmen, das beides liefern konnte. Im Gegenzug bot ich eine kostenlose Analyse, ein fertiges Dashboard und konkrete Handlungsempfehlungen an. Bevor ich jemanden kontaktiert habe, durchlief jeder Kandidat denselben Auswahl- und Prüfprozess.",
  "acq-s1-h": "Longlist aufbauen",
  "acq-s1-p": "37 Kandidaten aus meinem beruflichen Netzwerk, mit Fokus auf die Digitalbranche in Köln und NRW.",
@@ -1104,13 +1350,13 @@ const DE = {
  "m-rate-sub": "4 von 20 haben geantwortet",
  "acq-result": "Eine der vier Antworten war eine Absage aus Kapazitätsgründen. Von den drei interessierten Unternehmen bot eines seine Unterstützung erst an, als das Projekt bereits solo lief.",
  "pr-eyebrow": "02 · Keine Personas",
- "pr-h2": "Warum es am Ende keine Personas werden konnten.",
+ "pr-h2": "Warum es am Ende keine Personas werden konnten",
  "pr-p1": "Mit zwei Unternehmen führte ich konkrete Gespräche. Das erste hatte selbst etwas Ähnliches vor und kurz zuvor eine qualitative Studie mit Interviews in Auftrag gegeben, deren Ergebnisse gerade vorlagen. Mit ihm hatte ich nach einem Termin mit zwei Product Ownern bereits vereinbart, gemeinsam an der Projektplanung zu arbeiten. Eine Woche später kam die Absage, weil das Unternehmen laut Vertrag keine Trackingdaten an Dritte weitergeben darf, auch nicht anonymisiert. Das zweite zog sich aus demselben Grund zurück, nachdem ich die Datenschutzfrage selbst angesprochen hatte. Am Projekt selbst lag es in beiden Fällen nicht.",
  "pr-p2": "Ohne Partner fehlten mir damit sowohl die Verhaltensdaten als auch die qualitative Ebene. Weil sich Motive aus reinen Verhaltensdaten nicht ablesen lassen, habe ich das Projekt auf eine Segmentierung beschränkt.",
  "pr-p3": "Für diesen Fall hatte ich drei öffentliche Datensätze vorbereitet. <em>Online Retail II</em> der UC Irvine hat zwar die sauberste Lizenz, enthält aber keine Browsing-Daten und keinen Funnel. <em>REES46</em> bietet vollständige Eventdaten, die allerdings nur für eine RFM-Segmentierung auf Basis von Käufen reichen. Da nur das <em>öffentliche GA4-Sample des Google Merchandise Store</em> den ganzen Weg vom ersten Seitenaufruf bis zum Kauf abbildet, habe ich den Mehraufwand mit BigQuery in Kauf genommen.",
  "pr-p4": "Google veröffentlicht diese Daten nur verschleiert, um die Nutzer zu schützen, also aus demselben Grund, aus dem sich beide Unternehmen zurückgezogen hatten. Die Menschen hinter den Daten lassen sich deshalb ebenfalls nicht befragen.",
  "ap-eyebrow": "03 · Vier Segmente",
- "ap-h2": "Warum ich mich stattdessen für vier Segmente entschieden habe.",
+ "ap-h2": "Warum ich mich stattdessen für vier Segmente entschieden habe",
  "ap-tag3": "Statistische Validierung",
  "ap-tag4": "Verhaltensanalyse",
  "ap-p": "In das Modell habe ich sechs Verhaltensmerkmale gegeben: <em>Anzahl der Sessions</em>, <em>Seitenaufrufe</em>, <em>angesehene Artikel</em>, <em>Add-to-Cart</em>, <em>Checkouts</em> und <em>Käufe</em>. Alle habe ich log-transformiert und standardisiert, bevor ich sie geclustert habe. Bei der Wahl von k widersprachen sich die beiden gängigen Validierungsmetriken: Während die Elbow-Kurve nach k=3 ohne deutlichen Knick abflacht, erreicht der Silhouette Score sein Maximum bei k=2. Ich habe mich trotzdem für k=4 entschieden, weil zwei Segmente für die Gestaltung zu wenig Unterscheidung bieten. Pruitt und Grudin (2003) empfehlen für die Praxis drei bis sechs Personas, sodass k=2 unter diesem Bereich läge. Den Widerspruch habe ich in der Case Study und im Dashboard dokumentiert.",
@@ -1125,7 +1371,7 @@ const DE = {
  "ap-s4-h": "Den größten Cluster hinterfragen",
  "ap-s4-p": "Als mir auffiel, wie groß der Browser-Cluster war, nämlich 81 % aller Nutzer, habe ich ihn mit Regeln weiter aufgeschlüsselt, um zu sehen, ob k-Means dort Unterschiede eingeebnet hat.",
  "out-eyebrow": "04 · Dashboard",
- "out-h2": "Was das Clustering ergeben hat.",
+ "out-h2": "Was das Clustering ergeben hat",
  "out-total": "270.154",
  "out-total-sub": "Nutzer gesamt",
  "out-pct-81.1%": "81,1 %",
@@ -1170,7 +1416,7 @@ const DE = {
  "ss-coverage": "205.914 von 219.153 Browser-Nutzern klassifiziert · 94,0 % Abdeckung (Engagement-Daten auf Session-Ebene)",
  "ss-note": "Die meisten klassifizierten Browser-Nutzer (87,0 %) verhalten sich wahrscheinlich menschlich, und die größte Untergruppe, Quick but Engaged, macht allein 81,6 % aus. Die Bezeichnung „botartig“ habe ich aus dem Verhalten abgeleitet (eine Session, mehrere Seiten, keine gemessene Engagement-Zeit), sodass sie keine verifizierte Bot-Kennzeichnung ist. Bekannte Bots und Spider schließt GA4 bereits bei der Erfassung aus. Die Klassifikation ist deskriptiv und nicht als Typologie validiert.",
  "in-eyebrow": "06 · Belastbarkeit",
- "in-h2": "Wie gut die vier Segmente standhalten.",
+ "in-h2": "Wie gut die vier Segmente standhalten",
  "in-p": "Danach habe ich die vier Segmente aus dem Dashboard auf drei weitere Arten geprüft.",
  "in-s1-h": "Browser und Explorer unterscheiden sich deutlich",
  "in-s1-p": "Obwohl Browser und Explorer dieselben Geräte und Traffic-Quellen nutzen, verbringen Explorer rund 13-mal so viel Zeit mit aktivem Engagement. Was die beiden Segmente trennt, ist also ihr Verhalten und nicht Gerät oder Kanal.",
@@ -1180,10 +1426,69 @@ const DE = {
  "in-s3-p": "Der Datensatz umfasst nur drei Monate, von November bis Januar. Selbst innerhalb dieses Zeitraums sinkt der Converter-Anteil von 2,5 % auf 0,9 %, während die Conversion der gesamten Website um rund 60 % fällt. Die Segmente beschreiben deshalb das Verhalten während einer Weihnachtssaison, und als stabile Nutzertypologie würde ich sie nicht lesen.",
  "in-close": "Unterm Strich hält eine Grenze, die andere ist schwächer, liefert aber einen konkreten Ansatzpunkt, und das Zeitfenster begrenzt, wie weit sich die Ergebnisse verallgemeinern lassen.",
  "re-eyebrow": "07 · Fazit",
- "re-h2": "Aussagekräftig und belastbar, aber mit Grenzen.",
+ "re-h2": "Aussagekräftig und belastbar, aber mit Grenzen",
  "re-p1": "Meine Antwort auf die Leitfrage ist ein eingeschränktes Ja. Reine Verhaltensdaten haben Segmente ergeben, die innerhalb einer Saison aussagekräftig sind, weil mindestens eine Grenze hält und die Analyse ein konkretes Problem im Checkout aufzeigt. Hätte ich sie Personas genannt, hätte ich mehr versprochen, als die Daten zeigen können.",
  "re-p2": "Die Grenzen der Analyse habe ich sowohl in der Case Study als auch im Dashboard benannt: den Widerspruch zwischen k=4 und k=2, den heuristischen Charakter der Browser-Untergruppen und das kurze Zeitfenster. So kannst Du selbst beurteilen, wie weit die Segmente tragen.",
  "re-p3": "Um von Segmenten zu Personas zu kommen, bräuchte ich die qualitative Ebene, die diesem Projekt fehlte: Interviews, Kontext und die Gründe hinter dem Verhalten. HDBSCAN könnte die Segmente zwar schärfen, weil die Daten sehr ungleich verteilt sind (81 % in einem Cluster), diese Ebene ergänzt es aber nicht. Der nächste Schritt wäre deshalb User Research.",
+ "sub-glance": "Auf einen Blick",
+ "sub-next": "Nächster Schritt",
+ "gl-eyebrow": "Auf einen Blick",
+ "gl-h2": "Wo Nutzer abspringen und was daraus folgt",
+ "gl-p": "Die Daten zeigen, wo jede Nutzergruppe im Google Merchandise Store hängen bleibt. Im <a href=\"#next\">letzten Abschnitt</a> stellt ein Board diesen Befunden mögliche Gründe gegenüber, als Hypothesen für Interviews.",
+ "gl-f1-num": "88,8 %",
+ "gl-f1": "sehen nie ein einziges Produkt. Browser machen 81,1 % aller Nutzer aus.",
+ "gl-f2-num": "4,8 %",
+ "gl-f2": "legen etwas in den Warenkorb, obwohl sich 63,1 % Produkte ansehen.",
+ "gl-f3-num": "14,7 %",
+ "gl-f3": "kommen zu den Zahlungsangaben, bei den Versandangaben waren es noch 53,4 %. In dieser Gruppe kauft niemand.",
+ "bd-aria": "Board: Befunde und Hypothesen je Segment",
+ "bd-leg-finding": "Befund aus den Daten",
+ "bd-leg-hypo": "Hypothese, noch nicht geprüft",
+ "bd-leg-pain": "Hürde",
+ "bd-leg-gain": "Motivation",
+ "bd-b-share": "81,1 %",
+ "bd-e-share": "14,3 %",
+ "bd-n-share": "2,9 %",
+ "bd-c-share": "1,6 %",
+ "bd-b-f1": "<span>88,8 % sehen nie ein <strong>Produkt</strong></span>",
+ "bd-b-f2": "<span>Ø 1,05 <strong>Besuche</strong>, ca. 2 Seitenaufrufe</span>",
+ "bd-b-f3": "<span>Median <strong>13 Sekunden</strong> auf der Seite</span>",
+ "bd-b-h1": "<span class=\"mood\" role=\"img\" aria-label=\"Hürde\">:(</span><span><strong>Einstiegs&shy;seite</strong> passt nicht zum Suchziel</span>",
+ "bd-b-h2": "<span>Besucher kommen ohne <strong>Kauf&shy;interesse</strong></span>",
+ "bd-e-f1": "<span>63,1 % sehen <strong>Produkte</strong> an</span>",
+ "bd-e-f2": "<span>Nur 4,8 % legen etwas in den <strong>Warenkorb</strong></span>",
+ "bd-e-f3": "<span><strong>Checkout-Abbruch</strong> am selben Schritt wie Engaged Non-Converter</span>",
+ "bd-e-h1": "<span class=\"mood\" role=\"img\" aria-label=\"Motivation\">:)</span><span><strong>Stöbern</strong> aus Interesse an den Marken</span>",
+ "bd-e-h2": "<span class=\"mood\" role=\"img\" aria-label=\"Motivation\">:)</span><span>Suchen <strong>Inspiration</strong> für Geschenke</span>",
+ "bd-e-h3": "<span class=\"mood\" role=\"img\" aria-label=\"Hürde\">:(</span><span><strong>Preis, Größe oder Auswahl</strong> passen nicht</span>",
+ "bd-e-h4": "<span class=\"mood\" role=\"img\" aria-label=\"Hürde\">:(</span><span>Infos für die <strong>Kauf&shy;entscheidung</strong> fehlen</span>",
+ "bd-n-f1": "<span>53,4 % geben <strong>Versand&shy;angaben</strong> ein</span>",
+ "bd-n-f2": "<span>Nur 14,7 % kommen zu den <strong>Zahlungs&shy;angaben</strong></span>",
+ "bd-n-f3": "<span>0 % <strong>kaufen</strong></span>",
+ "bd-n-h1": "<span class=\"mood\" role=\"img\" aria-label=\"Hürde\">:(</span><span><strong>Versand&shy;kosten</strong> oder <strong>Lieferzeit</strong> überraschen</span>",
+ "bd-n-h2": "<span class=\"mood\" role=\"img\" aria-label=\"Hürde\">:(</span><span>Die gewünschte <strong>Zahlungsart</strong> fehlt</span>",
+ "bd-n-h2b": "<span class=\"mood\" role=\"img\" aria-label=\"Hürde\">:(</span><span>Beim Bezahlen fehlt das <strong>Vertrauen</strong></span>",
+ "bd-n-h3": "<span>Nutzen den Warenkorb als <strong>Merkliste</strong></span>",
+ "bd-n-h4": "<span class=\"mood\" role=\"img\" aria-label=\"Hürde\">:(</span><span><strong>Formular</strong> ist zu aufwändig</span>",
+ "bd-c-f1": "<span>≥ 99,9 % kommen durch den <strong>Checkout</strong></span>",
+ "bd-c-f2": "<span>75,7 % kaufen über <strong>mehrere Besuche</strong>, Median 7,8 Tage</span>",
+ "bd-c-f3": "<span>17,4 % kaufen <strong>mehrfach</strong></span>",
+ "bd-c-h1": "<span><strong>Bedenkzeit</strong> dient der Abstimmung (Geschenk, Budget)</span>",
+ "bd-c-h2": "<span>Feste <strong>Kaufabsicht</strong> macht Versand&shy;kosten unkritisch</span>",
+ "bd-c-h3": "<span class=\"mood\" role=\"img\" aria-label=\"Motivation\">:)</span><span>Mehrfach&shy;käufer sind an die <strong>Marke</strong> gebunden</span>",
+ "of-eyebrow": "Zusammenarbeit",
+ "of-h3": "Ich finde heraus, wo Nutzer auf Eurer Website abspringen",
+ "of-p": "Für Marketing- und Produktteams mit GA4 oder PostHog. Aus Euren Daten leite ich konkrete UX-Empfehlungen ab, auf Wunsch als Dashboard in Tableau oder HTML.",
+ "of-btn": "Kontakt über LinkedIn →",
+ "nx-eyebrow": "08 · Nächster Schritt",
+ "nx-h2": "Von Hypothesen zu Antworten",
+ "nx-p": "Das folgende Board zeigt, wo Nutzer abspringen und was dahinterstecken könnte. Ob diese Hypothesen stimmen, würden Interviews zeigen. Den Leitfaden dafür habe ich entwickelt, konnte ihn aber nicht einsetzen: Der Datensatz ist anonymisiert, und seine Nutzer sind nicht erreichbar.",
+ "nx-s1-h": "Teilnehmer nach Verhalten auswählen",
+ "nx-s1-p": "Ich lade gezielt Nutzer ein, die zum Beispiel ihre Versandangaben eingegeben, aber nicht bezahlt haben.",
+ "nx-s2-h": "Eine Frage pro Post-it",
+ "nx-s2-p": "Bei einer Hürde frage ich, was den Kauf verhindert hat. Bei einer Motivation frage ich, was den Nutzer im Shop gehalten hat.",
+ "nx-s3-h": "Ergebnisse zurück aufs Board",
+ "nx-s3-p": "Nach den Interviews ist jede Hypothese bestätigt, widerlegt oder noch offen. Aus bestätigten Hürden leite ich Designänderungen ab und messe ihre Wirkung an derselben Funnel-Kennzahl.",
  "cta-h3": "Weitere Projekte",
  "cta-btn": "Zur Projektübersicht →",
  "foot-sig": "Sebastian Weber · UX/UI Designer · Design-to-Code · Köln 2026",
