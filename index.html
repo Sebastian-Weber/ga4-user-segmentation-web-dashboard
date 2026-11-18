@@ -594,7 +594,8 @@
   .cs-glance-finding:last-child{border-right:none;}
   .cs-glance-finding .num{font-size:30px;font-weight:700;line-height:1.1;letter-spacing:-0.01em;}
   .cs-glance-finding .label{font-size:13px;font-weight:700;color:var(--cs-dark);margin-top:10px;}
-  .cs-glance-finding .sub{font-size:12.5px;color:var(--cs-muted);margin-top:4px;line-height:1.45;}
+  .cs-glance-finding .sub{font-size:12.5px;color:var(--cs-muted);margin:6px 0 0;padding-left:16px;line-height:1.45;}
+  .cs-glance-finding .sub li{margin:2px 0;}
   .cs-glance-finding.browser .num{color:var(--browser);}
   .cs-glance-finding.explorer .num{color:var(--explorer);}
   .cs-glance-finding.engaged .num{color:var(--engaged);}
@@ -768,17 +769,17 @@
     <div class="cs-glance-finding browser">
       <div class="num" data-i18n="gl-f1-num">88.8%</div>
       <div class="label">Browser</div>
-      <div class="sub" data-i18n="gl-f1">never see a single product. Browsers make up 81.1% of all users.</div>
+      <ul class="sub" data-i18n="gl-f1"><li>never see a single product</li><li>81.1% of all users</li></ul>
     </div>
     <div class="cs-glance-finding explorer">
       <div class="num" data-i18n="gl-f2-num">4.8%</div>
       <div class="label">Explorer</div>
-      <div class="sub" data-i18n="gl-f2">add anything to the cart, although 63.1% look at products.</div>
+      <ul class="sub" data-i18n="gl-f2"><li>add anything to the cart</li><li>63.1% look at products</li></ul>
     </div>
     <div class="cs-glance-finding engaged">
       <div class="num" data-i18n="gl-f3-num">14.7%</div>
       <div class="label">Engaged Non-Converter</div>
-      <div class="sub" data-i18n="gl-f3">reach payment details, down from 53.4% at shipping details. Nobody in this group buys.</div>
+      <ul class="sub" data-i18n="gl-f3"><li>reach payment details</li><li>53.4% enter shipping details</li><li>0% buy</li></ul>
     </div>
   </div>
 </section>
@@ -1437,11 +1438,11 @@ const DE = {
  "gl-h2": "Wo Nutzer abspringen und was daraus folgt",
  "gl-p": "Die Daten zeigen, wo jede Nutzergruppe im Google Merchandise Store hängen bleibt. Im <a href=\"#next\">letzten Abschnitt</a> stellt ein Board diesen Befunden mögliche Gründe gegenüber, als Hypothesen für Interviews.",
  "gl-f1-num": "88,8 %",
- "gl-f1": "sehen nie ein einziges Produkt. Browser machen 81,1 % aller Nutzer aus.",
+ "gl-f1": "<li>sehen nie ein einziges Produkt</li><li>81,1 % aller Nutzer</li>",
  "gl-f2-num": "4,8 %",
- "gl-f2": "legen etwas in den Warenkorb, obwohl sich 63,1 % Produkte ansehen.",
+ "gl-f2": "<li>legen etwas in den Warenkorb</li><li>63,1 % sehen sich Produkte an</li>",
  "gl-f3-num": "14,7 %",
- "gl-f3": "kommen zu den Zahlungsangaben, bei den Versandangaben waren es noch 53,4 %. In dieser Gruppe kauft niemand.",
+ "gl-f3": "<li>kommen zu den Zahlungsangaben</li><li>53,4 % geben Versandangaben ein</li><li>0 % kaufen</li>",
  "bd-aria": "Board: Befunde und Hypothesen je Segment",
  "bd-leg-finding": "Befund aus den Daten",
  "bd-leg-hypo": "Hypothese, noch nicht geprüft",
